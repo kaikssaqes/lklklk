@@ -1,0 +1,6 @@
+{
+  "bot_token": "YOUR_BOT_TOKEN_HERE",
+  "owner_id": 0,
+  "cmd_prefix": "!",
+  "bot_status": "System Diagnostic Service"
+}
