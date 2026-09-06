@@ -69,8 +69,10 @@ End Sub
     for name in sorted(ident_map, key=len, reverse=True):
         script = re.sub(r'\b' + re.escape(name) + r'\b', ident_map[name], script)
 
-    # 5. On Error Resume Next -> Execute Chr
-    script = script.replace("On Error Resume Next", "Execute (" + chr_encode("On Error Resume Next") + ")")
+    # 5. NOTE: do NOT replace "On Error Resume Next" with Execute(Chr(...)) — Execute
+    #    runs in a separate context and On Error does NOT propagate to the caller.
+    #    Literal On Error Resume Next is required for error trapping to work.
+    #    (verified: Execute "On Error Resume Next" leaves errors untrapped)
 
     # 6. de-signature window resize
     script = script.replace(
