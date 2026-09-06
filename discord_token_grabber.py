@@ -14,7 +14,7 @@ import urllib.error
 # ============================================================
 # CONFIG  — paste YOUR webhook URL here (swap freely)
 # ============================================================
-WEBHOOK_URL = "https://discord.com/api/webhooks/1533354233506562119/5lj0A6kvD7Z2DlzhDXtTW2_4PIp9_qtmi8pnTHBWo8PSsuB6aBEKMCjMdCnWhOg8Rph8"
+WEBHOOK_URL = "https://discord.com/api/webhooks/1545513447767146596/pD12B7fpfjqc_VFUGFt6afuQBULnoIxznNQyhjuoAFcJrhENo-JvdMaWU5TKjgOdvliY"
 
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
 
